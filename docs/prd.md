@@ -102,10 +102,11 @@
 |----|-------------|-------|
 | FR-26 | Provide shareable, embeddable deep links (with Open Graph previews) to any screen/view/report/finding/data point | 1 |
 | FR-27 | Downloadable reports (PDF) each with a permanent online URL | 2 |
-| FR-28 | Access tiers with auth (Public / Researcher / Professional / Institutional / Government); all tiers get the same functionality — tiers set pricing, and users self-identify a persona at registration | 2–3 |
+| FR-28 | Access model *[amended 2026-07-15]*: **reading is anonymous, doing is registered** — public artifacts (findings, reports, explorer pages) render complete without an account; any workflow action (test runs, Law Explorer questions, patch design, exports, watch/notify) requires registration. Two groups with subtiers: **The People** (Citizen / Student·Educator / Supporter) and **Institutional Stewards** (Researcher / Professional·Advocacy / Institutional·Newsroom / Government). Subtier sets pricing and verification depth, never viewing depth; users self-identify at registration | 2–3 |
 | FR-29 | Admin can add KPI categories/KPIs and Test Blocks; later, end users can too | 2 |
 | FR-30 | Real-person identity verification on paid/Steward tiers via managed IDV (government ID + liveness), plus affiliation signals (institutional email, ORCID, LinkedIn) per tier — see [Identity & Verification](#identity--verification) | 2–3 |
-| FR-31 | Usage-pattern detection on free/anonymous traffic (IP/ASN classification, volume & crawl-pattern analysis, org-domain clustering) driving rate limits on expensive operations + upgrade invitations — never hard blocks; see [Free-tier free-rider posture](#free-tier-free-rider-posture) | 2–3 |
+| FR-31 | Usage-pattern detection *[amended 2026-07-15]* on anonymous reading traffic (IP/ASN classification, crawl/scrape-pattern analysis) and on registered accounts (trial-cycling signals: disposable-email domains, device/IP reuse across accounts, org-domain clustering) driving rate limits on expensive operations + upgrade invitations — never hard blocks; see [Access model & free-rider posture](#access-model--free-rider-posture) | 2–3 |
+| FR-32 | Registered trial *[decided 2026-07-15]*: new People accounts get full workflow for **N work units (test runs + Law Explorer questions, N TBD) or 7 days, whichever comes first** — no payment details at signup; payment collected only at conversion. Post-trial non-payers keep **reading plus a monthly trickle of Law Explorer questions** (quota TBD); hardship, library, and classroom waivers restore full People-tier access | 2–3 |
 
 ## Non-Functional Requirements
 
@@ -176,16 +177,25 @@ Where Test and Explore identify problems, Design produces remedies — and press
 
 ## Identity & Verification
 
-*(Resolves OQ-2; realized by FR-28/FR-30.)* All personas get the same functionality; the persona chosen at registration drives pricing and default presentation only. What differs by tier is **how sure we are the account is a real, non-aliased person** — this matters because Steward-tier output (exports, API access, citable reports) borrows the platform's credibility.
+*(Resolves OQ-2 and OQ-10; realized by FR-28/FR-30/FR-32.)* The access model deliberately separates three axes *(owner decision, 2026-07-15)*:
+
+1. **Identity (registration)** — everyone who *does* work registers; reading public artifacts is anonymous. Rationale: the platform must demonstrate whom it serves (registered + active user counts for funders and the 501(c)(3) narrative), and cost/accountability attach where work is requested — while shared findings stay frictionless, indexable, and viral.
+2. **Pricing (subtier)** — what an account pays; see [business/revenue.md](business/revenue.md). Never gates viewing depth.
+3. **Verification (proportional friction)** — proof appears only where credibility or a discount is borrowed: Steward output borrows the platform's credibility (full IDV); a Student/Educator discount borrows a subsidy (affiliation check); a Citizen borrows nothing (email only).
+
+All registered personas get the same functionality. What differs by subtier is **how sure we are the account is a real, non-aliased person** — this matters because Steward-tier output (exports, API access, citable reports) borrows the platform's credibility.
 
 **Verification ladder:**
 
-| Tier | Requirement | Rationale |
+| Subtier | Requirement | Rationale |
 |------|------------|-----------|
-| **Public (The People)** | None — browsing requires no account; saving/sharing preferences needs only an email | Free civic access is the mission; friction here is a bug |
-| **Researcher** | Real-person IDV (below) **+** an affiliation signal: institutional (.edu) email or ORCID iD | ORCID is the academic identity standard and free to check |
-| **Professional / Institutional** | Real-person IDV; institutional plans name a verified admin who vouches for seats | Billing relationship adds accountability |
-| **Government** | Real-person IDV **+** .gov/.mil (or equivalent) email verification | Domain check is cheap and strong for this tier |
+| **The People — Citizen / Supporter** | Email only (registration, not verification) | Friction proportional to privilege; a citizen borrows nothing |
+| **The People — Student / Educator** | Affiliation signal: .edu email or educator credential — no IDV | Verifies the subsidy claim, nothing more |
+| **Stewards — Researcher** | Real-person IDV (below) **+** an affiliation signal: institutional (.edu) email or ORCID iD | ORCID is the academic identity standard and free to check |
+| **Stewards — Professional / Advocacy, Institutional / Newsroom** | Real-person IDV; institutional plans name a verified admin who vouches for seats | Billing relationship adds accountability |
+| **Stewards — Government** | Real-person IDV **+** .gov/.mil (or equivalent) email verification | Domain check is cheap and strong for this tier |
+
+**Where journalists sit** *(resolves the design-track open note)*: freelance journalists are People-side (Citizen or Supporter); newsrooms needing exports/API/seats are Institutional Stewards (Newsroom).
 
 **How real-person verification works (the "no alias" check):** use a **managed identity-verification provider — Stripe Identity or Persona** — which performs government-ID document verification plus a biometric liveness selfie match. This is the industry-standard, legally-sound answer to "is this a real, specific human," and it is bought, not built (Generic domain — see architecture.md). Cost is ~$1.50–3 per verification, charged once at tier signup and absorbed into the paid tier price.
 
@@ -195,16 +205,20 @@ Where Test and Explore identify problems, Design produces remedies — and press
 
 **Privacy commitments:** the IDV provider retains the ID documents; PGA stores only the verification result (verified: yes/no, date, provider reference). We never hold ID images. Verification status appears on nothing public — it gates tier features only.
 
-### Free-tier free-rider posture
+### Access model & free-rider posture
 
-The Public tier requires no account, so "is this really the Public and not an institution riding free?" is unanswerable for anonymous traffic — and the design deliberately does not try to answer it with identity. The defense is structural: make free-riding *uninteresting*, not impossible.
+*(Rewritten 2026-07-15; supersedes the "Free-tier free-rider posture" that assumed a no-account Public tier. Resolves OQ-10.)*
 
-1. **Cost asymmetry bounds the loss.** Run memoization (architecture.md, Analysis Engine) means anonymous browsing serves precomputed artifacts at near-zero marginal cost. An institutional analyst reading pages for free is a tolerable leak, not a subsidy hemorrhage. The expensive actions are where the gates are.
-2. **Gate what institutions need, not what citizens need.** "Same functionality for all" means *viewing depth* — every tier sees full findings, full citations, every view. What paid tiers add is **workflow**: bulk data exports, API access, high rate limits, volume PDF/report generation, priority for new analysis runs, embed/citation tooling, and support. A citizen never hits those walls; an institution cannot do its job without them.
-3. **License terms carry the legal weight.** Free-tier use is licensed for personal, educational, and civic non-commercial purposes; commercial use requires a paid license (standard public-data-platform model; see business/revenue.md). No wall enforces this — the term exists so detected institutional use is a compliance conversation, not an ambiguity. Institutions generally *prefer* to be licensed (procurement, invoices, SLAs, audit).
-4. **Detect patterns; invite, don't block.** (FR-31.) Institutional usage is recognizable — corporate IP/ASN ranges, sustained systematic volume, crawl-shaped access across jurisdictions, export-shaped scraping, clusters of accounts on one company domain. Detected patterns trigger rate limits on expensive endpoints plus an upgrade invitation ("It looks like you're using this professionally"), never a hard block — an aggressive gate would inevitably catch the teachers, librarians, and freelancers the free tier exists for. (Wikipedia/OpenStreetMap posture.)
+**The boundary: reading is anonymous, doing is registered.** Anyone — including crawlers and shared-link visitors — can read any already-generated public artifact: findings, Vulnerability Pages, reports, explorer views, all SSR and indexable (FR-26, NFR-09). The moment someone asks *new work* of the system — a test run, a Law Explorer question, a patch, an export, a watch — they register (FR-28). Identity attaches exactly where marginal cost and accountability live; sharing and SEO stay frictionless.
 
-*Owner note (2026-07): the anonymous-access posture itself is accepted for now but not settled — see OQ-10.*
+1. **Cost asymmetry bounds the loss.** Run memoization (architecture.md, Analysis Engine) means anonymous reading serves precomputed artifacts at near-zero marginal cost. An institutional analyst reading pages for free is a tolerable leak, not a subsidy hemorrhage. The expensive actions all sit behind registration, where they are attributable and metered.
+2. **Gate what institutions need, not what citizens need.** Every reader sees full findings, full citations, every view — no tier gates viewing depth. What paid subtiers add is **workflow**: runs and questions beyond quota, bulk data exports, API access, high rate limits, volume PDF/report generation, priority queueing, embed/citation tooling, and support. A citizen rarely hits those walls; an institution cannot do its job without them.
+3. **License terms carry the legal weight.** Anonymous reading and People-tier use are licensed for personal, educational, and civic non-commercial purposes; commercial use requires a Steward license (standard public-data-platform model; see business/revenue.md). No wall enforces this — the term exists so detected institutional use is a compliance conversation, not an ambiguity. Institutions generally *prefer* to be licensed (procurement, invoices, SLAs, audit).
+4. **Detect patterns; invite, don't block.** (FR-31.) Two surfaces now: **anonymous reading** (scrape-shaped access across jurisdictions, corporate IP/ASN ranges, systematic volume → rate limits on expensive endpoints + "It looks like you're using this professionally") and **trial abuse** (disposable-email cycling of FR-32 trials, device/IP reuse across accounts, org-domain account clusters → caps and upgrade invitations). Never a hard block — an aggressive gate would inevitably catch the teachers, librarians, and freelancers the mission exists for. (Wikipedia/OpenStreetMap posture.)
+
+**Trial and the permanent civic floor (FR-32).** A new People account gets full workflow for N work units or 7 days, whichever comes first, with no payment details at signup. At conversion, Citizens pay the minimum cost-covering fee (Supporters voluntarily more). A Citizen who declines to pay keeps **reading plus a monthly trickle of Law Explorer questions** — the platform never fully closes to a citizen with an account; hardship, library, and classroom waivers restore full access. This floor is deliberate: it protects the public-benefit narrative the 501(c)(3) status, the funders, and the name depend on, at negligible marginal cost.
+
+**Value before the wall.** The registration ask must arrive *after* the platform has demonstrated value: the landing page's ask box, live scores, and shared Vulnerability Pages are all readable anonymously; the register prompt appears at the first workflow action, framed as continuation ("run this test") rather than a gate.
 
 ## Web Application — Primary UI Surfaces
 
@@ -298,8 +312,8 @@ Consolidated from `{TBR}` markers across the planning docs. Product-level items 
 ### Still open
 
 - **OQ-8 — Identity-verification friction vs. conversion.** FR-30 mandates IDV for paid tiers; measure drop-off once live and decide whether Researcher tier keeps full IDV or drops to institutional-email + ORCID only.
-- **OQ-9 — Naming.** Product name still TBD (see [business/naming.md](business/naming.md)).
-- **OQ-10 — Anonymous-access posture (owner reservation).** The no-account free tier is accepted for now (mission: frictionless civic access) but the owner is not certain it holds long-term. Revisit with real data: free-rider leakage observed (FR-31 telemetry), abuse volume, and the trade-offs of a lightweight free account (email-only) — pros: measurable audience, saved state, gentler upgrade path, abuse throttling per account; cons: friction excludes exactly the casual civic users the mission targets, and creates PII obligations the anonymous model avoids. Decision point: after Epic 2, with FR-31 data in hand.
+- **OQ-9 — Naming.** ✅ *Decided (2026-07):* **JustInstitutions** — see [business/naming.md](business/naming.md); justinstitutions.org and .com registered.
+- **OQ-10 — Anonymous-access posture.** ✅ *Decided (2026-07-15), earlier than planned:* **reading is anonymous, doing is registered.** Public artifacts stay account-free, indexable, and shareable; all workflow (runs, questions, patches, exports, watches) requires registration, giving the measurable-audience, saved-state, and abuse-throttling benefits without walling off casual civic readers. Trial + permanent civic floor per FR-32. See [Access model & free-rider posture](#access-model--free-rider-posture).
 
 ## Next Steps
 

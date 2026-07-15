@@ -1,6 +1,6 @@
 # Front-End Spec — JustInstitutions (PGA)
 
-> Deliverable 1 of 2 named in the front-end brief. Companion to Deliverable 2, the **design system** (`design-system/` in this package: tokens, components, guidelines, readme). Designed in Claude Designer, July 2026. Product name TBD — plain-type wordmark placeholder "JustInstitutions".
+> Deliverable 1 of 2 named in the front-end brief. Companion to Deliverable 2, the **design system** (`design-system/` in this package: tokens, components, guidelines, readme). Designed in Claude Designer, July 2026. Product name **JustInstitutions** (decided 2026-07, see business/naming.md); wordmark is plain type, no logo yet.
 >
 > The `screens/*.dc.html` files are **design references** (HTML prototypes showing intended look and behavior), not production code. Recreate them in the target codebase's environment using its patterns; the spec + tokens are the source of truth.
 
@@ -138,7 +138,7 @@ Prototypes are desktop-first (1100–1440px design widths). Intended collapse:
 - Provenance visible and tappable on every claim.
 - Correlation ≠ causation: band-locked language (C0–C3) in copy and color; never imply proven causation.
 - AI-drafted language visibly marked as requiring expert review.
-- **Access model**: three tiers, all requiring registration — **Free** (activity- or day-capped), **The Public** (minimum cost-covering fee), **Institutional Stewards** (see PRD definitions; Journalists may move to The Public — open). Tiers gate *workflow* (exports, API, volume), never viewing depth. Signed-out header shows Sign in + Register; no "no account" copy anywhere. Upgrade prompts invite, never block.
+- **Access model** *(refined 2026-07-15, see PRD FR-28/FR-32)*: **reading is anonymous, doing is registered** — public artifacts render complete signed-out; any workflow action (run, question, patch, export, watch) prompts registration, framed as continuation, never a gate. Registered groups: **The People** (trial: N work units or 7 days → minimum cost-covering fee; non-payers keep reading + a monthly question trickle) and **Institutional Stewards** (see PRD; freelance journalists are People-side, newsrooms are Stewards). Tiers gate *workflow* (exports, API, volume), never viewing depth. Signed-out header shows Sign in + Register. Upgrade prompts invite, never block.
 - Public pages SSR, indexable, fast, shareable (stable URLs); Vulnerability Pages carry Open Graph previews.
 
 ## Files in this package
