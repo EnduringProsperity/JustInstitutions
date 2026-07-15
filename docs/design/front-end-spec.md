@@ -21,19 +21,45 @@
 
 ## Information architecture
 
-Primary nav (left, in 52px header): **Test · Explore · Design**. Explore has a segmented sub-nav (pill group in header): **Outcomes · Money · Compare · The Law**. Upper right: search, help, profile dropdown. Right edge of header: context stamp in mono (corpus version, vintage).
+**Landing** (`/`) sits above the app sections as the signed-out entry point; its header nav links into **Test · Explore · Design · Methodology**, and its persona cards and question chips deep-link to specific views.
+
+Primary nav (left, in 52px header): **Test · Explore · Design**. Explore has a segmented sub-nav (pill group in header): **Outcomes · Money · Compare · The Law**. Upper right, signed in: search, help, profile dropdown; signed out: **Sign in** (outline) + **Register** (accent fill) — all tiers require registration. Right edge of header: context stamp in mono (corpus version, vintage).
 
 Core loop: Test (configure → report → block detail) → Explore (outcomes, money, compare, law) → Design (patch) → re-Test.
+
+A test run's results are **three tabs under one page title**: Test Report · Vulnerability Explorer (all findings, filterable) · Rollup (sub-jurisdictions). Every finding also has a standalone permalink — the **Vulnerability Page** at `/v/VLN-…` — which is the product's most-shared artifact and is reachable from any finding card, explorer row, or external link without entering the Test flow.
 
 ## Screens
 
 Each screen below exists as a `.dc.html` reference in `screens/`. Layout constants shared by all: header 52px, `--bg-1` on `--line-1` bottom border; content in a centered max-width main (900–1220px by density); cards are `--bg-1`, 1px `--line-1`, radius 10px, `--shadow-1`.
 
+### 0 · Landing (`Landing Page.dc.html`)
+Signed-out entry point, `--bg-0` page (no card chrome until content). 56px header: wordmark, nav (Test · Explore · Design · Methodology), Sign in + Register right. Sections top to bottom:
+- **Hero** (centered, max 920): mono coverage overline (jurisdiction counts · corpus · vintage), 52px display headline ("Strengthen your government."), one-paragraph plain-register promise, then the **ask box** — search input whose placeholder rotates through viral example questions (3.8s interval, from example-questions.md) with an accent **Ask** button — and a row of 3 question chips (pill links).
+- **Live scores**: auto-fit card grid (min 200px); per jurisdiction — name, delta chip vs prior corpus, 36px score, pass/partial/gap/fail stacked distribution bar, mono run stamp. Cards link to that jurisdiction's Test Report.
+- **Start where you stand** (persona entries): auto-fit grid (min 320px) of 6 cards — mono persona tag (I LIVE HERE / STUDENT · TEACHER / JOURNALIST / RESEARCHER / ADVOCATE / STAFFER · OFFICIAL), a quoted example question, accent CTA → deep link.
+- **The loop**: 4-up numbered cards (Test / Explore / Design / Re-test) on a `--bg-1` band, each with a mono footer stamp.
+- **Skeptic strip** ("Don't trust us. Check us."): copy block + 4 skeptic-question rows, each routing to a methodology page (mono route label right).
+- Footer: wordmark, links (Methodology · Data & vintages · API · Critique channel), mono corpus stamp.
+Interactions: rotating placeholder pauses on input focus (implement; prototype rotates only). All content is public/indexable; the Ask box routes to Law Explorer.
+
 ### 1 · Test Config (`Test Config.dc.html`)
 Five-step checklist, **all steps visible at once** (no wizard): 1 Jurisdiction, 2 Test blocks, 3 Corpus & vintage, 4 KPI joins, 5 Review & run. Max-width 900. Footer becomes a persistent status bar after kickoff; runs drawer carries notify-me; identical configs offer the cached result.
 
 ### 2 · Test Report (`Results Page.dc.html`)
-Overall score (display-size number /100), block heat strip, findings list. Findings are cards with verdict badge, C-band pill, provenance micro-stamp, plain/expert copy per register toggle.
+First of the three result tabs (see IA). Overall score (display-size number /100), block heat strip, findings list. Findings are cards with verdict badge, C-band pill, provenance micro-stamp, plain/expert copy per register toggle. Findings link to their Vulnerability Pages; the list footer links into the Vulnerability Explorer tab.
+
+### 2a · Vulnerability Explorer + Rollup (`Vulnerability Explorer.dc.html`)
+Result tabs two and three, same page shell/title as the Test Report (tab bar switches in place; each tab is its own URL).
+- **Vulnerability Explorer tab**: filter row — verdict-count pill toggles (fail/gap/partial/pass; active = verdict-wash fill + verdict-color border, inactive = `--bg-1` + `--ink-3`), block select, sort select (severity / confidence / patch difficulty / newest change), mono match-count right. Findings table: ID (mono) · finding title (register-dependent: plain sentence vs expert citation line) · test · verdict chip · severity as five 14px heat segments + number · C-band pill with vocabulary tooltip. Rows link to Vulnerability Pages. Footer reminders: "gap ≠ fail", every row a stable URL.
+- **Rollup tab**: dark `--ink-surface` summary card (median score display-size, spread, vintage) + score-distribution histogram (accent bars, median band highlighted, hover count tooltips). Below, counties table: name · score · Δ vs prior corpus (pass-green/fail-red/—) · verdict-mix stacked bar · top local finding (one line, truncates). Footer: pagination link + export CSV (workflow gate).
+
+### 2b · Vulnerability Page (`Vulnerability Page.dc.html`) — the shareable unit
+Per-finding permalink (`/v/VLN-…`), the most-shared artifact; must render complete for signed-out visitors and carry Open Graph metadata. Max-width 1200; page-level register toggle in header.
+- **Title block**: breadcrumb (report → explorer → ID), chip row (mono ID · verdict chip · C-band pill with band-vocabulary tooltip · test/topic mono), register-dependent headline (30px plain sentence / 26px expert statement) + dek, provenance summary line with hover ladder.
+- **Right of title**: dark `--ink-surface` card — SEVERITY and PATCH DIFFICULTY as paired display numbers (n/5), heat-segment bar, one-line reading, accent CTA "Design a patch →" (to Patch Proposal).
+- **Main column** (flex-wrap: rail drops below at narrow widths): "The rule as written" (statute quoted in serif, left border, mono cite footer, link to source text; register-dependent commentary below) · "What the test checked" (per-criterion verdict chips + rubric link) · "Why it matters" (C-band chip in header; register-dependent evidence prose — only real, cited facts — + three stat cards: 20px value + label) · "Who benefits from the status quo" (tagged rows: EXECUTIVE/AGENCIES/COST…, with the incentives-not-motives disclaimer).
+- **Rail**: Share card (readonly stable URL + Copy button with copied-state, cite line + BibTeX link) · Provenance ladder card (key–value mono rows: source / law as of / finding / confidence / run) · Related findings (verdict chip + ID + one-liner) · Watch card (`--accent-wash`): notify on law change, verdict move, or patch.
 
 ### 3 · Block Detail (`Block Detail.dc.html`)
 One test block's methodology made legible: the questions asked, verdicts per test, rule citations in serif, C-band rationale.
@@ -53,7 +79,15 @@ Target of "all 31 →" (Health & Wellbeing sample). Three headline stat cards (v
 Headline total ($325.1B, 40px). Left: drillable spending cascade in the government's **native structure** (click ▸ rows to open sub-lines), unit switcher $/per-capita/% of parent, share-of-total bars, YoY chips. Right rail: paired revenue panel + dark fiscal-findings scorecard (links to findings). Bottom, full width: **"Does the money follow the values?"** crosswalk — budget area → mapped SDGs → share of spend vs share of failing/at-risk KPIs → reading chip (PROPORTIONATE / UNDERWEIGHTED, threshold: gap share ≥ 2× spend share). Method note states the mapping chain (DOF line → COFOG → SDG targets → KPI gap counts) and that mismatch ≠ proof more money fixes it.
 
 ### 6 · Patch Proposal (`Patch Proposal.dc.html`) — Design
-Seven-step numbered timeline (accent circles + connecting line): 1 Feasibility, 2 Precedent (comparable-jurisdiction cards), 3 Beneficiaries (gains/pays two-up + coalition map), 4 Draft language (serif, **AI-DRAFTED banner in partial-wash — required by brief**, scope note), 5 Impact (test delta / timeline / watch-after-passage KPIs), 6 Unintended consequences (simulation: conflict scan over referencing sections + incentive analysis; rows tagged CONFLICT / INCENTIVE / CAPACITY / DRIFT, each with mitigation + status chip: addressed in draft / needs draft change / monitored), 7 Pathway (+ minimum viable patch). Right rail: scoring summary card (difficulty dots, change type, refactoring name, feasibility chip, timeline, projected impact) + "re-test with this patch →". Footer: four export formats, each with a stable URL. (Owner decision 2026-07-15: unintended-consequence analysis promoted from an Impact card to a full step — supersedes the brief's "6-step methodology".)
+Seven-step numbered timeline (accent circles + connecting line):
+1. **Feasibility** — change type, difficulty n/5, typical timeline.
+2. **Precedent** — comparable-jurisdiction cards (name, instrument, outcome one-liner) + search provenance line.
+3. **Beneficiaries** — gains/pays two-up + coalition map paragraph.
+4. **Draft language** — serif statutory text, **AI-DRAFTED banner in partial-wash (required by brief)**, scope note.
+5. **Impact** — three cards: test delta (projection, not measurement) / timeline to effect / watch-after-passage KPIs.
+6. **Unintended consequences** — the patch is applied to a corpus copy and re-run: conflict scan over every referencing section plus incentive analysis against how peers gamed the same fix. Rows tagged CONFLICT / INCENTIVE / CAPACITY / DRIFT, each with a mitigation sentence and a status chip (addressed in draft / needs draft change / monitored). Mono footer: simulation provenance + AI-assisted disclaimer.
+7. **Pathway** — committees, votes, veto points + minimum viable patch.
+Right rail: scoring summary card (difficulty dots, change type, refactoring name, feasibility chip, timeline, projected impact) + "re-test with this patch →". Footer: four export formats, each with a stable URL. Header stamp reads "patch methodology v2 · seven steps".
 
 ### 7 · Compare (`Compare.dc.html`) — Explore / Compare
 Two modes (segmented toggle): **Head-to-head** — paired score cards, mirrored per-block bar chart (gap ≥ 10 flagged with reason), "why the gap" + "where X leads" narrative cards linking to the patch. **Ranked cohort** — jurisdictions × blocks matrix, cells wash-coded by verdict share, subject row highlighted. Rule: comparison only among runs on the same corpus vintage.
@@ -104,12 +138,12 @@ Prototypes are desktop-first (1100–1440px design widths). Intended collapse:
 - Provenance visible and tappable on every claim.
 - Correlation ≠ causation: band-locked language (C0–C3) in copy and color; never imply proven causation.
 - AI-drafted language visibly marked as requiring expert review.
-- Access tiers (decision 2026-07-15): three registered tiers — Free (activity/day-capped), The Public (minimum cost-covering fee), Institutional Stewards (see PRD). Open note: Journalists may move to The Public. Upgrade prompts invite, never block.
-- Public pages SSR, indexable, fast, shareable (stable URLs).
+- **Access model**: three tiers, all requiring registration — **Free** (activity- or day-capped), **The Public** (minimum cost-covering fee), **Institutional Stewards** (see PRD definitions; Journalists may move to The Public — open). Tiers gate *workflow* (exports, API, volume), never viewing depth. Signed-out header shows Sign in + Register; no "no account" copy anywhere. Upgrade prompts invite, never block.
+- Public pages SSR, indexable, fast, shareable (stable URLs); Vulnerability Pages carry Open Graph previews.
 
 ## Files in this package
 
 - `front-end-spec.md` — this file
 - `design-system/` — tokens/, components/, guidelines/, styles.css, readme.md (Deliverable 2)
-- `screens/` — 9 `.dc.html` design references + `Master Canvas.dc.html` (all screens on one navigable canvas) + `support.js` (prototype runtime; not production code)
-- `docs/` — front-end-brief.md, domain-model.md, example-questions.md (source inputs, citable)
+- `screens/` — 12 `.dc.html` design references (Landing Page, Test Config, Results Page, Vulnerability Explorer, Vulnerability Page, Block Detail, KPI Explorer, Category Detail, Money Explorer, Patch Proposal, Compare, Law Explorer) + `Master Canvas.dc.html` (all screens on one navigable canvas) + `support.js` (prototype runtime; not production code)
+- `docs/` — prd.md (annotated handoff copy), front-end-brief.md, domain-model.md, example-questions.md (source inputs, citable)
