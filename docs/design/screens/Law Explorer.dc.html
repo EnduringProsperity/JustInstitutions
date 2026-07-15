@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="styles.css">
+<style>
+body{margin:0;background:var(--bg-0);font-family:var(--font-sans);color:var(--ink-1)}
+a{color:var(--link);text-decoration-thickness:1px;text-underline-offset:2px}
+a:hover{color:var(--link-hover)}
+</style>
+</helmet>
+<div data-screen-label="Law Explorer — Q&amp;A" style="min-height:100vh">
+
+<header style="display:flex;align-items:center;gap:28px;padding:0 32px;height:52px;background:var(--bg-1);border-bottom:1px solid var(--line-1)">
+  <div style="font:600 15px var(--font-sans);letter-spacing:-0.015em">Just<span style="color:var(--accent)">Institutions</span></div>
+  <nav style="display:flex;gap:4px;align-items:center;font:500 13px var(--font-sans);color:var(--ink-2)">
+    <a href="#" style="color:var(--ink-2);text-decoration:none;padding:6px 10px">Test</a>
+    <a href="#" style="color:var(--ink-1);text-decoration:none;padding:6px 10px;background:var(--bg-3);border-radius:6px">Explore</a>
+    <a href="#" style="color:var(--ink-2);text-decoration:none;padding:6px 10px">Design</a>
+  </nav>
+  <div style="display:flex;gap:2px;font:500 12px var(--font-sans);color:var(--ink-2);background:var(--bg-2);border:1px solid var(--line-2);border-radius:99px;padding:2px">
+    <a href="KPI Explorer.dc.html" style="padding:3px 11px;color:var(--ink-2);text-decoration:none">Outcomes</a>
+    <a href="Money Explorer.dc.html" style="padding:3px 11px;color:var(--ink-2);text-decoration:none">Money</a>
+    <a href="Compare.dc.html" style="padding:3px 11px;color:var(--ink-2);text-decoration:none">Compare</a>
+    <span style="padding:3px 11px;background:var(--bg-1);border-radius:99px;color:var(--ink-1);box-shadow:var(--shadow-1)">The Law</span>
+  </div>
+  <div style="flex:1"></div>
+  <span style="font:11px var(--font-mono);color:var(--ink-3)">corpus v41 · 2026-05-01 · 31,400 sections</span>
+</header>
+
+<main style="max-width:920px;margin:0 auto;padding:30px 32px 64px">
+  <h1 style="margin:0;font:600 28px/1.15 var(--font-sans);letter-spacing:-0.015em;text-align:center">Ask the rulebook</h1>
+  <p style="margin:8px auto 0;font:13.5px/1.55 var(--font-sans);color:var(--ink-2);text-align:center;max-width:52ch">Questions are answered only from the corpus — every claim carries a citation you can open. No citation, no claim.</p>
+
+  <div style="margin:20px auto 0;max-width:720px;display:flex;gap:10px">
+    <div style="flex:1;display:flex;align-items:center;gap:10px;background:var(--bg-1);border:1px solid var(--line-1);border-radius:10px;padding:12px 16px;box-shadow:var(--shadow-1)">
+      <span style="font:14px var(--font-sans);color:var(--ink-3)">⌕</span>
+      <span style="font:14px var(--font-sans);color:var(--ink-1)">Who can end a state of emergency in California?</span>
+      <span style="margin-left:auto;font:10px var(--font-mono);color:var(--ink-3)">EN · ES · 中文 · TL · VI</span>
+    </div>
+    <button style="border:none;cursor:pointer;background:var(--accent);color:#fff;border-radius:10px;padding:0 22px;font:600 13px var(--font-sans)">Ask</button>
+  </div>
+  <div style="margin:10px auto 0;max-width:720px;display:flex;gap:6px;flex-wrap:wrap;justify-content:center">
+    <a href="#" style="font:11.5px var(--font-sans);color:var(--ink-2);text-decoration:none;border:1px solid var(--line-2);border-radius:99px;padding:4px 12px;background:var(--bg-1)">Can the governor suspend laws?</a>
+    <a href="#" style="font:11.5px var(--font-sans);color:var(--ink-2);text-decoration:none;border:1px solid var(--line-2);border-radius:99px;padding:4px 12px;background:var(--bg-1)">What happens if the governor dies?</a>
+    <a href="#" style="font:11.5px var(--font-sans);color:var(--ink-2);text-decoration:none;border:1px solid var(--line-2);border-radius:99px;padding:4px 12px;background:var(--bg-1)">Who counts the votes?</a>
+    <a href="#" style="font:11.5px var(--font-sans);color:var(--ink-2);text-decoration:none;border:1px solid var(--line-2);border-radius:99px;padding:4px 12px;background:var(--bg-1)">Can protests be banned?</a>
+  </div>
+
+  <section style="margin-top:26px;background:var(--bg-1);border:1px solid var(--line-1);border-radius:10px;box-shadow:var(--shadow-1)">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 20px;border-bottom:1px solid var(--line-2)">
+      <div style="flex:none;display:inline-flex;border:1px solid var(--line-1);border-radius:99px;overflow:hidden;font:600 11px var(--font-sans)">
+        <button onClick="{{ setPlain }}" style="border:none;cursor:pointer;padding:4px 13px;background:{{ plainBg }};color:{{ plainFg }};font:inherit">Plain</button>
+        <button onClick="{{ setExpert }}" style="border:none;cursor:pointer;padding:4px 13px;background:{{ expertBg }};color:{{ expertFg }};font:inherit">Expert</button>
+      </div>
+      <span style="font:10px var(--font-mono);color:var(--ink-3)">ANSWERED FROM CORPUS V41 · 4 CITATIONS · CONFIDENCE C2</span>
+    </div>
+    <div style="padding:18px 22px">
+      <sc-if value="{{ isPlain }}" hint-placeholder-val="{{ true }}">
+        <p style="margin:0;font:15px/1.65 var(--font-sans);max-width:64ch">Two ways. The governor can declare it over at any time <a href="#" style="font:600 10.5px var(--font-mono)">[§8629]</a>. Or the Legislature can end it by passing a concurrent resolution — a majority vote of both houses, no governor's signature needed <a href="#" style="font:600 10.5px var(--font-mono)">[§8629(a)]</a>.</p>
+        <p style="margin:10px 0 0;font:15px/1.65 var(--font-sans);max-width:64ch">What the law doesn't have: any automatic end. If nobody acts, the emergency continues indefinitely <a href="#" style="font:600 10.5px var(--font-mono)">[§8627]</a> — that's finding <a href="#">VLN-00142</a>, and there's a proposed fix (<a href="Patch Proposal.dc.html">PATCH-0091</a>).</p>
+      </sc-if>
+      <sc-if value="{{ isExpert }}" hint-placeholder-val="{{ false }}">
+        <p style="margin:0;font:14px/1.7 var(--font-sans);max-width:70ch">Termination of a state of emergency proclaimed under Gov. Code §8625 occurs by (1) gubernatorial proclamation under §8629, or (2) concurrent resolution of the Legislature per §8629(a) — a non-delegable check requiring no executive assent. No statutory sunset attaches to the underlying declaration or to §8627 delegated powers; cf. <i>Newsom v. Superior Court</i> (2021) 63 Cal.App.5th 1099 on the scope of §8627 during extended emergencies. Automatic-termination provisions exist in 24 other states (see <a href="Compare.dc.html">Compare</a>).</p>
+      </sc-if>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;padding-top:12px;border-top:1px solid var(--line-2)">
+        <a href="#" style="font:11px var(--font-mono);color:var(--ink-2);text-decoration:none;border:1px solid var(--line-2);border-radius:6px;padding:5px 10px;background:var(--bg-2)">Gov. Code §8629 — termination</a>
+        <a href="#" style="font:11px var(--font-mono);color:var(--ink-2);text-decoration:none;border:1px solid var(--line-2);border-radius:6px;padding:5px 10px;background:var(--bg-2)">§8629(a) — concurrent resolution</a>
+        <a href="#" style="font:11px var(--font-mono);color:var(--ink-2);text-decoration:none;border:1px solid var(--line-2);border-radius:6px;padding:5px 10px;background:var(--bg-2)">§8627 — delegated powers</a>
+        <a href="#" style="font:11px var(--font-mono);color:var(--ink-2);text-decoration:none;border:1px solid var(--line-2);border-radius:6px;padding:5px 10px;background:var(--bg-2)">Newsom v. Sup. Ct. (2021)</a>
+        <span style="margin-left:auto;font:10px var(--font-mono);color:var(--ink-3);cursor:help;align-self:center" title="retrieval · RAG over corpus v41, 31,400 sections&#10;confidence · C2 — settled text, one interpretive case&#10;registers · same citations, different prose&#10;law as of 2026-05-01">provenance ⓘ</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="margin-top:16px;background:var(--bg-1);border:1px solid var(--line-1);border-radius:10px;box-shadow:var(--shadow-1)">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;padding:12px 20px;border-bottom:1px solid var(--line-2)">
+      <h3 style="margin:0;font:600 14px var(--font-sans)">Related in the rulebook</h3>
+      <span style="font:10.5px var(--font-mono);color:var(--ink-3)">EVERY ANSWER LINKS BACK INTO TEST &amp; DESIGN</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0">
+      <a href="#" style="text-decoration:none;color:var(--ink-1);padding:14px 20px;border-right:1px solid var(--line-2)" style-hover="background:var(--bg-2)">
+        <div style="font:600 10px var(--font-mono);letter-spacing:0.08em;color:var(--fail)">FINDING</div>
+        <div style="font:600 13px var(--font-sans);margin-top:5px">Emergency powers have no time limit</div>
+        <div style="font:11px var(--font-mono);color:var(--ink-3);margin-top:3px">VLN-00142 · partial · block A</div>
+      </a>
+      <a href="Patch Proposal.dc.html" style="text-decoration:none;color:var(--ink-1);padding:14px 20px;border-right:1px solid var(--line-2)" style-hover="background:var(--bg-2)">
+        <div style="font:600 10px var(--font-mono);letter-spacing:0.08em;color:var(--accent)">PATCH</div>
+        <div style="font:600 13px var(--font-sans);margin-top:5px">Emergency powers get a clock</div>
+        <div style="font:11px var(--font-mono);color:var(--ink-3);margin-top:3px">PATCH-0091 · difficulty 3/5</div>
+      </a>
+      <a href="Compare.dc.html" style="text-decoration:none;color:var(--ink-1);padding:14px 20px" style-hover="background:var(--bg-2)">
+        <div style="font:600 10px var(--font-mono);letter-spacing:0.08em;color:var(--ink-3)">COMPARE</div>
+        <div style="font:600 13px var(--font-sans);margin-top:5px">24 states sunset automatically</div>
+        <div style="font:11px var(--font-mono);color:var(--ink-3);margin-top:3px">CA vs WA · block A gap +14</div>
+      </a>
+    </div>
+  </section>
+
+  <p style="margin:16px auto 0;font:12px/1.6 var(--font-sans);color:var(--ink-3);text-align:center;max-width:60ch">The Law Explorer answers what the law <i>says</i> — not what you should do. It will not give legal advice, and it says so when asked.</p>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1100}}">
+class Component extends DCLogic {
+  state = { register: "plain" };
+  renderVals() {
+    const isPlain = this.state.register === "plain";
+    return {
+      isPlain, isExpert: !isPlain,
+      plainBg: isPlain ? "var(--ink-surface)" : "transparent", plainFg: isPlain ? "#fff" : "var(--ink-2)",
+      expertBg: !isPlain ? "var(--ink-surface)" : "transparent", expertFg: !isPlain ? "#fff" : "var(--ink-2)",
+      setPlain: () => this.setState({ register: "plain" }),
+      setExpert: () => this.setState({ register: "expert" }),
+    };
+  }
+}
+</script>
+</body>
+</html>

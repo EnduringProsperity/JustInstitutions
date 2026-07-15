@@ -1,0 +1,55 @@
+:root {
+  /* Neutrals — cool, subtly blue-toned */
+  --bg-0: oklch(98.4% 0.004 240);   /* page */
+  --bg-1: #ffffff;                   /* raised surface / card */
+  --bg-2: oklch(96.3% 0.006 240);   /* inset wash */
+  --bg-3: oklch(93.5% 0.008 242);   /* hover wash */
+  --ink-1: oklch(24% 0.022 255);    /* primary text */
+  --ink-2: oklch(45% 0.02 252);     /* secondary text */
+  --ink-3: oklch(60% 0.016 250);    /* tertiary / captions */
+  --line-1: oklch(87.5% 0.01 245);  /* borders */
+  --line-2: oklch(93% 0.008 245);   /* hairlines */
+  --ink-surface: oklch(23% 0.022 255);      /* dark panel (exec scorecards) */
+  --ink-surface-2: oklch(29% 0.024 255);
+  --on-ink: oklch(97% 0.005 240);
+  --on-ink-dim: oklch(74% 0.015 248);
+
+  /* Accent — civic blue */
+  --accent: oklch(51% 0.14 255);
+  --accent-strong: oklch(43% 0.14 255);
+  --accent-wash: oklch(95% 0.026 255);
+  --accent-line: oklch(85% 0.05 255);
+  --on-accent: #ffffff;
+
+  /* Verdicts (test results) — Gap is violet, deliberately distinct from Fail */
+  --pass: oklch(56% 0.115 158);
+  --pass-wash: oklch(95.5% 0.04 158);
+  --partial: oklch(66% 0.115 78);
+  --partial-wash: oklch(96% 0.05 88);
+  --gap: oklch(53% 0.115 300);
+  --gap-wash: oklch(95.5% 0.032 300);
+  --fail: oklch(52% 0.15 26);
+  --fail-wash: oklch(95.5% 0.032 26);
+
+  /* Attribution confidence bands C0–C3 (never "proven") — single-hue ramp */
+  --conf-0: oklch(66% 0.014 250);   /* C0 Gap — neutral */
+  --conf-1: oklch(66% 0.075 255);   /* C1 Association */
+  --conf-2: oklch(55% 0.115 255);   /* C2 Supported */
+  --conf-3: oklch(43% 0.15 255);    /* C3 Strong */
+
+  /* Severity / heat ramp (scorecards, heat maps) — low is calm, high is hot */
+  --heat-1: oklch(93% 0.03 158);
+  --heat-2: oklch(92% 0.05 95);
+  --heat-3: oklch(88% 0.075 70);
+  --heat-4: oklch(78% 0.11 45);
+  --heat-5: oklch(58% 0.15 28);
+
+  /* Semantic aliases */
+  --surface-card: var(--bg-1);
+  --text-body: var(--ink-1);
+  --text-muted: var(--ink-2);
+  --focus-ring: oklch(60% 0.13 255);
+  --link: var(--accent);
+  --link-hover: var(--accent-strong);
+  --ai-mark: oklch(53% 0.115 300); /* AI-drafted marker shares gap violet family */
+}

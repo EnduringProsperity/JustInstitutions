@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="styles.css">
+<style>
+body{margin:0;background:var(--bg-0);font-family:var(--font-sans);color:var(--ink-1)}
+a{color:var(--link);text-decoration-thickness:1px;text-underline-offset:2px}
+a:hover{color:var(--link-hover)}
+</style>
+</helmet>
+<div data-screen-label="Compare — CA vs WA" style="min-height:100vh">
+
+<header style="display:flex;align-items:center;gap:28px;padding:0 32px;height:52px;background:var(--bg-1);border-bottom:1px solid var(--line-1)">
+  <div style="font:600 15px var(--font-sans);letter-spacing:-0.015em">Just<span style="color:var(--accent)">Institutions</span></div>
+  <nav style="display:flex;gap:4px;align-items:center;font:500 13px var(--font-sans);color:var(--ink-2)">
+    <a href="#" style="color:var(--ink-2);text-decoration:none;padding:6px 10px">Test</a>
+    <a href="#" style="color:var(--ink-1);text-decoration:none;padding:6px 10px;background:var(--bg-3);border-radius:6px">Explore</a>
+    <a href="#" style="color:var(--ink-2);text-decoration:none;padding:6px 10px">Design</a>
+  </nav>
+  <div style="display:flex;gap:2px;font:500 12px var(--font-sans);color:var(--ink-2);background:var(--bg-2);border:1px solid var(--line-2);border-radius:99px;padding:2px">
+    <a href="KPI Explorer.dc.html" style="padding:3px 11px;color:var(--ink-2);text-decoration:none">Outcomes</a>
+    <a href="Money Explorer.dc.html" style="padding:3px 11px;color:var(--ink-2);text-decoration:none">Money</a>
+    <span style="padding:3px 11px;background:var(--bg-1);border-radius:99px;color:var(--ink-1);box-shadow:var(--shadow-1)">Compare</span>
+    <a href="#" style="padding:3px 11px;color:var(--ink-2);text-decoration:none">The Law</a>
+  </div>
+  <div style="flex:1"></div>
+  <span style="font:11px var(--font-mono);color:var(--ink-3)">same tests · same corpus vintage</span>
+</header>
+
+<main style="max-width:1220px;margin:0 auto;padding:26px 32px 64px">
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap">
+    <div>
+      <h1 style="margin:0;font:600 28px/1.15 var(--font-sans);letter-spacing:-0.015em">California vs Washington</h1>
+      <div style="margin-top:6px;font:11px var(--font-mono);color:var(--ink-3)">/us/compare/ca/wa · both tested on corpus v41 · law as of 2026-05-01 · same 12 blocks</div>
+    </div>
+    <div style="display:flex;gap:2px;font:500 12px var(--font-sans);background:var(--bg-2);border:1px solid var(--line-2);border-radius:99px;padding:2px">
+      <sc-for list="{{ modes }}" as="m" hint-placeholder-count="2">
+        <button onClick="{{ m.go }}" style="border:none;cursor:pointer;border-radius:99px;padding:4px 14px;background:{{ m.bg }};color:{{ m.fg }};font:inherit;box-shadow:{{ m.sh }}">{{ m.label }}</button>
+      </sc-for>
+    </div>
+  </div>
+
+  <sc-if value="{{ isHead }}" hint-placeholder-val="{{ true }}">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px">
+      <section style="background:var(--bg-1);border:1px solid var(--line-1);border-radius:10px;box-shadow:var(--shadow-1);padding:16px 20px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:600 15px var(--font-sans)">California</span><span style="font:10.5px var(--font-mono);color:var(--ink-3)">RUN-01847</span></div>
+        <div style="display:flex;align-items:baseline;gap:6px;margin-top:8px"><span style="font:600 44px/1 var(--font-sans);letter-spacing:-0.015em;font-variant-numeric:tabular-nums">64</span><span style="font:500 15px var(--font-sans);color:var(--ink-2)">/100</span><span style="margin-left:auto;font:11px var(--font-mono);color:var(--ink-3)">39.4M people · $325B budget</span></div>
+      </section>
+      <section style="background:var(--bg-1);border:1px solid var(--line-1);border-radius:10px;box-shadow:var(--shadow-1);padding:16px 20px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:600 15px var(--font-sans)">Washington</span><span style="font:10.5px var(--font-mono);color:var(--ink-3)">RUN-01903</span></div>
+        <div style="display:flex;align-items:baseline;gap:6px;margin-top:8px"><span style="font:600 44px/1 var(--font-sans);letter-spacing:-0.015em;font-variant-numeric:tabular-nums">71</span><span style="font:500 15px var(--font-sans);color:var(--ink-2)">/100</span><span style="margin-left:auto;font:11px var(--font-mono);color:var(--ink-3)">7.9M people · $72B budget</span></div>
+      </section>
+    </div>
+
+    <section style="margin-top:16px;background:var(--bg-1);border:1px solid var(--line-1);border-radius:10px;box-shadow:var(--shadow-1)">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;padding:12px 20px;border-bottom:1px solid var(--line-2)">
+        <h3 style="margin:0;font:600 14px var(--font-sans)">Block by block</h3>
+        <span style="font:10.5px var(--font-mono);color:var(--ink-3)">MIRRORED BARS · GAP ≥ 10 HIGHLIGHTED</span>
+      </div>
+      <div style="padding:8px 20px 6px">
+        <sc-for list="{{ blocks }}" as="b" hint-placeholder-count="8">
+          <div style="display:grid;grid-template-columns:34px 1fr 210px 44px 1fr 44px;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line-2)">
+            <span style="font:600 12px var(--font-mono);color:var(--ink-3)">{{ b.id }}</span>
+            <div style="display:flex;justify-content:flex-end"><div style="position:relative;height:9px;width:{{ b.caW }};background:{{ b.caColor }};border-radius:99px 0 0 99px"></div></div>
+            <div style="text-align:center">
+              <div style="font:600 12.5px var(--font-sans)">{{ b.name }}</div>
+              <sc-if value="{{ b.flag }}" hint-placeholder-val="{{ false }}"><div style="font:600 9.5px var(--font-mono);color:var(--fail)">GAP {{ b.gap }} — {{ b.why }}</div></sc-if>
+            </div>
+            <span style="font:600 13px var(--font-mono);font-variant-numeric:tabular-nums;text-align:right">{{ b.ca }}</span>
+            <div style="display:flex"><div style="position:relative;height:9px;width:{{ b.waW }};background:{{ b.waColor }};border-radius:0 99px 99px 0"></div></div>
+            <span style="font:600 13px var(--font-mono);font-variant-numeric:tabular-nums">{{ b.wa }}</span>
+          </div>
+        </sc-for>
+        <div style="display:flex;justify-content:space-between;padding:8px 0 6px;font:600 10px var(--font-mono);color:var(--ink-3)"><span>◀ CALIFORNIA</span><span>WASHINGTON ▶</span></div>
+      </div>
+    </section>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px">
+      <section style="background:var(--bg-1);border:1px solid var(--line-1);border-radius:10px;box-shadow:var(--shadow-1);padding:14px 18px">
+        <div style="font:600 10.5px var(--font-mono);letter-spacing:0.08em;color:var(--ink-3)">WHY THE GAP · BIGGEST SINGLE DRIVER</div>
+        <p style="margin:9px 0 0;font:13.5px/1.6 var(--font-sans);max-width:58ch">Washington's emergency powers sunset automatically; California's don't. That one structural difference moves Block A by 14 points — and it's patchable: <a href="Patch Proposal.dc.html">PATCH-0091</a> is the California fix, modeled partly on Washington's language.</p>
+      </section>
+      <section style="background:var(--bg-1);border:1px solid var(--line-1);border-radius:10px;box-shadow:var(--shadow-1);padding:14px 18px">
+        <div style="font:600 10.5px var(--font-mono);letter-spacing:0.08em;color:var(--ink-3)">WHERE CALIFORNIA LEADS</div>
+        <p style="margin:9px 0 0;font:13.5px/1.6 var(--font-sans);max-width:58ch">Anti-corruption disclosure (H: 81 vs 74) — lobbying registration is broader and procurement above $100k is published. Also ahead on courts &amp; counsel access (F: 66 vs 61).</p>
+      </section>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isCohort }}" hint-placeholder-val="{{ false }}">
+    <section style="margin-top:20px;background:var(--bg-1);border:1px solid var(--line-1);border-radius:10px;box-shadow:var(--shadow-1)">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;padding:12px 20px;border-bottom:1px solid var(--line-2)">
+        <h3 style="margin:0;font:600 14px var(--font-sans)">Cohort — West Coast + peers, ranked by overall score</h3>
+        <span style="font:10.5px var(--font-mono);color:var(--ink-3)">SAME TESTS · SAME VINTAGE · CLICK A COLUMN HEADER TO SORT (MOCK)</span>
+      </div>
+      <div style="padding:4px 20px 6px;overflow-x:auto">
+        <div style="display:grid;grid-template-columns:30px 130px 64px repeat(6,72px);gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line-2);font:600 10px var(--font-mono);letter-spacing:0.05em;color:var(--ink-3)">
+          <span>#</span><span>JURISDICTION</span><span style="text-align:right">SCORE</span><span style="text-align:center">A EMERG</span><span style="text-align:center">B ELECT</span><span style="text-align:center">D SPEECH</span><span style="text-align:center">F COURTS</span><span style="text-align:center">H CORRUPT</span><span style="text-align:center">L FISCAL</span>
+        </div>
+        <sc-for list="{{ cohort }}" as="c" hint-placeholder-count="6">
+          <div style="display:grid;grid-template-columns:30px 130px 64px repeat(6,72px);gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line-2);background:{{ c.hl }}">
+            <span style="font:600 11px var(--font-mono);color:var(--ink-3)">{{ c.rank }}</span>
+            <span style="font:{{ c.fw }} 13px var(--font-sans)">{{ c.name }}</span>
+            <span style="font:600 14px var(--font-mono);font-variant-numeric:tabular-nums;text-align:right">{{ c.score }}</span>
+            <sc-for list="{{ c.cells }}" as="cl" hint-placeholder-count="6">
+              <span style="font:600 11.5px var(--font-mono);color:{{ cl.fg }};background:{{ cl.bg }};border-radius:4px;padding:3px 0;text-align:center;font-variant-numeric:tabular-nums">{{ cl.v }}</span>
+            </sc-for>
+          </div>
+        </sc-for>
+      </div>
+      <div style="padding:11px 20px;display:flex;justify-content:space-between;align-items:center">
+        <span style="font:12px var(--font-sans);color:var(--ink-2)">Cell wash = verdict share within that block (green ≥75 · amber 45–74 · red &lt;45). Ranked comparison only among jurisdictions tested on the same corpus vintage — mixing vintages is not allowed.</span>
+        <span style="font:10px var(--font-mono);color:var(--ink-3);cursor:help" title="cohort · 6 jurisdictions · corpus v41&#10;runs · RUN-01847…01966 · 2026-07&#10;method · identical 12-block suite">6 runs · v41 ⓘ</span>
+      </div>
+    </section>
+  </sc-if>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1360}}">
+class Component extends DCLogic {
+  state = { mode: "head" };
+  renderVals() {
+    const mode = this.state.mode;
+    const modes = [["head", "Head-to-head"], ["cohort", "Ranked cohort"]].map(([id, label]) => ({
+      label, bg: mode === id ? "var(--bg-1)" : "transparent", fg: mode === id ? "var(--ink-1)" : "var(--ink-2)",
+      sh: mode === id ? "var(--shadow-1)" : "none", go: () => this.setState({ mode: id }),
+    }));
+    const col = (v) => v >= 75 ? "var(--pass)" : v >= 45 ? "var(--partial)" : "var(--fail)";
+    const BLOCKS = [
+      ["A", "Emergency powers", 72, 86, "no sunset clause"],
+      ["B", "Election administration", 68, 66, ""],
+      ["C", "Legislative process", 55, 63, ""],
+      ["D", "Speech & assembly", 74, 77, ""],
+      ["E", "Privacy & surveillance", 61, 58, ""],
+      ["F", "Courts & counsel", 66, 61, ""],
+      ["G", "Federalism seams", 52, 54, ""],
+      ["H", "Anti-corruption", 81, 74, ""],
+      ["J", "Norms made law", 41, 57, "succession gaps codified in WA"],
+      ["L", "Fiscal controls", 58, 72, "appropriation exception"],
+    ];
+    const blocks = BLOCKS.map(([id, name, ca, wa, why]) => ({
+      id, name, ca, wa, why,
+      gap: (wa > ca ? "+" : "−") + Math.abs(wa - ca),
+      flag: Math.abs(wa - ca) >= 10,
+      caW: (ca * 0.9) + "%", waW: (wa * 0.9) + "%",
+      caColor: col(ca), waColor: col(wa),
+    }));
+    const COHORT = [
+      ["Washington", 71, [86, 66, 77, 61, 74, 72]],
+      ["Oregon", 69, [79, 71, 74, 58, 69, 66]],
+      ["Colorado", 67, [74, 73, 71, 63, 66, 61]],
+      ["California", 64, [72, 68, 74, 66, 81, 58]],
+      ["Arizona", 57, [61, 52, 66, 59, 58, 63]],
+      ["Nevada", 54, [58, 55, 62, 51, 49, 66]],
+    ];
+    const cohort = COHORT.map(([name, score, cells], i) => ({
+      rank: i + 1, name, score,
+      fw: name === "California" ? 700 : 500,
+      hl: name === "California" ? "var(--accent-wash)" : "transparent",
+      cells: cells.map((v) => ({ v, fg: col(v), bg: v >= 75 ? "var(--pass-wash)" : v >= 45 ? "var(--partial-wash)" : "var(--fail-wash)" })),
+    }));
+    return { modes, isHead: mode === "head", isCohort: mode === "cohort", blocks, cohort };
+  }
+}
+</script>
+</body>
+</html>

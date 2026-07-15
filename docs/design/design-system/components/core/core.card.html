@@ -1,0 +1,35 @@
+<!-- @dsCard group="Components" viewport="700x290" subtitle="Button, Input, Select, Checkbox, Tabs, Badge, Card" name="Core" -->
+<!doctype html><html><head><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="../cardBoot.js"></script>
+<style>body{margin:0;background:var(--bg-1);font-family:var(--font-sans)}</style></head>
+<body><div id="root"></div>
+<script type="text/babel">
+
+const NS=window.__dsCardLoad("./", ["Button","Input","Select","Checkbox","Tabs","Badge","Card"]);
+const {Button,Input,Select,Checkbox,Tabs,Badge,Card}=NS;
+function Demo(){
+  const [tab,setTab]=React.useState("report");
+  return <div style={{padding:"16px 20px",display:"flex",flexDirection:"column",gap:14}}>
+    <div style={{display:"flex",gap:10,alignItems:"center",flexWrap:"wrap"}}>
+      <Button>Run analysis</Button>
+      <Button variant="secondary">Export</Button>
+      <Button variant="ghost">Cancel</Button>
+      <Button variant="danger" size="sm">Delete run</Button>
+      <Button disabled>Queued…</Button>
+      <Badge tone="accent">Layer 1</Badge>
+      <Badge mono>VLN-00142</Badge>
+      <Badge tone="gap">3 gaps</Badge>
+    </div>
+    <div style={{display:"flex",gap:14,alignItems:"flex-end"}}>
+      <Input label="Jurisdiction" placeholder="Search any nation, state, county, city…" style={{flex:1.4}} />
+      <Select label="Benchmark" options={["Universal baseline","Federal presidential republic","Parliamentary democracy"]} style={{flex:1}} />
+      <div style={{paddingBottom:8}}><Checkbox label="Cascade into sub-jurisdictions" checked onChange={()=>{}} /></div>
+    </div>
+    <Tabs tabs={[{id:"report",label:"Test Report"},{id:"vulns",label:"Vulnerability Explorer",count:23},{id:"rollup",label:"Rollup"}]} active={tab} onChange={setTab} />
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<Demo/>);
+</script></body></html>

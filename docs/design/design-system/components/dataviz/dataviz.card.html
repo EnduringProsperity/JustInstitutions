@@ -1,0 +1,30 @@
+<!-- @dsCard group="Components" viewport="700x260" subtitle="HeatCell grid + ScoreBar rows" name="Data viz" -->
+<!doctype html><html><head><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="../cardBoot.js"></script>
+<style>body{margin:0;background:var(--bg-1);font-family:var(--font-sans)}</style></head>
+<body><div id="root"></div>
+<script type="text/babel">
+
+const NS=window.__dsCardLoad("./", ["HeatCell","ScoreBar"]);
+const {HeatCell,ScoreBar}=NS;
+const grid=[[1,2,1,3,2],[2,1,4,2,3],[1,3,2,5,4],[2,2,1,3,1]];
+function Demo(){
+  return <div style={{padding:"16px 20px",display:"flex",gap:28,alignItems:"flex-start"}}>
+    <div>
+      <div style={{display:"grid",gridTemplateColumns:"repeat(5, 34px)",gap:2}}>
+        {grid.flatMap((row,r)=>row.map((lv,c)=><HeatCell key={r+"-"+c} level={lv} size={34} label={`Block ${"ABCD"[r]} × Layer ${c+1}`} onClick={()=>{}}/>))}
+      </div>
+      <div style={{font:"10px var(--font-mono)",color:"var(--ink-3)",letterSpacing:"0.08em",marginTop:6}}>BLOCK × LAYER HEAT MAP</div>
+    </div>
+    <div style={{flex:1,display:"flex",flexDirection:"column",gap:10}}>
+      <ScoreBar label="A — Separation of Powers" score={72} counts="3·1·1·0"/>
+      <ScoreBar label="G — Democratic Norms" score={41} counts="1·1·0·1"/>
+      <ScoreBar label="L — Fiscal Capacity" score={58} counts="2·2·1·0"/>
+    </div>
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<Demo/>);
+</script></body></html>

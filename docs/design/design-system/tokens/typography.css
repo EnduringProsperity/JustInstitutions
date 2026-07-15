@@ -1,0 +1,22 @@
+:root {
+  --font-sans: "IBM Plex Sans", "Helvetica Neue", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
+  --font-serif: "IBM Plex Serif", Georgia, serif; /* rule text & quotations only */
+
+  /* Scale — research-tool density */
+  --text-2xs: 10.5px;  /* mono microlabels, uppercase */
+  --text-xs: 11.5px;   /* captions, vintage stamps */
+  --text-sm: 13px;     /* dense UI, tables */
+  --text-md: 14.5px;   /* body */
+  --text-lg: 17px;     /* lead / plain-language summary */
+  --text-xl: 22px;     /* section heads */
+  --text-2xl: 28px;    /* page titles */
+  --text-3xl: 40px;    /* scores, display numbers */
+  --text-4xl: 56px;    /* hero */
+
+  --leading-tight: 1.15;
+  --leading-snug: 1.35;
+  --leading-body: 1.55;
+  --tracking-caps: 0.08em; /* uppercase mono labels */
+  --tracking-display: -0.015em;
+}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="styles.css">
+<style>
+body{margin:0;background:var(--bg-0);font-family:var(--font-sans);color:var(--ink-1)}
+a{color:var(--link);text-decoration-thickness:1px;text-underline-offset:2px}
+a:hover{color:var(--link-hover)}
+</style>
+</helmet>
+<div data-screen-label="Category — Health &amp; Wellbeing" style="min-height:100vh">
+
+<header style="display:flex;align-items:center;gap:28px;padding:0 32px;height:52px;background:var(--bg-1);border-bottom:1px solid var(--line-1)">
+  <div style="font:600 15px var(--font-sans);letter-spacing:-0.015em">Just<span style="color:var(--accent)">Institutions</span></div>
+  <nav style="display:flex;gap:4px;align-items:center;font:500 13px var(--font-sans);color:var(--ink-2)">
+    <a href="#" style="color:var(--ink-2);text-decoration:none;padding:6px 10px">Test</a>
+    <a href="#" style="color:var(--ink-1);text-decoration:none;padding:6px 10px;background:var(--bg-3);border-radius:6px">Explore</a>
+    <a href="#" style="color:var(--ink-2);text-decoration:none;padding:6px 10px">Design</a>
+  </nav>
+  <div style="flex:1"></div>
+  <span style="font:11px var(--font-mono);color:var(--ink-3)">31 KPIs · vintages 2023–2025</span>
+</header>
+
+<main style="max-width:1100px;margin:0 auto;padding:26px 32px 64px">
+  <div style="font:11.5px var(--font-sans);color:var(--ink-3)"><a href="#">Explore</a> / <a href="KPI Explorer.dc.html">Outcomes — California</a> / Health &amp; Wellbeing</div>
+
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-top:12px">
+    <div>
+      <h1 style="margin:0;font:600 28px/1.15 var(--font-sans);letter-spacing:-0.015em">Health &amp; Wellbeing</h1>
+      <div style="margin-top:6px;font:11px var(--font-mono);color:var(--ink-3)">/us/ca/kpi/health · 31 KPIs · 4 contested · peer cohort: all 50 states</div>
+    </div>
+    <div style="flex:none;display:inline-flex;border:1px solid var(--line-1);border-radius:99px;overflow:hidden;font:600 11.5px var(--font-sans)">
+      <button onClick="{{ setPlain }}" style="border:none;cursor:pointer;padding:5px 14px;background:{{ plainBg }};color:{{ plainFg }};font:inherit">Plain</button>
+      <button onClick="{{ setExpert }}" style="border:none;cursor:pointer;padding:5px 14px;background:{{ expertBg }};color:{{ expertFg }};font:inherit">Expert</button>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px">
+    <div style="background:var(--bg-1);border:1px solid var(--line-1);border-radius:10px;box-shadow:var(--shadow-1);padding:13px 16px">
+      <div style="font:500 11.5px var(--font-sans);color:var(--ink-2)">Life expectancy</div>
+      <div style="display:flex;align-items:baseline;gap:6px;margin-top:2px"><span style="font:600 30px/1 var(--font-sans);letter-spacing:-0.015em;font-variant-numeric:tabular-nums">81.3</span><span style="font:500 12px var(--font-sans);color:var(--ink-2)">years</span><span style="margin-left:auto;font:600 10.5px var(--font-mono);color:var(--pass);background:var(--pass-wash);border-radius:3px;padding:2px 7px">4th of 50</span></div>
+    </div>
+    <div style="background:var(--bg-1);border:1px solid var(--line-1);border-radius:10px;box-shadow:var(--shadow-1);padding:13px 16px">
+      <div style="font:500 11.5px var(--font-sans);color:var(--ink-2)">Maternal mortality</div>
+      <div style="display:flex;align-items:baseline;gap:6px;margin-top:2px"><span style="font:600 30px/1 var(--font-sans);letter-spacing:-0.015em;font-variant-numeric:tabular-nums">10.2</span><span style="font:500 12px var(--font-sans);color:var(--ink-2)">per 100k</span><span style="margin-left:auto;font:600 10.5px var(--font-mono);color:var(--pass);background:var(--pass-wash);border-radius:3px;padding:2px 7px">3rd of 50</span></div>
+    </div>
+    <div style="background:var(--bg-1);border:1px solid var(--line-1);border-radius:10px;box-shadow:var(--shadow-1);padding:13px 16px">
+      <div style="font:500 11.5px var(--font-sans);color:var(--ink-2)">Uninsured rate</div>
+      <div style="display:flex;align-items:baseline;gap:6px;margin-top:2px"><span style="font:600 30px/1 var(--font-sans);letter-spacing:-0.015em;font-variant-numeric:tabular-nums">6.5</span><span style="font:500 12px var(--font-sans);color:var(--ink-2)">%</span><span style="margin-left:auto;font:600 10.5px var(--font-mono);color:var(--partial);background:var(--partial-wash);border-radius:3px;padding:2px 7px">18th of 50</span></div>
+    </div>
+  </div>
+
+  <sc-for list="{{ groups }}" as="g" hint-placeholder-count="3">
+    <section style="margin-top:18px;background:var(--bg-1);border:1px solid var(--line-1);border-radius:10px;box-shadow:var(--shadow-1)">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;padding:12px 18px;border-bottom:1px solid var(--line-2)">
+        <h3 style="margin:0;font:600 14px var(--font-sans)">{{ g.name }}</h3>
+        <span style="font:10.5px var(--font-mono);color:var(--ink-3)">{{ g.count }}</span>
+      </div>
+      <sc-if value="{{ isPlain }}" hint-placeholder-val="{{ true }}">
+        <div style="padding:6px 18px 4px">
+          <sc-for list="{{ g.rows }}" as="r" hint-placeholder-count="4">
+            <div style="display:grid;grid-template-columns:1fr 96px 130px;gap:14px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line-2)">
+              <div>
+                <div style="font:500 13.5px var(--font-sans)">{{ r.kp }}</div>
+                <div style="font:12px/1.5 var(--font-sans);color:var(--ink-2);margin-top:1px;max-width:56ch">{{ r.meaning }}</div>
+              </div>
+              <span style="font:600 15px var(--font-mono);font-variant-numeric:tabular-nums;text-align:right">{{ r.v }}</span>
+              <span style="font:600 10.5px var(--font-mono);color:{{ r.rc }};background:{{ r.rw }};border-radius:3px;padding:2px 8px;text-align:center">{{ r.rank }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+      <sc-if value="{{ isExpert }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:6px 18px 4px">
+          <sc-for list="{{ g.rows }}" as="r" hint-placeholder-count="4">
+            <div style="display:grid;grid-template-columns:minmax(200px,1.2fr) 86px 64px 1fr 96px 30px 118px;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line-2);font:12.5px var(--font-sans)">
+              <span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.ke }}</span>
+              <span style="font:600 12.5px var(--font-mono);font-variant-numeric:tabular-nums;text-align:right">{{ r.v }}</span>
+              <span style="font:600 10.5px var(--font-mono);color:{{ r.tc2 }};text-align:right">{{ r.trend }}</span>
+              <div style="position:relative;height:6px;background:var(--bg-2);border-radius:99px;overflow:hidden" title="percentile in the 50-state distribution — higher is better"><div style="position:absolute;top:0;bottom:0;left:0;width:{{ r.pctile }};background:{{ r.rc }};border-radius:99px"></div></div>
+              <span style="font:10.5px var(--font-mono);color:var(--ink-3);text-align:right">med {{ r.med }}</span>
+              <span style="font:600 9px var(--font-mono);color:{{ r.tagc }};border:1px solid {{ r.tagc }};border-radius:99px;padding:0 5px;text-align:center" title="{{ r.tagt }}">{{ r.tag }}</span>
+              <span style="font:10px var(--font-mono);color:var(--ink-3);text-align:right;cursor:help" title="{{ r.ladder }}">{{ r.src }} ⓘ</span>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+    </section>
+  </sc-for>
+
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px">
+    <span style="font:12px var(--font-sans);color:var(--ink-2)">Rank chips compare against all 50 states; direction is always adjusted so higher percentile = better. Contested KPIs (<span style="font:600 9px var(--font-mono);color:var(--partial);border:1px solid var(--partial);border-radius:99px;padding:0 5px">C</span>) encode a normative position — disclosed, never hidden.</span>
+    <span style="font:10px var(--font-mono);color:var(--ink-3);cursor:help" title="sources · CDC, Census, HHS, Gallup per row&#10;vintages · 2023–2025 per KPI&#10;cohort · 50 states, percentile-ranked&#10;corpus v41 · 2026-05-01">KPI catalog v3 ⓘ</span>
+  </div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;defaultRegister&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;plain&quot;, &quot;expert&quot;], &quot;default&quot;: &quot;plain&quot;, &quot;tsType&quot;: &quot;\&quot;plain\&quot;|\&quot;expert\&quot;&quot;, &quot;section&quot;: &quot;Register&quot;}}">
+class Component extends DCLogic {
+  state = { register: null };
+  renderVals() {
+    const register = this.state.register ?? (this.props.defaultRegister ?? "plain");
+    const isPlain = register === "plain";
+    const U = ["var(--ink-3)", "Universal — broadly accepted as a good-faith measure"];
+    const C = ["var(--partial)", "Contested — encodes a normative position; disclosed, not hidden"];
+    const mk = (ke, kp, meaning, v, trend, up, rankN, med, tag, src) => {
+      const good = rankN <= 13, mid = rankN <= 30;
+      return { ke, kp, meaning, v, med, src,
+        trend, tc2: up ? "var(--pass)" : "var(--ink-3)",
+        rank: rankN + (rankN === 3 ? "rd" : rankN === 22 || rankN === 2 ? "nd" : rankN === 1 || rankN === 41 ? "st" : "th") + " of 50",
+        rc: good ? "var(--pass)" : mid ? "var(--partial)" : "var(--fail)",
+        rw: good ? "var(--pass-wash)" : mid ? "var(--partial-wash)" : "var(--fail-wash)",
+        pctile: Math.round((50 - rankN) / 50 * 100) + "%",
+        tag, tagc: tag === "U" ? U[0] : C[0], tagt: tag === "U" ? U[1] : C[1],
+        ladder: "source · " + src + "\nvintage · " + src.slice(-4) + "\ncohort · 50 states, percentile-ranked\ncorpus v41 · 2026-05-01" };
+    };
+    const groups = [
+      { name: "Outcomes", count: "14 KPIS · SHOWING 6", rows: [
+        mk("Life expectancy at birth", "How long people live", "About two years longer than the US average.", "81.3 yr", "▲", true, 4, "78.9", "U", "CDC 2024"),
+        mk("Maternal mortality", "Deaths from pregnancy and birth", "Among the lowest rates in the country — and flat for five years.", "10.2 /100k", "→", false, 3, "23.5", "U", "CDC 2023"),
+        mk("Infant mortality", "Babies who don't reach age one", "Better than most states; the county gap is threefold.", "3.9 /1k", "▲", true, 6, "5.4", "U", "CDC 2024"),
+        mk("Drug overdose deaths", "Deaths from overdose", "Below the national median, but rising faster than it.", "26.1 /100k", "▼", false, 19, "32.4", "U", "CDC 2024"),
+        mk("Adult obesity rate", "Adults with obesity", "One of the lowest rates — trending up everywhere.", "28.1%", "▼", false, 5, "34.0", "U", "CDC 2024"),
+        mk("Suicide rate", "Deaths by suicide", "Well below the national median.", "10.6 /100k", "→", false, 4, "14.8", "U", "CDC 2024") ] },
+      { name: "Access & quality", count: "11 KPIS · SHOWING 5", rows: [
+        mk("Uninsured / underinsured rate", "People without enough insurance", "Middle of the pack — coverage expanded, underinsurance didn't shrink.", "6.5%", "▲", true, 18, "7.9%", "C", "Census 2024"),
+        mk("Primary care physician ratio", "Doctors per person", "Fewer family doctors per person than most states, especially rural.", "1:1,340", "▼", false, 33, "1:1,210", "U", "HRSA 2024"),
+        mk("Preventive care utilization", "People getting check-ups", "Above median and climbing.", "71.2%", "▲", true, 12, "66.8%", "U", "CDC 2024"),
+        mk("Hospital readmission rate", "Patients back within 30 days", "Around the national median.", "14.9%", "→", false, 24, "15.1%", "U", "CMS 2025"),
+        mk("Vaccine coverage (childhood)", "Kids with routine vaccines", "High coverage, slowly declining since 2021.", "94.1%", "▼", false, 9, "92.3%", "C", "CDC 2025") ] },
+      { name: "Subjective wellbeing", count: "6 KPIS · SHOWING 3", rows: [
+        mk("Life satisfaction index", "How satisfied people say they are", "Slightly above the national median.", "6.9 /10", "→", false, 16, "6.7", "C", "Gallup 2025"),
+        mk("Self-reported mental health days", "Bad mental-health days per month", "More bad days than most states — worst among 18–29.", "4.8 /mo", "▼", false, 35, "4.2", "U", "CDC 2024"),
+        mk("Community vitality index", "Volunteering and social ties", "Below median — long commutes and housing churn show up here.", "0.51", "▼", false, 38, "0.58", "U", "AmeriCorps 2024") ] },
+    ];
+    return {
+      groups, isPlain, isExpert: !isPlain,
+      plainBg: isPlain ? "var(--ink-surface)" : "transparent", plainFg: isPlain ? "#fff" : "var(--ink-2)",
+      expertBg: !isPlain ? "var(--ink-surface)" : "transparent", expertFg: !isPlain ? "#fff" : "var(--ink-2)",
+      setPlain: () => this.setState({ register: "plain" }),
+      setExpert: () => this.setState({ register: "expert" }),
+    };
+  }
+}
+</script>
+</body>
+</html>

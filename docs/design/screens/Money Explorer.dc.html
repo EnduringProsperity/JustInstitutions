@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="styles.css">
+<style>
+body{margin:0;background:var(--bg-0);font-family:var(--font-sans);color:var(--ink-1)}
+a{color:var(--link);text-decoration-thickness:1px;text-underline-offset:2px}
+a:hover{color:var(--link-hover)}
+</style>
+</helmet>
+<div data-screen-label="Money Explorer — California" style="min-height:100vh">
+
+<header style="display:flex;align-items:center;gap:28px;padding:0 32px;height:52px;background:var(--bg-1);border-bottom:1px solid var(--line-1)">
+  <div style="font:600 15px var(--font-sans);letter-spacing:-0.015em">Just<span style="color:var(--accent)">Institutions</span></div>
+  <nav style="display:flex;gap:4px;align-items:center;font:500 13px var(--font-sans);color:var(--ink-2)">
+    <a href="#" style="color:var(--ink-2);text-decoration:none;padding:6px 10px">Test</a>
+    <a href="#" style="color:var(--ink-1);text-decoration:none;padding:6px 10px;background:var(--bg-3);border-radius:6px">Explore</a>
+    <a href="#" style="color:var(--ink-2);text-decoration:none;padding:6px 10px">Design</a>
+  </nav>
+  <div style="display:flex;gap:2px;font:500 12px var(--font-sans);color:var(--ink-2);background:var(--bg-2);border:1px solid var(--line-2);border-radius:99px;padding:2px">
+    <a href="#" style="padding:3px 11px;color:var(--ink-2);text-decoration:none">Outcomes</a>
+    <span style="padding:3px 11px;background:var(--bg-1);border-radius:99px;color:var(--ink-1);box-shadow:var(--shadow-1)">Money</span>
+    <a href="#" style="padding:3px 11px;color:var(--ink-2);text-decoration:none">Compare</a>
+    <a href="#" style="padding:3px 11px;color:var(--ink-2);text-decoration:none">The Law</a>
+  </div>
+  <div style="flex:1"></div>
+  <span style="font:11px var(--font-mono);color:var(--ink-3)">enacted budget · FY 2025–26</span>
+</header>
+
+<main style="max-width:1220px;margin:0 auto;padding:26px 32px 64px">
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:24px">
+    <div>
+      <h1 style="margin:0;font:600 28px/1.15 var(--font-sans);letter-spacing:-0.015em">Where the money goes</h1>
+      <div style="margin-top:6px;font:11px var(--font-mono);color:var(--ink-3)">/us/ca/explore/money · Dept. of Finance enacted budget · all funds · mapped to COFOG</div>
+    </div>
+    <div style="flex:none;display:flex;align-items:baseline;gap:8px">
+      <span style="font:600 40px/1 var(--font-sans);letter-spacing:-0.015em;font-variant-numeric:tabular-nums">$325.1B</span>
+      <span style="font:500 13px var(--font-sans);color:var(--ink-2)">{{ totalUnit }}</span>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 340px;gap:20px;margin-top:22px;align-items:start">
+
+    <section style="background:var(--bg-1);border:1px solid var(--line-1);border-radius:10px;box-shadow:var(--shadow-1)">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;padding:12px 18px;border-bottom:1px solid var(--line-2)">
+        <h3 style="margin:0;font:600 14px var(--font-sans)">Spending — native structure, drill in</h3>
+        <div style="display:flex;gap:2px;font:500 11.5px var(--font-sans);background:var(--bg-2);border:1px solid var(--line-2);border-radius:99px;padding:2px">
+          <sc-for list="{{ units }}" as="u" hint-placeholder-count="4">
+            <button onClick="{{ u.go }}" style="border:none;cursor:pointer;border-radius:99px;padding:3px 12px;background:{{ u.bg }};color:{{ u.fg }};font:inherit;box-shadow:{{ u.sh }}">{{ u.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+      <div style="padding:8px 18px 4px">
+        <sc-for list="{{ rows }}" as="r" hint-placeholder-count="10">
+          <div style="padding:{{ r.pad }};border-bottom:1px solid var(--line-2)">
+            <div onClick="{{ r.go }}" style="display:grid;grid-template-columns:16px minmax(190px,240px) 1fr 92px 76px;gap:12px;align-items:center;padding:9px 0;cursor:{{ r.cursor }}" style-hover="background:var(--bg-2)">
+              <span style="font:600 10px var(--font-mono);color:var(--ink-3)">{{ r.chev }}</span>
+              <span style="font:{{ r.fw }} 13px var(--font-sans);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.name }}</span>
+              <div style="position:relative;height:{{ r.barH }};background:var(--bg-2);border-radius:3px;overflow:hidden"><div style="position:absolute;top:0;bottom:0;left:0;width:{{ r.pct }};background:{{ r.barColor }};border-radius:3px"></div></div>
+              <span style="font:600 12.5px var(--font-mono);font-variant-numeric:tabular-nums;text-align:right">{{ r.value }}</span>
+              <span style="font:600 10.5px var(--font-mono);color:{{ r.yc }};text-align:right">{{ r.yoy }}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="padding:11px 18px;display:flex;justify-content:space-between;align-items:center">
+        <span style="font:12px var(--font-sans);color:var(--ink-2)">Bars are share of total. Click a row with ▸ to open its native sub-lines — the structure is the government's own, not ours.</span>
+        <span style="font:10px var(--font-mono);color:var(--ink-3);cursor:help;white-space:nowrap" title="source · CA Dept. of Finance, enacted FY 2025–26&#10;basis · all funds · population 39.4M for per-capita&#10;crosswalk · COFOG (UN) for comparisons&#10;corpus v41 · 2026-05-01">DOF FY25–26 · COFOG ⓘ</span>
+      </div>
+    </section>
+
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <section style="background:var(--bg-1);border:1px solid var(--line-1);border-radius:10px;box-shadow:var(--shadow-1)">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;padding:12px 16px;border-bottom:1px solid var(--line-2)">
+          <h3 style="margin:0;font:600 14px var(--font-sans)">Where it comes from</h3>
+          <span style="font:10.5px var(--font-mono);color:var(--ink-3)">PAIRED REVENUE</span>
+        </div>
+        <div style="padding:12px 16px;display:flex;flex-direction:column;gap:10px">
+          <sc-for list="{{ revenues }}" as="v" hint-placeholder-count="5">
+            <div style="display:grid;grid-template-columns:minmax(120px,1fr) 1fr 62px;gap:10px;align-items:center">
+              <span style="font:500 12.5px var(--font-sans);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ v.name }}</span>
+              <div style="position:relative;height:7px;background:var(--bg-2);border-radius:99px;overflow:hidden"><div style="position:absolute;top:0;bottom:0;left:0;width:{{ v.pct }};background:var(--conf-2);border-radius:99px"></div></div>
+              <span style="font:600 12px var(--font-mono);font-variant-numeric:tabular-nums;text-align:right">{{ v.value }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="padding:10px 16px;border-top:1px solid var(--line-2);font:12px/1.5 var(--font-sans);color:var(--ink-2)">Half the state's own revenue is one tax on one group — personal income tax, mostly on top earners. That's why revenue swings with the stock market.</div>
+      </section>
+
+      <section style="background:var(--ink-surface);color:var(--on-ink);border-radius:10px;padding:16px 18px">
+        <div style="font:600 10.5px var(--font-mono);letter-spacing:0.08em;color:var(--on-ink-dim)">FISCAL FINDINGS · BLOCK L</div>
+        <div style="display:flex;align-items:baseline;gap:6px;margin-top:6px"><span style="font:600 34px/1 var(--font-sans);letter-spacing:-0.015em;font-variant-numeric:tabular-nums">58</span><span style="font:500 15px var(--font-sans);color:var(--on-ink-dim)">/100</span></div>
+        <p style="margin:10px 0 0;font:12.5px/1.55 var(--font-sans);color:var(--on-ink-dim)">This budget's rulebook has findings: emergency spending without appropriation (<a href="#" style="color:var(--on-ink)">VLN-00214</a>) and mandates without matched funding.</p>
+        <div style="margin-top:10px;font:10px var(--font-mono);color:var(--on-ink-dim)" title="run · RUN-01847 · 2026-07-13&#10;corpus v41 · 2026-05-01">RUN-01847 · v41 ⓘ</div>
+      </section>
+    </div>
+  </div>
+
+  <section style="margin-top:20px;background:var(--bg-1);border:1px solid var(--line-1);border-radius:10px;box-shadow:var(--shadow-1)">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;padding:13px 20px;border-bottom:1px solid var(--line-2)">
+      <h3 style="margin:0;font:600 14px var(--font-sans)">Does the money follow the values?</h3>
+      <span style="font:10.5px var(--font-mono);color:var(--ink-3)">SPEND → COFOG → SDG CROSSWALK · SHARE OF BUDGET VS SHARE OF FAILING KPIS</span>
+    </div>
+    <div style="padding:8px 20px 4px">
+      <div style="display:grid;grid-template-columns:minmax(180px,1.1fr) 150px 1fr 1fr 120px;gap:14px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line-2);font:600 10px var(--font-mono);letter-spacing:0.06em;color:var(--ink-3)">
+        <span>BUDGET AREA</span><span>MAPPED SDGS</span><span>SHARE OF SPEND</span><span>SHARE OF FAILING/AT-RISK KPIS</span><span style="text-align:right">READING</span>
+      </div>
+      <sc-for list="{{ xwalk }}" as="x" hint-placeholder-count="5">
+        <div style="display:grid;grid-template-columns:minmax(180px,1.1fr) 150px 1fr 1fr 120px;gap:14px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line-2)">
+          <span style="font:600 13px var(--font-sans)">{{ x.name }}</span>
+          <span style="font:11px var(--font-mono);color:var(--ink-2)">{{ x.sdgs }}</span>
+          <div style="display:flex;align-items:center;gap:8px"><div style="flex:1;position:relative;height:7px;background:var(--bg-2);border-radius:99px;overflow:hidden"><div style="position:absolute;top:0;bottom:0;left:0;width:{{ x.spendPct }};background:var(--accent);border-radius:99px"></div></div><span style="font:600 11px var(--font-mono);width:36px;font-variant-numeric:tabular-nums">{{ x.spend }}</span></div>
+          <div style="display:flex;align-items:center;gap:8px"><div style="flex:1;position:relative;height:7px;background:var(--bg-2);border-radius:99px;overflow:hidden"><div style="position:absolute;top:0;bottom:0;left:0;width:{{ x.gapPct }};background:{{ x.gapColor }};border-radius:99px"></div></div><span style="font:600 11px var(--font-mono);width:36px;font-variant-numeric:tabular-nums">{{ x.gap }}</span></div>
+          <span style="font:600 10.5px var(--font-mono);color:{{ x.rc }};background:{{ x.rw }};border-radius:3px;padding:2px 8px;text-align:center">{{ x.reading }}</span>
+        </div>
+      </sc-for>
+    </div>
+    <div style="padding:11px 20px;display:flex;justify-content:space-between;align-items:center;gap:14px">
+      <span style="font:12px/1.55 var(--font-sans);color:var(--ink-2);max-width:88ch">How the mapping works: every budget line is crosswalked to COFOG (the UN's functional classification), each COFOG function is mapped to the SDGs it funds, and each SDG carries its failing/at-risk KPI count from <a href="KPI Explorer.dc.html">Outcomes</a>. "Underweighted" = the area's share of unmet outcomes is at least twice its share of spend. A mismatch is a fact about allocation, not proof more money fixes it — spending efficiency is a separate question the tool does not score.</span>
+      <span style="flex:none;font:10px var(--font-mono);color:var(--ink-3);cursor:help" title="crosswalk · DOF line → COFOG v2019 → SDG targets&#10;mapping file · xwalk-cofog-sdg v7 (public)&#10;gap data · KPI catalog v3, vintages 2023–25&#10;corpus v41 · 2026-05-01">xwalk v7 · open mapping ⓘ</span>
+    </div>
+  </section>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1440}}">
+class Component extends DCLogic {
+  state = { unit: "total", open: { hhs: true } };
+  renderVals() {
+    const POP = 39.4e6;
+    const TOTAL = 325.1;
+    const unit = this.state.unit;
+    const open = this.state.open;
+    const TREE = [
+      { id: "hhs", name: "Health & Human Services", v: 112.4, yoy: 4.2, kids: [
+        { name: "Medi-Cal", v: 84.1, yoy: 5.1 }, { name: "Social services", v: 16.8, yoy: 2.0 }, { name: "Behavioral health", v: 6.6, yoy: 8.4 }, { name: "Public health", v: 4.9, yoy: -1.2 }] },
+      { id: "k12", name: "K–12 Education", v: 83.2, yoy: 2.8, kids: [
+        { name: "Prop 98 guarantee", v: 78.3, yoy: 2.6 }, { name: "Child care & preschool", v: 3.1, yoy: 6.0 }, { name: "Other K–12", v: 1.8, yoy: 1.1 }] },
+      { id: "gg", name: "General government", v: 28.8, yoy: 3.5, kids: [
+        { name: "Tax relief & local aid", v: 12.2, yoy: 2.9 }, { name: "Statewide operations", v: 9.4, yoy: 4.7 }, { name: "Retirement contributions", v: 7.2, yoy: 3.0 }] },
+      { id: "he", name: "Higher education", v: 25.4, yoy: 1.9, kids: [
+        { name: "UC system", v: 9.8, yoy: 1.2 }, { name: "CSU system", v: 9.1, yoy: 1.6 }, { name: "Community colleges", v: 6.5, yoy: 3.1 }] },
+      { id: "tr", name: "Transportation", v: 22.1, yoy: -0.8, kids: [
+        { name: "Highways & roads", v: 13.6, yoy: -2.1 }, { name: "Transit & rail", v: 8.5, yoy: 1.4 }] },
+      { id: "corr", name: "Corrections & rehabilitation", v: 14.6, yoy: -1.5, kids: [
+        { name: "Prison operations", v: 11.9, yoy: -2.0 }, { name: "Rehabilitation programs", v: 2.7, yoy: 0.8 }] },
+      { id: "nr", name: "Natural resources & environment", v: 10.9, yoy: 6.3, kids: [
+        { name: "Wildfire & forestry", v: 4.2, yoy: 11.5 }, { name: "Water", v: 3.8, yoy: 4.0 }, { name: "Parks & conservation", v: 2.9, yoy: 1.7 }] },
+      { id: "debt", name: "Debt service", v: 9.1, yoy: 2.2 },
+      { id: "hous", name: "Housing & homelessness", v: 7.3, yoy: -12.4, kids: [
+        { name: "Homelessness programs", v: 3.9, yoy: -18.0 }, { name: "Affordable housing", v: 3.4, yoy: -4.8 }] },
+      { id: "oth", name: "Other", v: 11.3, yoy: 0.4 },
+    ];
+    const fmt = (v, parent) => {
+      if (unit === "capita") return "$" + Math.round(v * 1e9 / POP).toLocaleString();
+      if (unit === "share") return (v / parent * 100).toFixed(1) + "%";
+      return "$" + v.toFixed(1) + "B";
+    };
+    const rows = [];
+    TREE.forEach((n) => {
+      const isOpen = !!open[n.id];
+      const has = !!n.kids;
+      rows.push({
+        name: n.name, value: fmt(n.v, TOTAL), pct: (n.v / TOTAL * 100).toFixed(1) + "%",
+        yoy: (n.yoy >= 0 ? "▲ " : "▼ ") + Math.abs(n.yoy).toFixed(1) + "%", yc: n.yoy >= 0 ? "var(--ink-2)" : "var(--conf-2)",
+        chev: has ? (isOpen ? "▾" : "▸") : "", cursor: has ? "pointer" : "default", fw: 600, barH: "9px", barColor: "var(--accent)", pad: "0",
+        go: has ? (() => this.setState((s) => ({ open: { ...s.open, [n.id]: !s.open[n.id] } }))) : undefined,
+      });
+      if (has && isOpen) n.kids.forEach((k) => rows.push({
+        name: k.name, value: fmt(k.v, n.v), pct: (k.v / TOTAL * 100).toFixed(1) + "%",
+        yoy: (k.yoy >= 0 ? "▲ " : "▼ ") + Math.abs(k.yoy).toFixed(1) + "%", yc: k.yoy >= 0 ? "var(--ink-3)" : "var(--conf-2)",
+        chev: "", cursor: "default", fw: 400, barH: "6px", barColor: "var(--conf-1)", pad: "0 0 0 26px", go: undefined,
+      }));
+    });
+    const UNITS = [["total", "$"], ["capita", "per capita"], ["share", "% of parent"]];
+    const units = UNITS.map(([id, label]) => ({
+      label, bg: unit === id ? "var(--bg-1)" : "transparent", fg: unit === id ? "var(--ink-1)" : "var(--ink-2)",
+      sh: unit === id ? "var(--shadow-1)" : "none", go: () => this.setState({ unit: id }),
+    }));
+    const REV = [["Personal income tax", 137.2], ["Federal receipts", 58.4], ["Sales & use tax", 49.8], ["Corporation tax", 42.3], ["Other revenues", 37.4]];
+    const revenues = REV.map(([name, v]) => ({ name, value: "$" + v.toFixed(1) + "B", pct: (v / TOTAL * 100).toFixed(0) + "%" }));
+    const totalUnit = unit === "capita" ? "all funds · $8,252 per resident" : "all funds · FY 2025–26";
+    const XW = [
+      ["Health & Human Services", "3 · 1 · 2 · 10", 35, 31, "proportionate"],
+      ["Education (K–12 + higher)", "4 · 10 · 8", 33, 14, "proportionate"],
+      ["Housing & homelessness", "11 · 1 · 10", 2, 21, "underweighted"],
+      ["Natural resources & env.", "13 · 14 · 15 · 6", 3, 12, "underweighted"],
+      ["Corrections", "16", 4, 3, "proportionate"],
+      ["Transportation", "9 · 11 · 13", 7, 8, "proportionate"],
+    ];
+    const xwalk = XW.map(([name, sdgs, spend, gap, reading]) => ({
+      name, sdgs, spend: spend + "%", gap: gap + "%",
+      spendPct: Math.min(spend * 2.4, 100) + "%", gapPct: Math.min(gap * 2.4, 100) + "%",
+      gapColor: reading === "underweighted" ? "var(--fail)" : "var(--conf-1)",
+      reading: reading.toUpperCase(),
+      rc: reading === "underweighted" ? "var(--fail)" : "var(--ink-2)",
+      rw: reading === "underweighted" ? "var(--fail-wash)" : "var(--bg-2)",
+    }));
+    return { rows, units, revenues, totalUnit, xwalk };
+  }
+}
+</script>
+</body>
+</html>

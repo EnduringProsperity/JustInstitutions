@@ -1,0 +1,24 @@
+<!-- @dsCard group="Components" viewport="700x240" subtitle="RegisterReveal — plain-language lead, expert evidence one click below" name="Disclosure" -->
+<!doctype html><html><head><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="../cardBoot.js"></script>
+<style>body{margin:0;background:var(--bg-1);font-family:var(--font-sans)}</style></head>
+<body><div id="root"></div>
+<script type="text/babel">
+
+const NS={...window.__dsCardLoad("./",["RegisterReveal"]),...window.__dsCardLoad("../evidence/",["VerdictBadge","ProvenanceCite","ConfidencePill"])};
+const {RegisterReveal,VerdictBadge,ProvenanceCite,ConfidencePill}=NS;
+function Demo(){
+  return <div style={{padding:"18px 22px"}}>
+    <RegisterReveal plain="California's emergency powers have no automatic end date — once declared, an emergency continues until someone chooses to stop it." defaultOpen>
+      <div style={{display:"flex",flexDirection:"column",gap:8}}>
+        <div style={{display:"flex",gap:8,alignItems:"center"}}>Test A5 (Delegation Limits) returned <VerdictBadge verdict="partial"/> <ConfidencePill band={2}/></div>
+        <div>The Emergency Services Act <ProvenanceCite cite="Gov. Code §8627" quote="…the Governor shall have complete authority over all agencies of the state government…"/> grants plenary authority with no sunset clause; termination requires proclamation or concurrent resolution <ProvenanceCite cite="Gov. Code §8629"/>.</div>
+      </div>
+    </RegisterReveal>
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<Demo/>);
+</script></body></html>

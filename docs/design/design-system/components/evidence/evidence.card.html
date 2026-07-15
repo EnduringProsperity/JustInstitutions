@@ -1,0 +1,30 @@
+<!-- @dsCard group="Components" viewport="700x250" subtitle="VerdictBadge, ConfidencePill, ProvenanceCite, VintageStamp, AIMark" name="Evidence" -->
+<!doctype html><html><head><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="../cardBoot.js"></script>
+<style>body{margin:0;background:var(--bg-1);font-family:var(--font-sans)}</style></head>
+<body><div id="root"></div>
+<script type="text/babel">
+
+const NS=window.__dsCardLoad("./", ["VerdictBadge","ConfidencePill","ProvenanceCite","VintageStamp","AIMark"]);
+const {VerdictBadge,ConfidencePill,ProvenanceCite,VintageStamp,AIMark}=NS;
+function Demo(){
+  return <div style={{padding:"16px 20px",display:"flex",flexDirection:"column",gap:13}}>
+    <div style={{display:"flex",gap:8,alignItems:"center",flexWrap:"wrap"}}>
+      <VerdictBadge verdict="pass"/><VerdictBadge verdict="partial"/><VerdictBadge verdict="gap"/><VerdictBadge verdict="fail"/>
+      <span style={{width:10}}/>
+      <ConfidencePill band={0}/><ConfidencePill band={1}/><ConfidencePill band={2}/><ConfidencePill band={3}/>
+    </div>
+    <div style={{font:"14px/1.6 var(--font-sans)",color:"var(--ink-1)",maxWidth:600}}>
+      Emergency powers lack a sunset provision per <ProvenanceCite cite="Gov. Code §8627" quote="…the Governor shall have complete authority over all agencies of the state government…" /> — hover the cite to read the rule itself.
+    </div>
+    <div style={{display:"flex",gap:10,alignItems:"center",flexWrap:"wrap"}}>
+      <VintageStamp corpus="v41" asOf="2026-05-01" kpiYear="2024" refreshHref="#"/>
+      <AIMark/><AIMark compact/>
+    </div>
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<Demo/>);
+</script></body></html>

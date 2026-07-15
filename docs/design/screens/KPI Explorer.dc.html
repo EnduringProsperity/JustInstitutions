@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="styles.css">
+<style>
+body{margin:0;background:var(--bg-0);font-family:var(--font-sans);color:var(--ink-1)}
+a{color:var(--link);text-decoration-thickness:1px;text-underline-offset:2px}
+a:hover{color:var(--link-hover)}
+</style>
+</helmet>
+<div data-screen-label="KPI Explorer — California" style="min-height:100vh">
+
+<header style="display:flex;align-items:center;gap:28px;padding:0 32px;height:52px;background:var(--bg-1);border-bottom:1px solid var(--line-1)">
+  <div style="font:600 15px var(--font-sans);letter-spacing:-0.015em">Just<span style="color:var(--accent)">Institutions</span></div>
+  <nav style="display:flex;gap:4px;align-items:center;font:500 13px var(--font-sans);color:var(--ink-2)">
+    <a href="#" style="color:var(--ink-2);text-decoration:none;padding:6px 10px">Test</a>
+    <a href="#" style="color:var(--ink-1);text-decoration:none;padding:6px 10px;background:var(--bg-3);border-radius:6px">Explore</a>
+    <a href="#" style="color:var(--ink-2);text-decoration:none;padding:6px 10px">Design</a>
+  </nav>
+  <div style="display:flex;gap:2px;font:500 12px var(--font-sans);color:var(--ink-2);background:var(--bg-2);border:1px solid var(--line-2);border-radius:99px;padding:2px">
+    <span style="padding:3px 11px;background:var(--bg-1);border-radius:99px;color:var(--ink-1);box-shadow:var(--shadow-1)">Outcomes</span>
+    <a href="#" style="padding:3px 11px;color:var(--ink-2);text-decoration:none">Money</a>
+    <a href="#" style="padding:3px 11px;color:var(--ink-2);text-decoration:none">Compare</a>
+    <a href="#" style="padding:3px 11px;color:var(--ink-2);text-decoration:none">The Law</a>
+  </div>
+  <div style="flex:1"></div>
+  <span style="font:11px var(--font-mono);color:var(--ink-3)">214 indicators · vintages 2023–2025</span>
+</header>
+
+<main style="max-width:1220px;margin:0 auto;padding:26px 32px 64px">
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:24px">
+    <div>
+      <h1 style="margin:0;font:600 28px/1.15 var(--font-sans);letter-spacing:-0.015em">California, in outcomes</h1>
+      <div style="margin-top:6px;font:11px var(--font-mono);color:var(--ink-3)">/us/ca/explore/outcomes · 214 KPIs · 41 contested · latest vintage 2025</div>
+    </div>
+    <div style="flex:none;display:inline-flex;border:1px solid var(--line-1);border-radius:99px;overflow:hidden;font:600 11.5px var(--font-sans)">
+      <button onClick="{{ setPlain }}" style="border:none;cursor:pointer;padding:5px 14px;background:{{ plainBg }};color:{{ plainFg }};font:inherit">Plain</button>
+      <button onClick="{{ setExpert }}" style="border:none;cursor:pointer;padding:5px 14px;background:{{ expertBg }};color:{{ expertFg }};font:inherit">Expert</button>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:2px;border-bottom:1px solid var(--line-1);margin-top:20px">
+    <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="4">
+      <button onClick="{{ t.go }}" style="border:none;background:transparent;cursor:pointer;padding:8px 12px;font:{{ t.fw }} 13px var(--font-sans);color:{{ t.color }};border-bottom:2px solid {{ t.line }};margin-bottom:-1px">{{ t.label }}</button>
+    </sc-for>
+    <span style="margin-left:auto;align-self:center;font:10.5px var(--font-mono);color:var(--ink-3)">{{ viewNote }}</span>
+  </div>
+
+  <sc-if value="{{ isDims }}" hint-placeholder-val="{{ true }}">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px">
+      <sc-for list="{{ dims }}" as="d" hint-placeholder-count="6">
+        <section style="background:var(--bg-1);border:1px solid var(--line-1);border-radius:10px;box-shadow:var(--shadow-1);padding:15px 17px;display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px">
+            <h3 style="margin:0;font:600 14px var(--font-sans)">{{ d.name }}</h3>
+            <span style="font:10px var(--font-mono);color:var(--ink-3);white-space:nowrap">{{ d.count }}</span>
+          </div>
+          <div>
+            <div style="font:500 11.5px var(--font-sans);color:var(--ink-2)">{{ d.kpi }}</div>
+            <div style="display:flex;align-items:baseline;gap:7px;margin-top:2px">
+              <span style="font:600 32px/1 var(--font-sans);letter-spacing:-0.015em;font-variant-numeric:tabular-nums">{{ d.value }}</span>
+              <span style="font:500 12px var(--font-sans);color:var(--ink-2)">{{ d.unit }}</span>
+              <span style="margin-left:auto;font:600 10.5px var(--font-mono);color:{{ d.dc }};background:{{ d.dw }};border-radius:3px;padding:2px 7px">{{ d.delta }}</span>
+            </div>
+          </div>
+          <sc-if value="{{ isPlain }}" hint-placeholder-val="{{ true }}">
+            <p style="margin:0;font:13px/1.55 var(--font-sans);color:var(--ink-1)">{{ d.plain }}</p>
+          </sc-if>
+          <sc-if value="{{ isExpert }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:5px">
+              <sc-for list="{{ d.rows }}" as="r" hint-placeholder-count="2">
+                <div style="display:flex;gap:8px;align-items:baseline;font:12px var(--font-sans);color:var(--ink-1)">
+                  <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ r.k }}</span>
+                  <span style="font:600 12px var(--font-mono);font-variant-numeric:tabular-nums">{{ r.v }}</span>
+                  <span style="font:600 9px var(--font-mono);color:{{ r.tc }};border:1px solid {{ r.tc }};border-radius:99px;padding:0 5px" title="{{ r.tt }}">{{ r.tag }}</span>
+                  <span style="font:10px var(--font-mono);color:var(--ink-3);width:96px;text-align:right">{{ r.src }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+          <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:8px;border-top:1px solid var(--line-2)">
+            <a href="{{ d.href }}" style="font:11px var(--font-sans)">all {{ d.n }} →</a>
+            <span style="font:10px var(--font-mono);color:var(--ink-3);cursor:help" title="{{ d.ladder }}">{{ d.stamp }} ⓘ</span>
+          </div>
+        </section>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isSdg }}" hint-placeholder-val="{{ false }}">
+    <div style="margin-top:20px;background:var(--bg-1);border:1px solid var(--line-1);border-radius:10px;box-shadow:var(--shadow-1);padding:22px 24px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <h3 style="margin:0;font:600 14px var(--font-sans)">SDG pyramid — dependencies, bottom-up</h3>
+        <span style="font:10.5px var(--font-mono);color:var(--ink-3)">HIERARCHY: MAYERHOFER 2024 · FOUNDATIONS FIRST</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:5px;margin-top:18px">
+        <sc-for list="{{ sdgRows }}" as="row" hint-placeholder-count="6">
+          <div style="width:{{ row.w }};margin:0 auto;display:flex;gap:5px">
+            <sc-for list="{{ row.cells }}" as="c" hint-placeholder-count="3">
+              <div onClick="{{ c.go }}" style="flex:1;background:{{ c.bg }};border:1px solid {{ c.bd }};border-radius:6px;padding:8px 10px;cursor:pointer;box-shadow:{{ c.ring }}" title="{{ c.tip }}">
+                <div style="font:600 9.5px var(--font-mono);letter-spacing:0.06em;color:var(--ink-3)">SDG {{ c.id }}</div>
+                <div style="font:600 12px var(--font-sans);color:var(--ink-1);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ c.name }}</div>
+                <div style="font:600 9.5px var(--font-mono);color:{{ c.sc }};margin-top:3px">{{ c.status }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-for>
+      </div>
+      <div style="margin-top:16px;background:var(--bg-2);border:1px solid var(--line-2);border-radius:8px;padding:13px 16px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px">
+          <span style="font:600 13px var(--font-sans)">SDG {{ sd.id }} {{ sd.name }} — <span style="color:{{ sd.sc }}">{{ sd.status }}</span></span>
+          <span style="font:10.5px var(--font-mono);color:var(--ink-3)">{{ sd.math }}</span>
+        </div>
+        <div style="display:flex;flex-direction:column;margin-top:6px">
+          <sc-for list="{{ sd.kpis }}" as="k" hint-placeholder-count="3">
+            <div style="display:flex;gap:10px;align-items:baseline;padding:7px 0;border-bottom:1px solid var(--line-2);font:12.5px var(--font-sans)">
+              <span style="flex:none;width:8px;height:8px;border-radius:50%;background:{{ k.dc }};align-self:center"></span>
+              <span style="flex:1">{{ k.k }}</span>
+              <span style="font:600 12px var(--font-mono);font-variant-numeric:tabular-nums">{{ k.v }}</span>
+              <span style="font:10.5px var(--font-mono);color:var(--ink-3)">peer median {{ k.med }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="margin-top:9px;font:11px/1.6 var(--font-mono);color:var(--ink-3)"><span style="color:var(--pass)">●</span> at/above the 50-state median · <span style="color:var(--fail)">●</span> below — on track = ≥70% of mapped KPIs at/above median · at risk = 40–69% · failing = under 40% · click any block to inspect</div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:12px;border-top:1px solid var(--line-2)">
+        <span style="font:12.5px/1.5 var(--font-sans);color:var(--ink-2);max-width:62ch">Reads bottom-up: a goal can only stand on foundations that hold. Sustainable cities (11) is failing while its foundation tier shows education funding equity (4) at risk — trace down before blaming the top.</span>
+        <span style="font:10px var(--font-mono);color:var(--ink-3);cursor:help;white-space:nowrap" title="source · 214 KPIs mapped to SDG targets&#10;vintages · 2023–2025 per KPI&#10;hierarchy · J. Mayerhofer 2024&#10;corpus v41 · 2026-05-01">KPI vintages 2023–2025 ⓘ</span>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isPrin }}" hint-placeholder-val="{{ false }}">
+    <div style="margin-top:20px;background:var(--bg-1);border:1px solid var(--line-1);border-radius:10px;box-shadow:var(--shadow-1)">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;padding:13px 20px;border-bottom:1px solid var(--line-2)">
+        <h3 style="margin:0;font:600 14px var(--font-sans)">Design principles scorecard</h3>
+        <span style="font:10.5px var(--font-mono);color:var(--ink-3)">TEN PRINCIPLES · MAYERHOFER 2024 · RULE ALIGNMENT, NOT OUTCOMES ALONE</span>
+      </div>
+      <div style="padding:8px 20px 14px">
+        <sc-for list="{{ prins }}" as="p" hint-placeholder-count="10">
+          <div style="border-bottom:1px solid var(--line-2)">
+            <div onClick="{{ p.go }}" style="display:grid;grid-template-columns:32px 220px 1fr 40px;gap:14px;align-items:center;padding:9px 0;cursor:pointer" style-hover="background:var(--bg-2)">
+              <span style="font:600 11px var(--font-mono);color:var(--ink-3)">{{ p.chev }} {{ p.n }}</span>
+              <div>
+                <div style="font:600 13px var(--font-sans)">{{ p.name }}</div>
+                <div style="font:11px/1.4 var(--font-sans);color:var(--ink-3);margin-top:1px">{{ p.measure }}</div>
+              </div>
+              <div style="position:relative;height:7px;background:var(--bg-2);border-radius:99px;overflow:hidden"><div style="position:absolute;top:0;bottom:0;left:0;width:{{ p.pct }};background:{{ p.color }};border-radius:99px"></div></div>
+              <span style="font:600 13px var(--font-mono);font-variant-numeric:tabular-nums;text-align:right">{{ p.score }}</span>
+            </div>
+            <sc-if value="{{ p.open }}" hint-placeholder-val="{{ false }}">
+              <div style="margin:2px 0 12px 46px;background:var(--bg-2);border:1px solid var(--line-2);border-radius:8px;padding:11px 15px">
+                <div style="font:600 10px var(--font-mono);letter-spacing:0.08em;color:var(--ink-3)">HOW {{ p.score }} IS COMPUTED</div>
+                <div style="display:flex;flex-direction:column;margin-top:4px">
+                  <sc-for list="{{ p.comps }}" as="c" hint-placeholder-count="3">
+                    <div style="display:grid;grid-template-columns:minmax(180px,1.2fr) 130px 1fr 34px;gap:12px;align-items:center;padding:6px 0;border-bottom:1px solid var(--line-2);font:12px var(--font-sans)">
+                      <span>{{ c.k }}</span>
+                      <span style="font:600 11.5px var(--font-mono);font-variant-numeric:tabular-nums;text-align:right">{{ c.raw }}</span>
+                      <div style="position:relative;height:5px;background:var(--bg-1);border-radius:99px;overflow:hidden" title="percentile in the 50-state distribution, direction-adjusted"><div style="position:absolute;top:0;bottom:0;left:0;width:{{ c.pct }};background:var(--conf-2);border-radius:99px"></div></div>
+                      <span style="font:600 11.5px var(--font-mono);text-align:right">{{ c.norm }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+                <div style="margin-top:8px;font:11px/1.6 var(--font-mono);color:var(--ink-3)">score = mean of component percentiles ({{ p.mean }}) × rule-coverage factor {{ p.cov }} = <b style="color:var(--ink-1)">{{ p.score }}</b> · percentile = rank in the 50-state distribution, direction-adjusted · <a href="#">full method →</a></div>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+        <div style="display:flex;justify-content:flex-end;padding-top:10px"><span style="font:10px var(--font-mono);color:var(--ink-3);cursor:help" title="source · KPI catalog + rule coverage analysis&#10;scores · 0–100, KPI attainment × rule coverage&#10;corpus v41 · 2026-05-01">scored against corpus v41 ⓘ</span></div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isCap }}" hint-placeholder-val="{{ false }}">
+    <div style="margin-top:20px;background:var(--bg-1);border:1px solid var(--line-1);border-radius:10px;box-shadow:var(--shadow-1)">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;padding:13px 20px;border-bottom:1px solid var(--line-2)">
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <sc-for list="{{ caps }}" as="cp" hint-placeholder-count="5">
+            <button onClick="{{ cp.go }}" style="border:1px solid {{ cp.bd }};background:{{ cp.bg }};color:{{ cp.fg }};border-radius:99px;padding:4px 13px;font:600 11.5px var(--font-sans);cursor:pointer">{{ cp.label }}</button>
+          </sc-for>
+        </div>
+        <span style="font:10.5px var(--font-mono);color:var(--ink-3)">WHICH CAPITAL DID THE RULES OPTIMIZE — AND WHICH DID THEY EXTERNALIZE ONTO?</span>
+      </div>
+      <div style="padding:8px 20px 6px">
+        <sc-for list="{{ capKpis }}" as="k" hint-placeholder-count="4">
+          <div style="display:flex;gap:12px;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--line-2)">
+            <span style="flex:1;font:500 13px var(--font-sans)">{{ k.k }}</span>
+            <span style="font:600 13px var(--font-mono);font-variant-numeric:tabular-nums">{{ k.v }}</span>
+            <span style="font:600 9px var(--font-mono);color:{{ k.tc }};border:1px solid {{ k.tc }};border-radius:99px;padding:0 6px" title="{{ k.tt }}">{{ k.tag }}</span>
+            <span style="font:10.5px var(--font-mono);color:var(--ink-3);width:130px;text-align:right;cursor:help" title="{{ k.ladder }}">{{ k.src }} ⓘ</span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="padding:11px 20px;display:flex;justify-content:space-between;align-items:center">
+        <span style="font:12px var(--font-sans);color:var(--ink-2)">{{ capNote }}</span>
+        <a href="#" style="font:11.5px var(--font-sans)">rules affecting this capital →</a>
+      </div>
+    </div>
+  </sc-if>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;defaultView&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;dimensions&quot;, &quot;sdg&quot;, &quot;principles&quot;, &quot;capital&quot;], &quot;default&quot;: &quot;dimensions&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;View&quot;}, &quot;defaultRegister&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;plain&quot;, &quot;expert&quot;], &quot;default&quot;: &quot;plain&quot;, &quot;tsType&quot;: &quot;\&quot;plain\&quot;|\&quot;expert\&quot;&quot;, &quot;section&quot;: &quot;Register&quot;}}">
+class Component extends DCLogic {
+  state = { view: null, register: null, capital: "Natural", sdgSel: 11, prinOpen: 8 };
+  renderVals() {
+    const view = this.state.view ?? (this.props.defaultView ?? "dimensions");
+    const register = this.state.register ?? (this.props.defaultRegister ?? "plain");
+    const isPlain = register === "plain";
+    const U = ["var(--ink-3)", "Universal — broadly accepted as a good-faith measure"];
+    const C = ["var(--partial)", "Contested — encodes a normative position; disclosed, not hidden"];
+    const tag = (t) => t === "U" ? { tag: "U", tc: U[0], tt: U[1] } : { tag: "C", tc: C[0], tt: C[1] };
+    const TABS = [["dimensions", "Dimensions"], ["sdg", "SDG pyramid"], ["principles", "Design principles"], ["capital", "Capital lens"]];
+    const tabs = TABS.map(([id, label]) => ({
+      label, fw: view === id ? 600 : 500,
+      color: view === id ? "var(--ink-1)" : "var(--ink-2)",
+      line: view === id ? "var(--accent)" : "transparent",
+      go: () => this.setState({ view: id }),
+    }));
+    const NOTES = { dimensions: "VIEW A · FLAT CATEGORIES", sdg: "VIEW B · HIERARCHICAL", principles: "VIEW C · SCORECARD", capital: "VIEW D · FILTER LENS" };
+    const lad = (src, vin) => "source · " + src + "\nvintage · " + vin + "\nmapped · KPI catalog v3\ncorpus v41 · 2026-05-01";
+    const dims = [
+      { name: "Safety & Security", count: "18 KPIs · 2 contested", n: 18, kpi: "Violent crime", value: "499", unit: "per 100k", delta: "▼ 6% since 2022", good: true,
+        plain: "Violent crime is falling and sits near the national median. Property crime is where California stands apart — and traffic deaths haven't budged in a decade.",
+        rows: [{ k: "Violent crime rate", v: "499 /100k", t: "U", src: "FBI UCR 2024" }, { k: "Traffic fatalities", v: "12.2 /100k", t: "U", src: "NHTSA 2024" }],
+        src: "FBI UCR", vin: "2024" },
+      { name: "Health & Wellbeing", count: "31 KPIs · 4 contested", n: 31, kpi: "Life expectancy", value: "81.3", unit: "years", delta: "▲ 0.4 since 2022", good: true,
+        plain: "People here live about two years longer than the US average — but the gap between the longest- and shortest-lived counties is eleven years.",
+        rows: [{ k: "Life expectancy", v: "81.3 yr", t: "U", src: "CDC 2024" }, { k: "Maternal mortality", v: "10.2 /100k", t: "U", src: "CDC 2023" }],
+        src: "CDC WONDER", vin: "2024" },
+      { name: "Economic", count: "27 KPIs · 5 contested", n: 27, kpi: "Poverty rate (SPM)", value: "18.9", unit: "%", delta: "▲ 1.1 since 2022", good: false,
+        plain: "Counting housing costs, nearly one in five Californians is poor — the highest rate of any state, in the state with the largest economy.",
+        rows: [{ k: "Poverty rate (SPM)", v: "18.9%", t: "U", src: "Census 2024" }, { k: "Gini coefficient", v: "0.49", t: "C", src: "ACS 2024" }],
+        src: "Census SPM", vin: "2024" },
+      { name: "Education & Knowledge", count: "22 KPIs · 4 contested", n: 22, kpi: "HS graduation", value: "87.0", unit: "%", delta: "▲ 2.1 since 2022", good: true,
+        plain: "Graduation rates keep climbing. Funding does not follow need: the gap between the richest and poorest districts is wider than in 34 states.",
+        rows: [{ k: "HS graduation rate", v: "87.0%", t: "U", src: "CDE 2025" }, { k: "School funding equity", v: "0.71", t: "C", src: "EdBuild 2024" }],
+        src: "CDE DataQuest", vin: "2025" },
+      { name: "Governance & Democracy", count: "19 KPIs · 3 contested", n: 19, kpi: "Voter turnout", value: "68.4", unit: "% (2024)", delta: "▼ 2.3 vs 2020", good: false,
+        plain: "Two in three eligible voters showed up in 2024. Public-records requests get answered — a median of 42 days later.",
+        rows: [{ k: "Voter turnout (VEP)", v: "68.4%", t: "U", src: "UF Election Lab 2024" }, { k: "PRA response median", v: "42 days", t: "U", src: "CalAware 2025" }],
+        src: "UF Election Lab", vin: "2024" },
+      { name: "Environment", count: "34 KPIs · 6 contested", n: 34, kpi: "Renewable grid share", value: "54", unit: "%", delta: "▲ 5 pts since 2023", good: true,
+        plain: "More than half the grid is renewable. Meanwhile 74 days last year were unhealthy to breathe somewhere in the state — mostly wildfire smoke.",
+        rows: [{ k: "Renewable % of grid", v: "54%", t: "C", src: "CEC 2025" }, { k: "Unhealthy AQI days", v: "74", t: "U", src: "EPA 2025" }],
+        src: "CEC / EPA", vin: "2025" },
+    ].map((d) => ({
+      ...d, dc: d.good ? "var(--pass)" : "var(--fail)", dw: d.good ? "var(--pass-wash)" : "var(--fail-wash)",
+      stamp: d.src + " · " + d.vin, ladder: lad(d.src, d.vin),
+      href: d.name === "Health & Wellbeing" ? "Category Detail.dc.html" : "#",
+      rows: d.rows.map((r) => ({ ...r, ...tag(r.t) })),
+    }));
+    const ST = { on: ["on track", "var(--pass)", "var(--pass-wash)"], risk: ["at risk", "var(--partial)", "var(--partial-wash)"], fail: ["failing", "var(--fail)", "var(--fail-wash)"] };
+    const cell = (id, name, st, why) => ({ id, name, st, why, status: ST[st][0], sc: ST[st][1], bg: ST[st][2], bd: ST[st][1],
+      ring: this.state.sdgSel === id ? "0 0 0 2px var(--accent)" : "none",
+      tip: "SDG " + id + " " + name + " — " + ST[st][0] + " · click to see the math",
+      go: () => { if (SDG_KPIS[id]) this.setState({ sdgSel: id }); } });
+    const sdgRowsRaw = [
+      { w: "22%", cells: [cell(3, "Good health", "risk", "life expectancy up; maternal mortality flat")] },
+      { w: "34%", cells: [cell(1, "No poverty", "fail", "SPM poverty 18.9% — highest of any state")] },
+      { w: "48%", cells: [cell(2, "Zero hunger", "risk", "food insecurity 11.2%"), cell(6, "Clean water", "risk", "6.1% exposed to PFAS above threshold")] },
+      { w: "64%", cells: [cell(9, "Industry & innovation", "on", "R&D 6.2% of GDP"), cell(8, "Decent work", "on", "wage growth beats inflation 2 yrs"), cell(10, "Reduced inequalities", "fail", "Gini 0.49; racial wealth gap widening")] },
+      { w: "84%", cells: [cell(13, "Climate action", "on", "GHG per capita down 18% since 2015"), cell(14, "Life below water", "risk", "coastal water quality mixed"), cell(15, "Life on land", "risk", "forest cover down 1.8% since 2020"), cell(11, "Sustainable cities", "fail", "housing burden 52% of renters"), cell(12, "Responsible consumption", "on", "diversion rate 42%")] },
+      { w: "100%", cells: [cell(7, "Renewable energy", "on", "54% of grid"), cell(4, "Quality education", "risk", "funding equity 0.71"), cell(16, "Peace & justice", "risk", "norms block scored 41"), cell(17, "Partnerships", "on", "interstate compact participation high"), cell(5, "Gender equality", "risk", "pay gap 12%")] },
+    ];
+    const SDG_KPIS = {
+      11: { math: "1 OF 4 MAPPED KPIS AT/ABOVE MEDIAN → 25% → FAILING", kpis: [
+        ["Renter housing-cost burden", "52%", "44%", false], ["Homelessness per 10k", "44", "18", false], ["Median commute", "31 min", "26 min", false], ["Transit access (urban)", "71%", "64%", true]] },
+      1: { math: "0 OF 3 MAPPED KPIS AT/ABOVE MEDIAN → 0% → FAILING", kpis: [
+        ["Poverty rate (SPM)", "18.9%", "12.9%", false], ["Child poverty (SPM)", "17.1%", "13.7%", false], ["Deep poverty", "6.2%", "5.4%", false]] },
+      4: { math: "2 OF 4 MAPPED KPIS AT/ABOVE MEDIAN → 50% → AT RISK", kpis: [
+        ["HS graduation rate", "87.0%", "86.5%", true], ["School funding equity", "0.71", "0.78", false], ["NAEP 8th grade math", "270", "273", false], ["Pre-K enrollment", "38%", "34%", true]] },
+      7: { math: "3 OF 3 MAPPED KPIS AT/ABOVE MEDIAN → 100% → ON TRACK", kpis: [
+        ["Renewable % of grid", "54%", "29%", true], ["Energy burden (low-income)", "5.1%", "6.8%", true], ["Grid reliability (SAIDI)", "241 min", "312 min", true]] },
+    };
+    const selId = SDG_KPIS[this.state.sdgSel] ? this.state.sdgSel : 11;
+    const selCell = sdgRowsRaw.flatMap((r) => r.cells).find((c) => c.id === selId);
+    const sd = { id: selId, name: selCell.name, status: ST[selCell.st][0].toUpperCase(), sc: ST[selCell.st][1], math: SDG_KPIS[selId].math,
+      kpis: SDG_KPIS[selId].kpis.map(([k, v, med, ok]) => ({ k, v, med, dc: ok ? "var(--pass)" : "var(--fail)" })) };
+    const PRIN_COMPS = {
+      8: { cov: "0.80", comps: [["Hidden-cost index", "0.34", 38], ["Gini coefficient", "0.49", 22], ["Superfund proximity by income", "2.8×", 31], ["Tax incidence progressivity", "+0.9", 74], ["Env. justice screening coverage", "88%", 82]] },
+      4: { cov: "0.95", comps: [["Renewable % of grid", "54%", 92], ["Energy affordability", "5.1%", 71], ["RPS ambition vs delivery", "0.86", 88]] },
+      1: { cov: "0.72", comps: [["SDG attainment (weighted)", "58/100", 61], ["Rule coverage of priority SDGs", "71%", 66], ["Foundation-tier attainment", "49/100", 52]] },
+      10: { cov: "0.88", comps: [["Open data score", "72/100", 78], ["FOIA/PRA response median", "42 days", 58], ["Budget transparency index", "81/100", 84]] },
+    };
+    const prins = [
+      ["1", "Matter", "SDG attainment; rule coverage of priority SDGs", 61],
+      ["2", "Circular economies", "Diversion rate, right-to-repair, EPR coverage", 72],
+      ["3", "Healthy materials", "PFAS rules, toxics vs EU REACH, lead exposure", 68],
+      ["4", "Renewable energy", "Grid share, energy affordability, RPS ambition", 81],
+      ["5", "Climate health", "GHG per capita, methane compliance, sequestration", 77],
+      ["6", "Human capital", "Labor protections, wage-theft enforcement, paid leave", 66],
+      ["7", "Accessible", "Disability employment, broadband, transit, ADA", 59],
+      ["8", "Equitable allocation", "Hidden-cost index, Gini, Superfund proximity by income", 44],
+      ["9", "Nature's design", "Biodiversity, ecosystem services, watershed health", 63],
+      ["10", "Measurable results", "Open data score, FOIA response, budget transparency", 70],
+    ].map(([n, name, measure, score]) => {
+      const det = PRIN_COMPS[+n];
+      const open = det && this.state.prinOpen === +n;
+      const comps = det ? det.comps.map(([k, raw, p]) => ({ k, raw, norm: p, pct: p + "%" })) : [];
+      const mean = det ? Math.round(det.comps.reduce((a, c) => a + c[2], 0) / det.comps.length) : 0;
+      return { n, name, measure, score, pct: score + "%", color: score >= 70 ? "var(--pass)" : score >= 45 ? "var(--partial)" : "var(--fail)",
+        chev: det ? (open ? "▾" : "▸") : "·", open, comps, mean, cov: det ? det.cov : "",
+        go: det ? (() => this.setState((s) => ({ prinOpen: s.prinOpen === +n ? null : +n }))) : undefined };
+    });
+    const CAPS = {
+      Financial: { note: "Money, assets, investment — the capital most rules already optimize for.", kpis: [["GDP per capita", "$104,900", "U", "BEA 2025"], ["State debt per capita", "$3,880", "U", "Treasurer 2025"], ["Median household income", "$96,500", "U", "ACS 2024"]] },
+      Manufactured: { note: "Infrastructure, technology, buildings.", kpis: [["Infrastructure grade", "C−", "U", "ASCE 2025"], ["Broadband access", "93.7%", "U", "FCC 2025"], ["Housing units per 1k adults", "358", "U", "HCD 2025"]] },
+      Human: { note: "Health, skills, knowledge, wellbeing.", kpis: [["Life expectancy", "81.3 yr", "U", "CDC 2024"], ["College completion", "37.4%", "U", "Census 2024"], ["Life satisfaction index", "6.9 /10", "C", "Gallup 2025"]] },
+      Social: { note: "Trust, community, institutions, norms.", kpis: [["Social trust index", "0.52", "U", "GSS 2024"], ["Civic participation", "24.8%", "U", "AmeriCorps 2024"], ["Government trust index", "39%", "U", "Gallup 2025"]] },
+      Natural: { note: "Ecosystems, air, water, soil, biodiversity — the capital rules most often externalize costs onto.", kpis: [["Unhealthy AQI days", "74", "U", "EPA 2025"], ["Safe drinking water access", "92.4%", "U", "SDWIS 2024"], ["PFAS above threshold", "6.1% of pop.", "U", "EPA UCMR 2025"], ["Carbon emissions per capita", "9.2 t", "C", "EPA 2024"], ["Biodiversity index", "0.68", "U", "NatureServe 2023"]] },
+    };
+    const capital = this.state.capital;
+    const caps = Object.keys(CAPS).map((label) => ({
+      label,
+      bd: label === capital ? "var(--accent)" : "var(--line-1)",
+      bg: label === capital ? "var(--accent)" : "var(--bg-1)",
+      fg: label === capital ? "#fff" : "var(--ink-2)",
+      go: () => this.setState({ capital: label }),
+    }));
+    const capKpis = CAPS[capital].kpis.map(([k, v, t, src]) => ({ k, v, src, ...tag(t), ladder: lad(src, src.slice(-4)) }));
+    return {
+      isDims: view === "dimensions", isSdg: view === "sdg", isPrin: view === "principles", isCap: view === "capital",
+      tabs, viewNote: NOTES[view], dims, sdgRows: sdgRowsRaw, sd, prins, caps, capKpis, capNote: CAPS[capital].note,
+      isPlain, isExpert: !isPlain,
+      plainBg: isPlain ? "var(--ink-surface)" : "transparent", plainFg: isPlain ? "#fff" : "var(--ink-2)",
+      expertBg: !isPlain ? "var(--ink-surface)" : "transparent", expertFg: !isPlain ? "#fff" : "var(--ink-2)",
+      setPlain: () => this.setState({ register: "plain" }),
+      setExpert: () => this.setState({ register: "expert" }),
+    };
+  }
+}
+</script>
+</body>
+</html>
