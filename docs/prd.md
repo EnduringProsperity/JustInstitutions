@@ -1,8 +1,8 @@
-# PRD — Public Policy Vulnerability Analyzer (PGA)
+# PRD — JustInstitutions
 
 > **BMAD Product Requirements Document** (PM-owned). Upstream context: [project-brief.md](project-brief.md). Technical realization: [architecture.md](architecture.md). Domain framework (test blocks, KPI catalog, taxonomies, methodology): [domain-model.md](domain-model.md). Business exhibits: [business/](business/).
 >
-> *Status: assembled from the original master plan (now retired; superseded by this `docs/` set). Sections marked `{DRAFT}` were proposed by Claude and need owner review. When BMAD is installed, the PM agent will regenerate/validate this against its template and generate the formal Epic List from these requirements.*
+> *Status: assembled from the original master plan (now retired; superseded by this `docs/` set). All formerly `{DRAFT}` sections have been owner-reviewed (2026-07-15). When BMAD is installed, the PM agent will regenerate/validate this against its template and generate the formal Epic List from these requirements.*
 
 ## Goals
 
@@ -14,7 +14,7 @@
 ## Non-Goals (initial release)
 
 - **Not legal advice.** A research tool; all AI-generated legal language requires expert review.
-- **Not a bill tracker.** Legislative monitoring is well served by competitors; PGA analyzes the standing corpus, not pending bills.
+- **Not a bill tracker.** Legislative monitoring is well served by competitors; JustInstitutions analyzes the standing corpus, not pending bills.
 - **Does not claim causation.** Surfaces correlation and likely mechanisms only.
 - **No non-US rules corpora at launch** (capability exists; data load is sequenced — see brief Scope).
 - **No additional analysis domains** (corporate, healthcare) at launch — architecture stays pluggable.
@@ -22,13 +22,13 @@
 
 ## Success Metrics
 
-*{DRAFT — proposed product metrics for review; targets TBD.}*
+*Reviewed and accepted by owner 2026-07-15 ("good for now"); numeric targets still TBD.*
 
 | Category | Metric |
 |----------|--------|
 | **Reach** | Monthly active users; # jurisdictions viewed; % traffic from organic search (public-interest discoverability) |
 | **Engagement** | Analyses (Test runs) executed; reports downloaded; shareable URLs opened per shared link |
-| **Research credibility** | Academic citations of PGA findings; verified researcher signups; university partnerships; peer-reviewed papers using the platform |
+| **Research credibility** | Academic citations of JustInstitutions findings; verified researcher signups; university partnerships; peer-reviewed papers using the platform |
 | **Civic impact** | Patch proposals referenced by advocacy orgs, journalists, or in actual legislation |
 | **Quality** | Human-review agreement rate on vulnerability findings (against known policy debates) |
 | **Sustainability** | Professional/institutional conversions; earned-revenue share (see [business/revenue.md](business/revenue.md)) |
@@ -203,7 +203,7 @@ All registered personas get the same functionality. What differs by subtier is *
 
 **Honesty check on self-identified persona:** the persona claim (e.g., "journalist") is soft-verified from affiliation signals (email domain, ORCID, optional LinkedIn). Mismatches don't block access — same functionality for everyone — they flag the account for pricing-tier review.
 
-**Privacy commitments:** the IDV provider retains the ID documents; PGA stores only the verification result (verified: yes/no, date, provider reference). We never hold ID images. Verification status appears on nothing public — it gates tier features only.
+**Privacy commitments:** the IDV provider retains the ID documents; JustInstitutions stores only the verification result (verified: yes/no, date, provider reference). We never hold ID images. Verification status appears on nothing public — it gates tier features only.
 
 ### Access model & free-rider posture
 
@@ -311,12 +311,13 @@ Consolidated from `{TBR}` markers across the planning docs. Product-level items 
 
 ### Still open
 
-- **OQ-8 — Identity-verification friction vs. conversion.** FR-30 mandates IDV for paid tiers; measure drop-off once live and decide whether Researcher tier keeps full IDV or drops to institutional-email + ORCID only.
+- **OQ-8 — Identity-verification friction vs. conversion.** *(Approach accepted by owner 2026-07-15; stays open by design — needs live data.)* FR-30 mandates IDV for paid tiers; measure drop-off once live and decide whether Researcher tier keeps full IDV or drops to institutional-email + ORCID only.
 - **OQ-9 — Naming.** ✅ *Decided (2026-07):* **JustInstitutions** — see [business/naming.md](business/naming.md); justinstitutions.org and .com registered.
 - **OQ-10 — Anonymous-access posture.** ✅ *Decided (2026-07-15), earlier than planned:* **reading is anonymous, doing is registered.** Public artifacts stay account-free, indexable, and shareable; all workflow (runs, questions, patches, exports, watches) requires registration, giving the measurable-audience, saved-state, and abuse-throttling benefits without walling off casual civic readers. Trial + permanent civic floor per FR-32. See [Access model & free-rider posture](#access-model--free-rider-posture).
+- **OQ-12 — Values frameworks beyond the SDGs (owner, 2026-07-15).** The Money Explorer's "Does the money follow the values?" crosswalk currently maps budget areas to SDG targets only. That is a good values indicator — but one framework. Determine whether to (perhaps also) map budgets against other value frameworks. Natural candidates already exist in the KPI views (domain-model.md): the Design Principles scorecard, the Capital Impact Lens (five capitals), and the nine-dimension hierarchy; external frameworks are also conceivable. Open questions inside the question: which frameworks, whether the user picks a lens or sees several side by side, and what the crosswalk methodology is for each (the SDG mapping rides on COFOG; others may not). TBD.
 
 ## Next Steps
 
-1. Owner review of the `{DRAFT}` success metrics, the OQ resolutions above (especially the Identity & Verification ladder and the iceboxed Mode), and the new domain-model methodology sections (system types, budget crosswalk, peer grouping, attribution confidence).
+1. ✅ *(2026-07-15)* Owner reviewed the success metrics ("good for now"; numeric targets TBD) and the OQ-8..10 resolutions, including the Identity & Verification ladder.
 2. UX design pass (Claude Design) over the primary UI surfaces.
 3. At the code boundary: install BMAD (`npx bmad-method install`, v6.x); PM agent regenerates/validates this PRD and produces the formal Epic List and sharded stories.

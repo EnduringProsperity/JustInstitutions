@@ -1,4 +1,4 @@
-# Front-End Spec — JustInstitutions (PGA)
+# Front-End Spec — JustInstitutions
 
 > Deliverable 1 of 2 named in the front-end brief. Companion to Deliverable 2, the **design system** (`design-system/` in this package: tokens, components, guidelines, readme). Designed in Claude Designer, July 2026. Product name decided 2026-07: **JustInstitutions** (plain-type wordmark, no logo).
 >

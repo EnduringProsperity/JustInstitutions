@@ -1,4 +1,4 @@
-# Example Questions & Prompts — PGA
+# Example Questions & Prompts — JustInstitutions
 
 > Seed prompts that draw users into the system — for the landing page, per-persona entry points, Law Explorer empty states, demo scripts, and marketing. Organized by audience/area; **bold-tagged** items showcase capabilities no competitor has (judicial drift, law-as-of-date, values inference, patch methodology, DDD coherence tests, designed-system testing). Owner originals marked ★.
 >

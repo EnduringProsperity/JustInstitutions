@@ -1,4 +1,6 @@
-# Public Policy Vulnerability Analyzer (PGA)
+# JustInstitutions
+
+*Formerly the working title "Public Policy Vulnerability Analyzer (PGA)" — renamed July 2026 (see docs/business/naming.md).*
 
 A public-interest platform that treats a jurisdiction's body of rules (constitutions, statutes, regulations, codes, and interpreting case law) like software — analyzing it for "vulnerabilities" (gaps, conflicts, loopholes, obsolescence, enforcement gaps, inequities, and more), linking those rules to outcome KPIs, and surfacing actionable "patches."
 
@@ -27,7 +29,7 @@ The project has been fanned out from a single master plan into [BMAD-method](htt
 | [docs/project-brief.md](docs/project-brief.md) | Analyst | Problem, premise, vision, scope, context |
 | [docs/prd.md](docs/prd.md) | PM | Goals, success metrics, personas, FR/NFR, epics, open questions |
 | [docs/architecture.md](docs/architecture.md) | Architect | System architecture, tech stack & rationale, project structure, extensibility |
-| [docs/architecture-principles.md](docs/architecture-principles.md) | — (frozen snapshot) | Cross-project software architecture principles (canonical copy lives outside the repo at `~/.claude/docs/`); how they bind PGA is in architecture.md |
+| [docs/architecture-principles.md](docs/architecture-principles.md) | — (frozen snapshot) | Cross-project software architecture principles (canonical copy lives outside the repo at `~/.claude/docs/`); how they bind JustInstitutions is in architecture.md |
 | [docs/domain-model.md](docs/domain-model.md) | — (reference) | The domain framework: Rule Taxonomy, Test Blocks A–L, Vulnerability Taxonomy, KPI catalog + Views, and methodology (system types, budget crosswalk, peer grouping, attribution confidence). Not a native BMAD artifact. |
 | [docs/business/](docs/business/) | — | Supporting exhibits: [cost](docs/business/cost.md) · [revenue](docs/business/revenue.md) · [funding](docs/business/funding.md) · [partners](docs/business/partners.md) · [naming](docs/business/naming.md) *(name TBD)* |
 

@@ -1,6 +1,6 @@
 # Software Architecture Principles
 
-> **Frozen snapshot for this project (PGA), taken 2026-07-12.** The canonical, living version lives outside the repo at `~/.claude/docs/software-architecture-principles.md` and applies to all of John Mayerhofer's projects. This copy keeps the PGA doc set self-contained and stable; refresh it deliberately, not automatically. How these principles bind *this* project specifically is stated in [architecture.md](architecture.md#architectural-principles--software).
+> **Frozen snapshot for this project (JustInstitutions), taken 2026-07-12.** The canonical, living version lives outside the repo at `~/.claude/docs/software-architecture-principles.md` and applies to all of John Mayerhofer's projects. This copy keeps the JustInstitutions doc set self-contained and stable; refresh it deliberately, not automatically. How these principles bind *this* project specifically is stated in [architecture.md](architecture.md#architectural-principles--software).
 
 ---
 

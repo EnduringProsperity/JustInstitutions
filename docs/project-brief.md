@@ -1,4 +1,4 @@
-# Project Brief — Public Policy Vulnerability Analyzer (PGA)
+# Project Brief — JustInstitutions
 
 > **BMAD Project Brief** (Analyst-owned). The upstream vision/context document that seeds [prd.md](prd.md).
 

@@ -1,4 +1,4 @@
-# Domain Model — Public Policy Vulnerability Analyzer (PGA)
+# Domain Model — JustInstitutions
 
 > **Domain reference / methodology** (not a native BMAD artifact). This is the citable analytical framework the platform operates *with* — the rule taxonomy, the test batteries, the vulnerability catalog, the patch vocabulary, and the KPI catalog & views. It is deliberately separate from what the product *does* ([prd.md](prd.md)) and how it is *built* ([architecture.md](architecture.md)); it evolves on its own cadence and is meant to withstand academic and funder scrutiny on its own. Named `domain-model.md` per DDD convention.
 

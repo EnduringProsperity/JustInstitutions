@@ -1,4 +1,4 @@
-# Architecture — Public Policy Vulnerability Analyzer (PGA)
+# Architecture — JustInstitutions
 
 > **BMAD Architecture Document.** Companion to [project-brief.md](project-brief.md) (vision) and [prd.md](prd.md) (requirements). This is the single source of truth for technical architecture, technology selection, and project structure. Section order follows the BMAD architecture template.
 
@@ -10,16 +10,16 @@ This document describes the technical architecture that realizes the functional 
 
 ## Architectural Principles — Software
 
-The full principles catalog — the six Intent qualities (**Elastic, Resilient, Responsive, Safe, Accurate, Accessible**), Reactive Design, Domain-Driven Design, 12-Factor, the nine sources of nondeterminism and their mitigations, and supplementary paradigms (ports & adapters, event sourcing/CQRS, bulkheads, consistency models, telemetry) — is a **cross-project document**, not a PGA-specific one.
+The full principles catalog — the six Intent qualities (**Elastic, Resilient, Responsive, Safe, Accurate, Accessible**), Reactive Design, Domain-Driven Design, 12-Factor, the nine sources of nondeterminism and their mitigations, and supplementary paradigms (ports & adapters, event sourcing/CQRS, bulkheads, consistency models, telemetry) — is a **cross-project document**, not a JustInstitutions-specific one.
 
 - **Canonical (living) version:** `~/.claude/docs/software-architecture-principles.md` — applies to all projects; referenced from the global `~/.claude/CLAUDE.md` so it is consulted in every session.
 - **Frozen snapshot in this repo:** [architecture-principles.md](architecture-principles.md) (freeze date noted in its header) — keeps this doc set self-contained and stable.
 
 What belongs *here* is how those principles bind **this** system:
 
-### How the principles bind PGA
+### How the principles bind JustInstitutions
 
-| Principle | Binding commitment in PGA |
+| Principle | Binding commitment in JustInstitutions |
 |-----------|--------------------------|
 | **Responsive** | Analyses are **shared, versioned artifacts computed asynchronously** — user-facing reads serve precomputed results from Postgres/CDN, never wait on an LLM. Long-running work (ingestion, test runs) is job-based with visible status; the UI always answers, even if the answer is "run in progress, started 14:02." |
 | **Resilient** | Each corpus adapter and ETL pipeline is a **bulkhead**: one broken scraper or rate-limited API degrades one source, never the platform. Every external call (government APIs, Claude API) has timeouts, retries with backoff + jitter, and a circuit breaker. |
@@ -28,7 +28,7 @@ What belongs *here* is how those principles bind **this** system:
 | **Accurate** | Provenance is a schema property, not a convention: every finding row carries citations to source text (NFR-02); analysis runs are versioned and reproducible (NFR-05); correlation vs. causation labeling is enforced at the data-model level (NFR-03). |
 | **Accessible** | Plain-language surfaces for The People tier (NFR-08); SSR for indexable public pages (NFR-09); WCAG conformance checked in CI. |
 
-| Paradigm | Binding commitment in PGA |
+| Paradigm | Binding commitment in JustInstitutions |
 |----------|--------------------------|
 | **Reactive** | Ingestion and analysis are **message-driven jobs** on a queue; Claude API rate limits are handled with backpressure (bounded concurrency per worker), not retry storms. |
 | **DDD** | Bounded contexts: **Corpus** (rules + case law ingestion/versioning), **Analysis** (test execution, vulnerabilities), **KPI** (observations, views), **Money** (budget/revenue), **Patch** (proposals). The plugin interfaces (`Domain`, `SystemType`, `TestSuite`, `KPIView`, `CorpusAdapter`) are the ports; the ubiquitous language is [domain-model.md](domain-model.md). Core domain = the analysis framework; auth/billing are Generic — **bought, not built** (managed auth + Stripe). |
@@ -100,7 +100,7 @@ Readers expecting a breakdown by *service* should read this architecture's layer
 
 The no-services decision is a bet, and these are its costs. They are accepted knowingly, not overlooked — listed in order of how much they are expected to bite this project:
 
-1. **Boundary erosion is enforced by discipline, not physics.** In microservices the network *makes* callers respect the boundary; in a monolith, the Corpus/Analysis boundary is one lazy import away from fiction. This is the top risk for PGA specifically because BMAD dev agents will generate code at high volume, and code generators take the shortest path unless a linter refuses it. **Mitigation (mandatory, see Coding Standards): `import-linter` contracts in CI** — cross-context imports fail the build.
+1. **Boundary erosion is enforced by discipline, not physics.** In microservices the network *makes* callers respect the boundary; in a monolith, the Corpus/Analysis boundary is one lazy import away from fiction. This is the top risk for JustInstitutions specifically because BMAD dev agents will generate code at high volume, and code generators take the shortest path unless a linter refuses it. **Mitigation (mandatory, see Coding Standards): `import-linter` contracts in CI** — cross-context imports fail the build.
 2. **Shared database = shared performance fate.** One Postgres serves the event store, embeddings, KPI series, the job queue, and user-facing reads. A heavy ETL burst, an HNSW index build, or autovacuum on a large table can degrade public-page latency. Schema isolation isolates *logic*, not *IO*. Watch item: per-context query latency in observability; the queue-contention trigger above is one instance of this broader exposure.
 3. **Deployment coupling.** Every deploy ships everything — a one-line KPI fix redeploys ingestion and analysis code; rollbacks are all-or-nothing; a bad migration touches every context. Nearly free solo; becomes coordination friction with multiple contributors.
 4. **Runtime blast radius within a process type.** The `api`/`worker` split contains much, but within `worker`, a memory-leaking scraper degrades co-resident analysis jobs. We rely on job-level isolation, restarts, and crash-only design — weaker than per-service crash isolation.

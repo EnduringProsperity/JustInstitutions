@@ -1,4 +1,4 @@
-# Handoff: JustInstitutions — Public Governance Analyzer (PGA)
+# Handoff: JustInstitutions
 
 Design handoff from Claude Designer → Claude Code. Contains both deliverables named in the front-end brief.
 
