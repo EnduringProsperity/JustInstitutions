@@ -25,7 +25,7 @@ a:hover{color:var(--link-hover)}
     <a href="#" style="color:var(--ink-1);text-decoration:none;padding:6px 10px;background:var(--bg-3);border-radius:6px">Design</a>
   </nav>
   <div style="flex:1"></div>
-  <span style="font:11px var(--font-mono);color:var(--ink-3)">patch methodology v2 · six steps</span>
+  <span style="font:11px var(--font-mono);color:var(--ink-3)">patch methodology v2 · seven steps</span>
 </header>
 
 <main style="max-width:1060px;margin:0 auto;padding:26px 32px 64px">
@@ -142,15 +142,46 @@ a:hover{color:var(--link-hover)}
             <p style="margin:7px 0 0;font:12.5px/1.55 var(--font-sans)">Immediate on the rulebook; first observable at the next emergency declaration.</p>
           </div>
           <div style="background:var(--bg-1);border:1px solid var(--line-1);border-radius:8px;padding:12px 14px">
-            <div style="font:600 10.5px var(--font-mono);letter-spacing:0.08em;color:var(--ink-3)">UNINTENDED-CONSEQUENCE FLAGS</div>
-            <p style="margin:7px 0 0;font:12.5px/1.55 var(--font-sans)">2 downstream dependencies: §8571 (regulation suspension) and mutual-aid agreements reference §8627 authority — both need conforming language.</p>
+            <div style="font:600 10.5px var(--font-mono);letter-spacing:0.08em;color:var(--ink-3)">WATCH AFTER PASSAGE</div>
+            <p style="margin:7px 0 0;font:12.5px/1.55 var(--font-sans)">Emergency count, median duration, renewal vote margins — tracked on re-test so the projection gets checked against reality.</p>
           </div>
         </div>
       </div>
     </div>
 
     <div style="display:flex;gap:16px">
-      <div style="flex:none"><span style="width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font:600 11px var(--font-mono);display:inline-flex;align-items:center;justify-content:center">6</span></div>
+      <div style="flex:none;display:flex;flex-direction:column;align-items:center"><span style="width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font:600 11px var(--font-mono);display:inline-flex;align-items:center;justify-content:center">6</span><span style="flex:1;width:1px;background:var(--line-1);margin-top:6px"></span></div>
+      <div style="flex:1;padding-bottom:24px">
+        <h2 style="margin:0;font:600 16px var(--font-sans)">Unintended consequences — what could this break?</h2>
+        <p style="margin:8px 0 0;font:13px/1.6 var(--font-sans);color:var(--ink-2);max-width:66ch">The patch is applied to a copy of the corpus and re-run: every section that references the changed authority is scanned for conflicts, and the incentive it creates is analyzed against how peers gamed the same fix.</p>
+        <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;gap:12px;align-items:baseline;background:var(--bg-1);border:1px solid var(--line-1);border-radius:8px;padding:11px 14px">
+            <span style="flex:none;font:600 10px var(--font-mono);letter-spacing:0.06em;color:var(--fail);min-width:72px">CONFLICT</span>
+            <p style="margin:0;flex:1;font:12.5px/1.6 var(--font-sans)">§8571 suspensions and mutual-aid agreements draw on §8627 authority — an expiry mid-incident could void active orders. <span style="color:var(--ink-2)">Mitigation: conforming amendments + the 14-day wind-down in subdivision (b).</span></p>
+            <span style="flex:none;font:600 10px var(--font-mono);color:var(--pass);background:var(--pass-wash);border-radius:3px;padding:1px 7px">addressed in draft</span>
+          </div>
+          <div style="display:flex;gap:12px;align-items:baseline;background:var(--bg-1);border:1px solid var(--line-1);border-radius:8px;padding:11px 14px">
+            <span style="flex:none;font:600 10px var(--font-mono);letter-spacing:0.06em;color:var(--fail);min-width:72px">INCENTIVE</span>
+            <p style="margin:0;flex:1;font:12.5px/1.6 var(--font-sans)">Serial re-declaration: end the emergency, re-proclaim the same event, reset the clock — the workaround peers saw after similar sunsets. <span style="color:var(--ink-2)">Mitigation: successive proclamations for one underlying event count against a single clock.</span></p>
+            <span style="flex:none;font:600 10px var(--font-mono);color:var(--partial);background:var(--partial-wash);border-radius:3px;padding:1px 7px">needs draft change</span>
+          </div>
+          <div style="display:flex;gap:12px;align-items:baseline;background:var(--bg-1);border:1px solid var(--line-1);border-radius:8px;padding:11px 14px">
+            <span style="flex:none;font:600 10px var(--font-mono);letter-spacing:0.06em;color:var(--partial);min-width:72px">CAPACITY</span>
+            <p style="margin:0;flex:1;font:12.5px/1.6 var(--font-sans)">A long emergency with the legislature out of session could lapse powers mid-crisis. <span style="color:var(--ink-2)">Mitigation: unlimited 60-day renewals plus a special-session trigger on pending expiry.</span></p>
+            <span style="flex:none;font:600 10px var(--font-mono);color:var(--partial);background:var(--partial-wash);border-radius:3px;padding:1px 7px">needs draft change</span>
+          </div>
+          <div style="display:flex;gap:12px;align-items:baseline;background:var(--bg-1);border:1px solid var(--line-1);border-radius:8px;padding:11px 14px">
+            <span style="flex:none;font:600 10px var(--font-mono);letter-spacing:0.06em;color:var(--ink-3);min-width:72px">DRIFT</span>
+            <p style="margin:0;flex:1;font:12.5px/1.6 var(--font-sans)">Renewal votes could become pro forma — a rubber stamp restores the status quo in practice. <span style="color:var(--ink-2)">No drafting fix; tracked as a renewal-margin KPI after passage (step 5).</span></p>
+            <span style="flex:none;font:600 10px var(--font-mono);color:var(--conf-1);border:1px solid var(--conf-1);border-radius:99px;padding:0 7px">monitored</span>
+          </div>
+        </div>
+        <div style="margin-top:9px;font:11px var(--font-mono);color:var(--ink-3)">simulation · patch applied to corpus v41 copy · conflict scan over every referencing section · AI-assisted — requires expert review</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:16px">
+      <div style="flex:none"><span style="width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font:600 11px var(--font-mono);display:inline-flex;align-items:center;justify-content:center">7</span></div>
       <div style="flex:1">
         <h2 style="margin:0;font:600 16px var(--font-sans)">Pathway — how it actually passes</h2>
         <p style="margin:8px 0 0;font:13.5px/1.6 var(--font-sans);max-width:66ch">Assembly bill → Governmental Organization committees → floor votes → governor. Key veto point: the governor's desk. If vetoed, the fallback is the Pennsylvania route — a legislatively-referred constitutional amendment bypasses the signature entirely.</p>

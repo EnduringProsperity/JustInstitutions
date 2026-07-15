@@ -219,7 +219,7 @@ Entities are organized by bounded context (see Architectural Principles). Names 
 
 | Entity | Purpose | Key fields / notes |
 |--------|---------|-------------------|
-| **Patch / PatchVersion** | Proposal with stable public id (`PCH-00089`) + versioned six-step content | difficulty 1–5, feasibility, refactoring tags, draft language (marked AI-generated), four output formats; optional link to originating Vulnerability. |
+| **Patch / PatchVersion** | Proposal with stable public id (`PCH-00089`) + versioned seven-step content | difficulty 1–5, feasibility, refactoring tags, draft language (marked AI-generated), four output formats; optional link to originating Vulnerability. |
 | **Account / Verification** | Identity (Platform) | Tier; persona (self-identified); **verification result only** (provider ref, date — never ID documents); affiliation signals. |
 | **UsageEvent** | FR-31 telemetry | hashed IP (rotating salt), ASN, endpoint class, timestamp; 90-day aggregate-then-delete. |
 | **Job** | Queue row (Postgres-backed) | type; typed args; idempotency key; status; retries; dead-letter context. Enqueued transactionally with the data it operates on. |

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="styles.css">
+<style>
+body{margin:0;background:var(--bg-0);font-family:var(--font-sans);color:var(--ink-1)}
+a{color:var(--link);text-decoration-thickness:1px;text-underline-offset:2px}
+a:hover{color:var(--link-hover)}
+@keyframes ji-fade{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+</style>
+</helmet>
+<div data-screen-label="Landing" style="min-height:100vh">
+
+<header style="display:flex;align-items:center;gap:28px;padding:0 32px;height:56px;background:var(--bg-0);border-bottom:1px solid var(--line-2)">
+  <div style="font:600 16px var(--font-sans);letter-spacing:-0.015em">Just<span style="color:var(--accent)">Institutions</span></div>
+  <nav style="display:flex;gap:4px;align-items:center;font:500 13px var(--font-sans);color:var(--ink-2)">
+    <a href="Test Config.dc.html" style="color:var(--ink-2);text-decoration:none;padding:6px 10px">Test</a>
+    <a href="KPI Explorer.dc.html" style="color:var(--ink-2);text-decoration:none;padding:6px 10px">Explore</a>
+    <a href="Patch Proposal.dc.html" style="color:var(--ink-2);text-decoration:none;padding:6px 10px">Design</a>
+    <a href="#" style="color:var(--ink-2);text-decoration:none;padding:6px 10px">Methodology</a>
+  </nav>
+  <div style="flex:1"></div>
+  <button style="border:1px solid var(--line-1);background:var(--bg-1);border-radius:6px;padding:6px 14px;font:500 13px var(--font-sans);color:var(--ink-1);cursor:pointer" style-hover="background:var(--bg-3)">Sign in</button>
+  <button style="border:none;background:var(--accent);color:#fff;border-radius:6px;padding:6px 14px;font:500 13px var(--font-sans);cursor:pointer" style-hover="background:var(--accent-strong)">Register</button>
+</header>
+
+<main>
+  <section style="max-width:920px;margin:0 auto;padding:72px 32px 0;text-align:center">
+    <div style="font:600 11px var(--font-mono);letter-spacing:0.08em;color:var(--ink-3)">193 COUNTRIES · 50 STATES · 3,142 COUNTIES · CORPUS V41 · LAW AS OF 2026-05-01</div>
+    <h1 style="margin:18px auto 0;font:600 52px/1.1 var(--font-sans);letter-spacing:-0.025em;max-width:18ch;text-wrap:balance">Strengthen your government.</h1>
+    <p style="margin:18px auto 0;font:17px/1.6 var(--font-sans);color:var(--ink-2);max-width:52ch;text-wrap:pretty">We read the law — every constitution, statute, and regulation — and test it for the bugs: loopholes, dead code, missing rules. In plain language, with every claim cited.</p>
+
+    <div style="max-width:640px;margin:32px auto 0">
+      <div style="display:flex;gap:8px;background:var(--bg-1);border:1px solid var(--line-1);border-radius:10px;padding:8px 8px 8px 18px;box-shadow:var(--shadow-2);align-items:center">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" stroke-width="1.8" stroke-linecap="round" style="flex:none"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.8-3.8"></path></svg>
+        <input placeholder="{{ rotatingQ }}" style="flex:1;min-width:0;border:none;outline:none;background:transparent;font:15px var(--font-sans);color:var(--ink-1);padding:8px 0">
+        <button style="flex:none;border:none;background:var(--accent);color:#fff;border-radius:7px;padding:9px 18px;font:500 14px var(--font-sans);cursor:pointer" style-hover="background:var(--accent-strong)">Ask</button>
+      </div>
+      <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px">
+        <sc-for list="{{ chips }}" as="c" hint-placeholder-count="3">
+          <a href="#" style="text-decoration:none;color:var(--ink-2);font:12.5px var(--font-sans);border:1px solid var(--line-1);background:var(--bg-1);border-radius:99px;padding:5px 13px" style-hover="background:var(--bg-3)">{{ c }}</a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1180px;margin:64px auto 0;padding:0 32px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px">
+      <h2 style="margin:0;font:600 20px var(--font-sans);letter-spacing:-0.015em">Live scores</h2>
+      <span style="font:11px var(--font-mono);color:var(--ink-3)">DEMOCRATIC DESIGN SCORE /100 · RE-TESTED ON EVERY CORPUS UPDATE</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:16px">
+      <sc-for list="{{ scores }}" as="s" hint-placeholder-count="5">
+        <a href="Results Page.dc.html" style="text-decoration:none;color:inherit;background:var(--bg-1);border:1px solid var(--line-1);border-radius:10px;padding:16px 18px;box-shadow:var(--shadow-1);display:block" style-hover="background:var(--bg-3)">
+          <div style="display:flex;justify-content:space-between;align-items:baseline">
+            <span style="font:500 13.5px var(--font-sans)">{{ s.name }}</span>
+            <span style="font:600 11px var(--font-mono);color:{{ s.dColor }}">{{ s.delta }}</span>
+          </div>
+          <div style="margin-top:8px;font:600 36px/1 var(--font-sans);letter-spacing:-0.02em;font-variant-numeric:tabular-nums">{{ s.score }}</div>
+          <div style="display:flex;height:6px;border-radius:99px;overflow:hidden;background:var(--bg-2);margin-top:12px">
+            <span style="width:{{ s.p }};background:var(--pass)"></span><span style="width:{{ s.pa }};background:var(--partial)"></span><span style="width:{{ s.g }};background:var(--gap)"></span><span style="width:{{ s.f }};background:var(--fail)"></span>
+          </div>
+          <div style="margin-top:8px;font:10px var(--font-mono);color:var(--ink-3)">{{ s.stamp }}</div>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="max-width:1180px;margin:72px auto 0;padding:0 32px">
+    <h2 style="margin:0;font:600 20px var(--font-sans);letter-spacing:-0.015em">Start where you stand</h2>
+    <p style="margin:8px 0 0;font:14px/1.6 var(--font-sans);color:var(--ink-2);max-width:60ch">Same data for everyone — plain language first, expert depth one toggle away. Pick the question that sounds like yours.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px;margin-top:18px">
+      <sc-for list="{{ personas }}" as="p" hint-placeholder-count="6">
+        <a href="#" style="text-decoration:none;color:inherit;background:var(--bg-1);border:1px solid var(--line-1);border-radius:10px;padding:18px 20px;box-shadow:var(--shadow-1);display:flex;flex-direction:column;gap:8px" style-hover="background:var(--bg-3)">
+          <span style="font:600 10.5px var(--font-mono);letter-spacing:0.08em;color:var(--ink-3)">{{ p.tag }}</span>
+          <span style="font:500 15.5px/1.45 var(--font-sans);color:var(--ink-1);text-wrap:pretty">"{{ p.q }}"</span>
+          <span style="margin-top:auto;font:12.5px var(--font-sans);color:var(--accent)">{{ p.cta }} →</span>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="background:var(--bg-1);border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2);margin-top:80px">
+    <div style="max-width:1180px;margin:0 auto;padding:56px 32px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px">
+        <h2 style="margin:0;font:600 20px var(--font-sans);letter-spacing:-0.015em">The loop</h2>
+        <span style="font:11px var(--font-mono);color:var(--ink-3)">RULES ARE CODE · FINDINGS ARE BUGS · PATCHES ARE FIXES</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:20px">
+        <sc-for list="{{ loop }}" as="l" hint-placeholder-count="4">
+          <div style="background:var(--bg-0);border:1px solid var(--line-1);border-radius:10px;padding:18px 20px">
+            <div style="display:flex;align-items:baseline;gap:10px">
+              <span style="font:600 22px var(--font-mono);color:var(--accent);font-variant-numeric:tabular-nums">{{ l.n }}</span>
+              <span style="font:600 15px var(--font-sans)">{{ l.title }}</span>
+            </div>
+            <p style="margin:9px 0 0;font:13px/1.6 var(--font-sans);color:var(--ink-2)">{{ l.text }}</p>
+            <div style="margin-top:10px;font:10.5px var(--font-mono);color:var(--ink-3)">{{ l.stamp }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:920px;margin:72px auto 0;padding:0 32px">
+    <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
+      <div style="flex:1 1 300px">
+        <h2 style="margin:0;font:600 20px var(--font-sans);letter-spacing:-0.015em">Don't trust us. Check us.</h2>
+        <p style="margin:10px 0 0;font:14px/1.65 var(--font-sans);color:var(--ink-2);max-width:44ch">Every claim cites the actual rule text. Every score shows its math. We say "evidence supports a link" — never "causes" — and a Gap is not a Fail. The methodology is published; so is the channel to attack it.</p>
+      </div>
+      <div style="flex:1 1 380px;display:flex;flex-direction:column;gap:8px">
+        <sc-for list="{{ skepticQs }}" as="q" hint-placeholder-count="3">
+          <a href="#" style="text-decoration:none;color:var(--ink-1);font:13.5px/1.5 var(--font-sans);border:1px solid var(--line-1);background:var(--bg-1);border-radius:8px;padding:11px 15px;display:flex;justify-content:space-between;gap:12px;align-items:baseline" style-hover="background:var(--bg-3)">
+            <span>{{ q.q }}</span><span style="flex:none;font:10.5px var(--font-mono);color:var(--ink-3)">{{ q.route }}</span>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <footer style="max-width:1180px;margin:72px auto 0;padding:24px 32px 40px;border-top:1px solid var(--line-2);display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:10px">
+    <span style="font:600 13px var(--font-sans)">Just<span style="color:var(--accent)">Institutions</span></span>
+    <nav style="display:flex;gap:18px;font:12px var(--font-sans)"><a href="#">Methodology</a><a href="#">Data &amp; vintages</a><a href="#">API</a><a href="#">Critique channel</a></nav>
+    <span style="font:10px var(--font-mono);color:var(--ink-3)">CORPUS V41 · LAW AS OF 2026-05-01 · EVERY VIEW IS A STABLE URL</span>
+  </footer>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { qi: 0 };
+  QS = [
+    "Why is rent so high in my city — which rules are actually responsible?",
+    "Based on our federal budget, what are our values?",
+    "Who benefits from my state's tax carve-outs?",
+    "Which democracies are one election away from breakdown?",
+    "What rights do I have on paper that are unenforceable where I live?",
+  ];
+  componentDidMount() {
+    this.t = setInterval(() => this.setState((s) => ({ qi: (s.qi + 1) % this.QS.length })), 3800);
+  }
+  componentWillUnmount() { clearInterval(this.t); }
+  renderVals() {
+    const scores = [
+      ["United States", 68, "+1", [64, 18, 8, 10], "FEDERAL · RUN-01799"],
+      ["California", 62, "+3", [62, 20, 10, 8], "STATE · RUN-01847"],
+      ["Texas", 58, "−2", [57, 21, 12, 10], "STATE · RUN-01812"],
+      ["Germany", 79, "0", [76, 14, 6, 4], "FEDERAL · RUN-01756"],
+      ["United Kingdom", 71, "−1", [68, 17, 9, 6], "NATIONAL · RUN-01783"],
+    ].map(([name, score, delta, mix, stamp]) => ({
+      name, score, stamp: stamp + " · V41",
+      delta: delta === "0" ? "—" : delta,
+      dColor: delta.startsWith("+") ? "var(--pass)" : delta.startsWith("−") ? "var(--fail)" : "var(--ink-3)",
+      p: mix[0] + "%", pa: mix[1] + "%", g: mix[2] + "%", f: mix[3] + "%",
+    }));
+    const personas = [
+      { tag: "I LIVE HERE", q: "What laws govern eviction in my county, in plain language?", cta: "Explore your jurisdiction" },
+      { tag: "STUDENT · TEACHER", q: "Show me a real example of two laws that contradict each other.", cta: "Open a live civics lesson" },
+      { tag: "JOURNALIST", q: "Which agencies have legal mandates but no budget to enforce them?", cta: "Hunt outliers" },
+      { tag: "RESEARCHER", q: "Export every privacy-law Gap finding across all 50 states.", cta: "Query the corpus" },
+      { tag: "ADVOCATE", q: "What's the minimum viable patch for our housing gap?", cta: "Build the evidence" },
+      { tag: "STAFFER · OFFICIAL", q: "What are my jurisdiction's highest-severity, lowest-difficulty fixes?", cta: "Find quick wins" },
+    ];
+    const loop = [
+      { n: "1", title: "Test", text: "Pick a jurisdiction. We run its rules through 61 tests across 12 blocks — separation of powers to fiscal capacity.", stamp: "VERDICTS: pass · partial · gap · fail" },
+      { n: "2", title: "Explore", text: "See outcomes, follow the money, compare peers, and ask the law itself — every answer cited to source text.", stamp: "KPI · MONEY · COMPARE · LAW" },
+      { n: "3", title: "Design", text: "Turn any finding into a patch: feasibility-scored, precedent-backed draft language, marked AI-drafted.", stamp: "DIFFICULTY 1–5 · EXPERT REVIEW REQUIRED" },
+      { n: "4", title: "Re-test", text: "Rules change; scores follow. Watch a finding and know the day the law moves.", stamp: "EVERY RUN VERSIONED · EVERY VIEW A URL" },
+    ];
+    const skepticQs = [
+      { q: "Isn't all of this just correlation dressed up as insight?", route: "→ CONFIDENCE MODEL C0–C3" },
+      { q: "Who decided these test criteria, and why should I trust them?", route: "→ TEST-BLOCK SOURCES" },
+      { q: "How do I know the AI didn't make up these citations?", route: "→ CITATION INTEGRITY" },
+      { q: "Show me where your methodology is wrong.", route: "→ CRITIQUE CHANNEL" },
+    ];
+    return {
+      rotatingQ: this.QS[this.state.qi],
+      chips: ["Who benefits from my state's tax carve-outs?", "Rank the 50 states by spending vs. stated priorities", "Is the US Constitution well-architected?"],
+      scores, personas, loop, skepticQs,
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -91,7 +91,7 @@
 ### Design
 | ID | Requirement | Phase |
 |----|-------------|-------|
-| FR-21 | Generate a structured patch proposal via the six-step methodology (feasibility, precedent search, beneficiary analysis, draft language, impact assessment, implementation pathway) | 4 |
+| FR-21 | Generate a structured patch proposal via the seven-step methodology (feasibility, precedent search, beneficiary analysis, draft language, impact assessment, **unintended-consequence analysis**, implementation pathway) *[amended 2026-07-15]* | 4 |
 | FR-22 | Legislation Designer: draft new legislation from a user prompt or KPI-driven gap; AI-generated, marked for expert review | 4 |
 | FR-23 | Passage Guidance (committees, vote thresholds, veto points, minimum viable patch) | 4 |
 | FR-24 | Simulation: project consequences of a proposed law (KPI deltas as ranges, downstream conflicts, capital impacts, beneficiary shifts); feed back into Test to re-score | 4 |
@@ -169,7 +169,7 @@ Investigative tools over the same corpus and data. Where Test is rule-first (str
 ### Design
 
 Where Test and Explore identify problems, Design produces remedies — and pressure-tests them before anyone spends political capital.
-- **Propose Corrective Action / Patch** — every finding routes to a structured patch proposal via the six-step **Governance Patch Proposal Methodology** (defined in [domain-model.md](domain-model.md#governance-patch-proposal-methodology)).
+- **Propose Corrective Action / Patch** — every finding routes to a structured patch proposal via the seven-step **Governance Patch Proposal Methodology** *[amended 2026-07-15]* (defined in [domain-model.md](domain-model.md#governance-patch-proposal-methodology)).
 - **Legislation Designer** — draft new legislation from scratch (e.g., to fill a KPI-driven Gap), AI-generated section-level language marked for expert review.
 - **Passage Guidance** — jurisdiction-specific: required committees, vote thresholds, veto points, companion agency actions, and the "minimum viable patch."
 - **Simulation** — *"What if this law were passed?"* Project consequences: KPI deltas (ranges, labeled projections), downstream rule conflicts, affected capital types, beneficiary/harm-bearer shifts. A proposed patch can be fed back into Test to re-score the jurisdiction as if live.

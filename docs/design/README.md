@@ -7,7 +7,7 @@ Design handoff from Claude Designer → Claude Code. Contains both deliverables 
 1. **`front-end-spec.md`** — Deliverable 1. The complete spec: design framework, IA, all 9 screens, tokens, components, interactions, responsive rules, brief non-negotiables. Self-sufficient.
 2. **`design-system/`** — Deliverable 2. Tokens (CSS custom properties), React component references (`.jsx` + `.d.ts` + `.prompt.md` each), visual guidelines, system readme.
 3. **`screens/`** — HTML design references. Open `Master Canvas.dc.html` in a browser to see every adopted screen on one navigable canvas; each screen also opens standalone.
-4. **`docs/`** — Source inputs (brief, domain model, example questions) for citation and context.
+4. **`docs/`** — Source inputs (PRD, brief, domain model, example questions) for citation and context. The PRD, brief, and domain model carry a dated design-track amendment note: the patch methodology is now **seven steps** (Step 6 — Unintended consequences added; Pathway renumbered to 7).
 
 ## About the design files
 

@@ -20,7 +20,7 @@ A public-interest platform that treats a jurisdiction's body of rules (constitut
 
 1. **Test**: pick jurisdiction → confirm sub-jurisdiction scope → (ingest/refresh law if stale) → configure run (System Type benchmark + Intent weighting) → select test blocks → view results three ways: **Test Report** (pass/partial/gap/fail per test, with citations), **Vulnerability Explorer** (filter by type/severity/layer/domain), **Vulnerability Rollup** (executive scorecard by block & layer). Democratic Design Score + per-block sub-scores; heat maps.
 2. **Explore**: **KPI Explorer** (browse KPIs through 4 switchable views: Dimensional categories, SDG Pyramid (hierarchical), Design Principles scorecard, Capital Impact lens); **Money Explorer** (cascading budget drill-down — treemap/sunburst/indented tree — with paired revenue view, per-capita/YoY/share-of-parent toggles); **Compare** (side-by-side ×2 or ranked cohort ×N, vs. structural peers); **Law Explorer** (natural-language Q&A over the corpus; "effective law" = statute + case law — Phase 4).
-3. **Design**: from any finding → structured patch proposal (6-step methodology: feasibility 1–5, precedent search, beneficiary analysis, draft language, impact assessment, implementation pathway); legislation designer; simulation ("what if this passed?") feeding back into Test.
+3. **Design**: from any finding → structured patch proposal (7-step methodology: feasibility 1–5, precedent search, beneficiary analysis, draft language, impact assessment, unintended-consequence analysis, implementation pathway); legislation designer; simulation ("what if this passed?") feeding back into Test.
 
 ## Decided UX stances (owner decisions, 2026-07)
 

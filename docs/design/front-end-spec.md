@@ -53,7 +53,7 @@ Target of "all 31 →" (Health & Wellbeing sample). Three headline stat cards (v
 Headline total ($325.1B, 40px). Left: drillable spending cascade in the government's **native structure** (click ▸ rows to open sub-lines), unit switcher $/per-capita/% of parent, share-of-total bars, YoY chips. Right rail: paired revenue panel + dark fiscal-findings scorecard (links to findings). Bottom, full width: **"Does the money follow the values?"** crosswalk — budget area → mapped SDGs → share of spend vs share of failing/at-risk KPIs → reading chip (PROPORTIONATE / UNDERWEIGHTED, threshold: gap share ≥ 2× spend share). Method note states the mapping chain (DOF line → COFOG → SDG targets → KPI gap counts) and that mismatch ≠ proof more money fixes it.
 
 ### 6 · Patch Proposal (`Patch Proposal.dc.html`) — Design
-Six-step numbered timeline (accent circles + connecting line): 1 Feasibility, 2 Precedent (comparable-jurisdiction cards), 3 Beneficiaries (gains/pays two-up + coalition map), 4 Draft language (serif, **AI-DRAFTED banner in partial-wash — required by brief**, scope note), 5 Impact (test delta / timeline / unintended-consequence flags), 6 Pathway (+ minimum viable patch). Right rail: scoring summary card (difficulty dots, change type, refactoring name, feasibility chip, timeline, projected impact) + "re-test with this patch →". Footer: four export formats, each with a stable URL.
+Seven-step numbered timeline (accent circles + connecting line): 1 Feasibility, 2 Precedent (comparable-jurisdiction cards), 3 Beneficiaries (gains/pays two-up + coalition map), 4 Draft language (serif, **AI-DRAFTED banner in partial-wash — required by brief**, scope note), 5 Impact (test delta / timeline / watch-after-passage KPIs), 6 Unintended consequences (simulation: conflict scan over referencing sections + incentive analysis; rows tagged CONFLICT / INCENTIVE / CAPACITY / DRIFT, each with mitigation + status chip: addressed in draft / needs draft change / monitored), 7 Pathway (+ minimum viable patch). Right rail: scoring summary card (difficulty dots, change type, refactoring name, feasibility chip, timeline, projected impact) + "re-test with this patch →". Footer: four export formats, each with a stable URL. (Owner decision 2026-07-15: unintended-consequence analysis promoted from an Impact card to a full step — supersedes the brief's "6-step methodology".)
 
 ### 7 · Compare (`Compare.dc.html`) — Explore / Compare
 Two modes (segmented toggle): **Head-to-head** — paired score cards, mirrored per-block bar chart (gap ≥ 10 flagged with reason), "why the gap" + "where X leads" narrative cards linking to the patch. **Ranked cohort** — jurisdictions × blocks matrix, cells wash-coded by verdict share, subject row highlighted. Rule: comparison only among runs on the same corpus vintage.
@@ -104,7 +104,7 @@ Prototypes are desktop-first (1100–1440px design widths). Intended collapse:
 - Provenance visible and tappable on every claim.
 - Correlation ≠ causation: band-locked language (C0–C3) in copy and color; never imply proven causation.
 - AI-drafted language visibly marked as requiring expert review.
-- Free tier frictionless — no account walls for browsing; invite, never block.
+- Access tiers (decision 2026-07-15): three registered tiers — Free (activity/day-capped), The Public (minimum cost-covering fee), Institutional Stewards (see PRD). Open note: Journalists may move to The Public. Upgrade prompts invite, never block.
 - Public pages SSR, indexable, fast, shareable (stable URLs).
 
 ## Files in this package

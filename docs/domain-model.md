@@ -577,10 +577,18 @@ What happens if the patch is implemented?
 
 - **Projected KPI delta:** Estimated improvement range in the most directly affected KPIs, based on comparable jurisdiction evidence. Expressed as a range, not a point estimate. Labeled as projection, not prediction.
 - **Timeline to KPI impact:** How long after implementation would measurable outcomes be expected? Some patches produce rapid effects (enforcement rule change → compliance within months); others require years (constitutional amendment → generational cultural shift).
-- **Unintended consequence flags:** Are there adjacent systems or rules that this patch might disrupt? The system checks for downstream dependencies in the legal corpus and surfaces potential conflicts.
+- **Watch-after-passage KPIs:** the shortlist of indicators to monitor once the patch is enacted, so the projected impact is checkable against reality.
 - **Cost estimate:** Where applicable, estimated fiscal impact (relying on CBO methodology for federal patches, or comparable state fiscal analysis methods).
 
-### Step 6 — Implementation Pathway
+### Step 6 — Unintended Consequences *(added 2026-07-15)*
+
+What else does this patch touch? Formerly a bullet inside Impact Assessment, promoted to a dedicated step (owner decision, 2026-07-15) so second-order effects get first-class analysis rather than a flag.
+
+- **Simulation:** the patch is applied to a copy of the corpus; a conflict scan runs over every section that references the amended text.
+- **Incentive analysis:** how did affected parties game comparable fixes in peer jurisdictions? Reuses the precedent evidence from Step 2.
+- **Tagged findings:** each finding is tagged `CONFLICT` / `INCENTIVE` / `CAPACITY` / `DRIFT` and carries a proposed mitigation plus a status: **addressed in draft** / **needs draft change** / **monitored**.
+
+### Step 7 — Implementation Pathway
 
 A clear sequence of required steps:
 
@@ -597,7 +605,7 @@ Every patch proposal is available in four formats, each with a unique stable URL
 | Format | Length | Audience | Contents |
 |--------|--------|---------|---------|
 | **One-Page Policy Brief** | 1 page | Journalists, legislators, general public | Plain-language summary: what's broken, why it matters, what the fix is |
-| **Full Patch Proposal** | 3–5 pages | Policy staff, researchers, advocates | All six steps above |
+| **Full Patch Proposal** | 3–5 pages | Policy staff, researchers, advocates | All seven steps above |
 | **Draft Language Appendix** | Variable | Legislative staff, legal researchers | AI-generated statutory/regulatory text with review disclaimer |
 | **Comparable Models Report** | 1–2 pages | Policy researchers | Jurisdictions that have addressed this; outcome evidence |
 

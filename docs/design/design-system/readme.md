@@ -8,6 +8,15 @@ Sources: `uploads/front-end-brief.md` (design handoff), `uploads/prd.md`, `uploa
 
 **Modern research tool** — cool neutrals, precise sans, data-forward (Observable/Linear kin), desktop-first. One product serving two registers: plain-language surface for The People, expert depth on demand for Institutional Stewards. Progressive disclosure is the core design pattern, not a feature.
 
+## ACCESS TIERS (decision 2026-07-15 — supersedes brief's "free, no account to browse")
+
+All three tiers require registration:
+1. **Free** — limited by activity cap or trial days, then maxes out.
+2. **The Public** — minimum fee (cost-covering); see PRD definitions.
+3. **Institutional Stewards** — see PRD definitions.
+
+Open note: Journalists may move from Stewards to The Public. Landing header now shows Sign in + Register; "no account" copy removed product-wide.
+
 ## DESIGN FRAMEWORK — 8 principles (converged 2026-07)
 
 1. **Responsive** — one layout system that reflows: desktop research posture first, grids collapse gracefully, plain register must read on a phone (findings are the shared artifact).
