@@ -1,6 +1,6 @@
 # JustInstitutions Design System
 
-**JustInstitutions** (decided 2026-07, see business/naming.md; wordmark is plain type, no logo exists yet) is a public-interest platform that treats a jurisdiction's body of rules like software: **Test** the rule system for vulnerabilities, **Explore** outcomes (KPIs), spending (Money), comparisons and the law itself, **Design** feasibility-scored patches — then re-Test.
+**JustInstitutions** (name decided 2026-07; wordmark is plain type, no logo exists yet) is a public-interest platform that treats a jurisdiction's body of rules like software: **Test** the rule system for vulnerabilities, **Explore** outcomes (KPIs), spending (Money), comparisons and the law itself, **Design** feasibility-scored patches — then re-Test.
 
 Sources: `uploads/front-end-brief.md` (design handoff), `uploads/prd.md`, `uploads/project-brief.md`, `uploads/domain-model.md` (methodology: test blocks A–L, KPI catalog, confidence model), `uploads/example-questions.md` (prompt library). Deliverables from this track: this design system + `docs/front-end-spec.md`.
 
@@ -8,13 +8,15 @@ Sources: `uploads/front-end-brief.md` (design handoff), `uploads/prd.md`, `uploa
 
 **Modern research tool** — cool neutrals, precise sans, data-forward (Observable/Linear kin), desktop-first. One product serving two registers: plain-language surface for The People, expert depth on demand for Institutional Stewards. Progressive disclosure is the core design pattern, not a feature.
 
-## ACCESS TIERS (decision 2026-07-15, refined same day — see PRD FR-28/FR-32)
+## ACCESS MODEL (canonical — PRD FR-28/FR-32, 2026-07-15)
 
-**Reading is anonymous, doing is registered**: public artifacts render complete signed-out (SSR, indexable, shareable); any workflow action requires registration. Registered groups:
-1. **The People** (Citizen / Student·Educator / Supporter) — trial: N work units or 7 days, whichever first, no card at signup; then minimum cost-covering fee. Non-payers keep reading + a monthly question trickle (permanent civic floor).
-2. **Institutional Stewards** (Researcher / Professional·Advocacy / Institutional·Newsroom / Government) — see PRD definitions.
+**Reading is anonymous, doing is registered.** Public artifacts (findings, Vulnerability Pages, reports, explorer views) render complete for signed-out visitors — SSR, indexable, shareable. Any workflow action (test run, Law Explorer question, patch design, export, watch/notify) prompts registration, framed as continuation ("run this test"), never a gate.
 
-Resolved: freelance journalists are People-side; newsrooms are Stewards (Newsroom). Landing header shows Sign in + Register; registration prompts appear at first workflow action, framed as continuation.
+- **The People** — subtiers: Citizen / Student·Educator / Supporter. Trial: N work units or 7 days, whichever first; no payment details at signup. Non-paying Citizens keep reading plus a monthly trickle of Law Explorer questions (permanent civic floor); hardship, library, and classroom waivers exist.
+- **Institutional Stewards** — subtiers: Researcher / Professional·Advocacy / Institutional·Newsroom / Government.
+- **Journalists** (resolved): freelancers are People-side; newsrooms are Stewards (Newsroom).
+- Tiers gate *workflow* (exports, API, volume, run priority), never viewing depth. Signed-out header: Sign in + Register. Upgrade prompts invite, never block.
+- N, the trickle quota, and the Citizen fee are still open — **never invent these numbers in UI copy**.
 
 ## DESIGN FRAMEWORK — 8 principles (converged 2026-07)
 

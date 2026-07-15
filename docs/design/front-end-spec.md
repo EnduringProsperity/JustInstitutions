@@ -1,6 +1,6 @@
 # Front-End Spec — JustInstitutions (PGA)
 
-> Deliverable 1 of 2 named in the front-end brief. Companion to Deliverable 2, the **design system** (`design-system/` in this package: tokens, components, guidelines, readme). Designed in Claude Designer, July 2026. Product name **JustInstitutions** (decided 2026-07, see business/naming.md); wordmark is plain type, no logo yet.
+> Deliverable 1 of 2 named in the front-end brief. Companion to Deliverable 2, the **design system** (`design-system/` in this package: tokens, components, guidelines, readme). Designed in Claude Designer, July 2026. Product name decided 2026-07: **JustInstitutions** (plain-type wordmark, no logo).
 >
 > The `screens/*.dc.html` files are **design references** (HTML prototypes showing intended look and behavior), not production code. Recreate them in the target codebase's environment using its patterns; the spec + tokens are the source of truth.
 
@@ -23,7 +23,7 @@
 
 **Landing** (`/`) sits above the app sections as the signed-out entry point; its header nav links into **Test · Explore · Design · Methodology**, and its persona cards and question chips deep-link to specific views.
 
-Primary nav (left, in 52px header): **Test · Explore · Design**. Explore has a segmented sub-nav (pill group in header): **Outcomes · Money · Compare · The Law**. Upper right, signed in: search, help, profile dropdown; signed out: **Sign in** (outline) + **Register** (accent fill) — all tiers require registration. Right edge of header: context stamp in mono (corpus version, vintage).
+Primary nav (left, in 52px header): **Test · Explore · Design**. Explore has a segmented sub-nav (pill group in header): **Outcomes · Money · Compare · The Law**. Upper right, signed in: search, help, profile dropdown; signed out: **Sign in** (outline) + **Register** (accent fill). Reading never requires an account — registration prompts appear only at workflow actions, framed as continuation of the action ("run this test"), never before. Right edge of header: context stamp in mono (corpus version, vintage).
 
 Core loop: Test (configure → report → block detail) → Explore (outcomes, money, compare, law) → Design (patch) → re-Test.
 
@@ -31,17 +31,17 @@ A test run's results are **three tabs under one page title**: Test Report · Vul
 
 ## Screens
 
-Each screen below exists as a `.dc.html` reference in `screens/`. Layout constants shared by all: header 52px, `--bg-1` on `--line-1` bottom border; content in a centered max-width main (900–1220px by density); cards are `--bg-1`, 1px `--line-1`, radius 10px, `--shadow-1`.
+Each screen below exists as a `.dc.html` reference in `screens/`. Layout constants shared by all: header 52px (app screens; Landing alone is intentionally 56px — roomier entry posture), `--bg-1` on `--line-1` bottom border; content in a centered max-width main (900–1220px by density); cards are `--bg-1`, 1px `--line-1`, radius 10px, `--shadow-1`.
 
 ### 0 · Landing (`Landing Page.dc.html`)
-Signed-out entry point, `--bg-0` page (no card chrome until content). 56px header: wordmark, nav (Test · Explore · Design · Methodology), Sign in + Register right. Sections top to bottom:
+Signed-out entry point, `--bg-0` page (no card chrome until content). 56px header (intentional, see layout constants): wordmark, nav (Test · Explore · Design · Methodology), Sign in + Register right. Sections top to bottom:
 - **Hero** (centered, max 920): mono coverage overline (jurisdiction counts · corpus · vintage), 52px display headline ("Strengthen your government."), one-paragraph plain-register promise, then the **ask box** — search input whose placeholder rotates through viral example questions (3.8s interval, from example-questions.md) with an accent **Ask** button — and a row of 3 question chips (pill links).
 - **Live scores**: auto-fit card grid (min 200px); per jurisdiction — name, delta chip vs prior corpus, 36px score, pass/partial/gap/fail stacked distribution bar, mono run stamp. Cards link to that jurisdiction's Test Report.
 - **Start where you stand** (persona entries): auto-fit grid (min 320px) of 6 cards — mono persona tag (I LIVE HERE / STUDENT · TEACHER / JOURNALIST / RESEARCHER / ADVOCATE / STAFFER · OFFICIAL), a quoted example question, accent CTA → deep link.
 - **The loop**: 4-up numbered cards (Test / Explore / Design / Re-test) on a `--bg-1` band, each with a mono footer stamp.
 - **Skeptic strip** ("Don't trust us. Check us."): copy block + 4 skeptic-question rows, each routing to a methodology page (mono route label right).
 - Footer: wordmark, links (Methodology · Data & vintages · API · Critique channel), mono corpus stamp.
-Interactions: rotating placeholder pauses on input focus (implement; prototype rotates only). All content is public/indexable; the Ask box routes to Law Explorer.
+Interactions: rotating placeholder pauses on input focus (implement; prototype rotates only). All content is public/indexable and reads complete without an account. Question chips route to precomputed, fully visible Law Explorer answers; the Ask box likewise shows the answer when one is cached — the registration prompt appears only at the point of asking *new* work, never before a first visible answer.
 
 ### 1 · Test Config (`Test Config.dc.html`)
 Five-step checklist, **all steps visible at once** (no wizard): 1 Jurisdiction, 2 Test blocks, 3 Corpus & vintage, 4 KPI joins, 5 Review & run. Max-width 900. Footer becomes a persistent status bar after kickoff; runs drawer carries notify-me; identical configs offer the cached result.
@@ -138,7 +138,7 @@ Prototypes are desktop-first (1100–1440px design widths). Intended collapse:
 - Provenance visible and tappable on every claim.
 - Correlation ≠ causation: band-locked language (C0–C3) in copy and color; never imply proven causation.
 - AI-drafted language visibly marked as requiring expert review.
-- **Access model** *(refined 2026-07-15, see PRD FR-28/FR-32)*: **reading is anonymous, doing is registered** — public artifacts render complete signed-out; any workflow action (run, question, patch, export, watch) prompts registration, framed as continuation, never a gate. Registered groups: **The People** (trial: N work units or 7 days → minimum cost-covering fee; non-payers keep reading + a monthly question trickle) and **Institutional Stewards** (see PRD; freelance journalists are People-side, newsrooms are Stewards). Tiers gate *workflow* (exports, API, volume), never viewing depth. Signed-out header shows Sign in + Register. Upgrade prompts invite, never block.
+- **Access model (PRD FR-28/FR-32)**: **reading is anonymous, doing is registered.** Public artifacts (findings, Vulnerability Pages, reports, explorer views) render complete for signed-out visitors — SSR, indexable, shareable. Any workflow action (test run, Law Explorer question, patch design, export, watch/notify) prompts registration framed as continuation ("run this test"), never a gate. Two registered groups: **The People** (subtiers Citizen / Student·Educator / Supporter; trial of N work units or 7 days, whichever first, no payment details at signup; non-paying Citizens keep reading plus a monthly trickle of Law Explorer questions — a permanent civic floor; hardship, library, and classroom waivers exist) and **Institutional Stewards** (subtiers Researcher / Professional·Advocacy / Institutional·Newsroom / Government). Freelance journalists are People-side; newsrooms are Stewards (Newsroom). Tiers gate *workflow* (exports, API, volume, run priority), never viewing depth. Signed-out header: Sign in + Register. Upgrade prompts invite, never block. N, the trickle quota, and the Citizen fee are open — do not invent numbers in UI copy.
 - Public pages SSR, indexable, fast, shareable (stable URLs); Vulnerability Pages carry Open Graph previews.
 
 ## Files in this package
