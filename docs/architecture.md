@@ -312,7 +312,7 @@ Corpus and KPI ingestion draw on external public data sources. US rules load fir
 **Source risk assessment (informs sequencing):**
 - **Low risk / build first:** congress.gov, govinfo.gov, Federal Register, regulations.gov, CourtListener, Census, BLS, CDC, USAspending — official APIs, free, documented, stable.
 - **Medium risk:** state open-data portals (quality varies wildly by state; ~10 states are excellent, a long tail is scrape-only); OpenStates covers legislative data but not full codes.
-- **High risk / defer & isolate:** Municode and American Legal Publishing (ToS constraints on scraping — pursue partnership or licensed access before bulk ingestion; see business/partners.md); Westlaw/Lexis (licensing cost is incompatible with the public-interest cost model — treat as gap-filler of last resort, not a dependency).
+- **High risk / defer & isolate:** Municode and American Legal Publishing (ToS constraints on scraping — pursue partnership or licensed access before bulk ingestion; see partners.md, private business repo); Westlaw/Lexis (licensing cost is incompatible with the public-interest cost model — treat as gap-filler of last resort, not a dependency).
 - **Standing assumption to monitor:** the whole model assumes continued free availability of government data APIs (see project-brief Key Risks). Mitigation: raw responses are archived at ingest, so a source going dark freezes vintage rather than destroying capability.
 
 **Legal corpus (rules):**
@@ -598,7 +598,7 @@ CREATE INDEX ON kpi_observation (jurisdiction_id, kpi_id);
 - **CI/CD:** GitHub Actions — lint + typecheck + tests on every PR; build once; deploy front end (Vercel) and container image on merge to main. Database migrations (Alembic) run as a release step, always backward-compatible with the previous app version (expand-migrate-contract pattern).
 - **Secrets:** platform secret stores (Vercel/Railway env vars) now; no secrets in the repo, ever. Graduate to a dedicated secret manager when there are multiple operators.
 - **Backups / recovery:** managed Postgres PITR (both Neon and Supabase provide it) + weekly logical dumps to object storage. **Restore is drilled, not assumed** — the event-sourced corpus makes recovery verifiable: replay must reproduce projections.
-- **Observability:** Sentry for errors (front + back); structured JSON logs to stdout (platform aggregation); per-run **LLM cost telemetry** (tokens in/out, cache hits, batch vs. interactive — Claude spend is the dominant marginal cost, so it is a first-class metric, reconciled monthly against business/cost.md estimates); uptime check on the public site.
+- **Observability:** Sentry for errors (front + back); structured JSON logs to stdout (platform aggregation); per-run **LLM cost telemetry** (tokens in/out, cache hits, batch vs. interactive — Claude spend is the dominant marginal cost, so it is a first-class metric, reconciled monthly against cost.md estimates (private business repo)); uptime check on the public site.
 - **Cost posture:** ~$0 idle beyond one small API container (~$10–20/mo) and managed Postgres free/low tier; everything else scales with usage.
 
 ## Coding Standards

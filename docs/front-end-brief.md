@@ -2,7 +2,7 @@
 
 > **Purpose:** self-contained handoff into Claude Design (or any design session). Everything needed to design the UX is in this one file; deeper detail lives in [prd.md](prd.md), [domain-model.md](domain-model.md), [architecture.md](architecture.md). **Expected deliverables from the design track:** `docs/front-end-spec.md` (BMAD UX spec) + a design system.
 >
-> *Product name is TBD (see business/naming.md) — design with a placeholder wordmark.*
+> *Product name: **JustInstitutions** (decided July 2026; record in the private business repo). Originally designed against a placeholder wordmark.*
 
 ## What the product is (one paragraph)
 

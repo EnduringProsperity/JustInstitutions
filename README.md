@@ -1,6 +1,6 @@
 # JustInstitutions
 
-*Formerly the working title "Public Policy Vulnerability Analyzer (PGA)" — renamed July 2026 (see docs/business/naming.md).*
+*Formerly the working title "Public Policy Vulnerability Analyzer (PGA)" — renamed July 2026; decision record in the private business repo.*
 
 A public-interest platform that treats a jurisdiction's body of rules (constitutions, statutes, regulations, codes, and interpreting case law) like software — analyzing it for "vulnerabilities" (gaps, conflicts, loopholes, obsolescence, enforcement gaps, inequities, and more), linking those rules to outcome KPIs, and surfacing actionable "patches."
 
@@ -31,7 +31,12 @@ The project has been fanned out from a single master plan into [BMAD-method](htt
 | [docs/architecture.md](docs/architecture.md) | Architect | System architecture, tech stack & rationale, project structure, extensibility |
 | [docs/architecture-principles.md](docs/architecture-principles.md) | — (frozen snapshot) | Cross-project software architecture principles (canonical copy lives outside the repo at `~/.claude/docs/`); how they bind JustInstitutions is in architecture.md |
 | [docs/domain-model.md](docs/domain-model.md) | — (reference) | The domain framework: Rule Taxonomy, Test Blocks A–L, Vulnerability Taxonomy, KPI catalog + Views, and methodology (system types, budget crosswalk, peer grouping, attribution confidence). Not a native BMAD artifact. |
-| [docs/business/](docs/business/) | — | Supporting exhibits: [cost](docs/business/cost.md) · [revenue](docs/business/revenue.md) · [funding](docs/business/funding.md) · [partners](docs/business/partners.md) · [naming](docs/business/naming.md) *(name TBD)* |
+| [docs/front-end-brief.md](docs/front-end-brief.md) | UX (input) | Design brief that seeded the design track |
+| [docs/design/](docs/design/front-end-spec.md) | Designer | Front-end spec (source of truth), design system (tokens, components, guidelines), and 13 prototype screens — see the hosted prototype below |
+| [docs/example-questions.md](docs/example-questions.md) | — (reference) | The question library the product is built to answer |
+| business exhibits | — | Cost, revenue, funding, partners, naming — [business exhibits (private repo)](https://github.com/EnduringProsperity/JustInstitutions-business), split out when this repo went public |
+
+**Design prototype (mock data):** the screens in `docs/design/screens/` are hosted at **https://mockdataprototype.enduringprosperity.org** — every score, finding, and budget figure is illustrative sample data, as the subdomain says. Start at the master canvas (the root URL redirects there).
 
 ---
 
@@ -39,7 +44,13 @@ The project has been fanned out from a single master plan into [BMAD-method](htt
 
 We are adopting BMAD in two stages, deliberately decoupled:
 
-1. **Now — document structure (manual).** The hand-written material has been reshaped into BMAD-convention artifacts under `docs/` (complete). Remaining polish: owner review of the `{DRAFT}` problem statement and success metrics, and the open questions in [prd.md](docs/prd.md#open-questions).
+1. **Now — document structure (manual).** The hand-written material has been reshaped into BMAD-convention artifacts under `docs/` (complete). Owner review of the formerly-draft sections is done (2026-07-15); remaining open questions are tracked in [prd.md](docs/prd.md#open-questions).
 2. **At the code boundary — full agent workflow.** Install the BMAD toolchain (`npx bmad-method install`, v6.x) and use its agents. Because we already have rich hand-written docs, this is a **brownfield** adoption: the PM agent ingests our material and **generates the epic list** from the PRD (epics are not hand-authored); the Scrum Master shards epics into stories for the Dev agent.
 
 Doing structure now and agents later avoids fighting BMAD's greenfield "generate from a blank brief" flow while the plan is still evolving, and means the docs already conform when the toolchain goes in.
+
+---
+
+## License
+
+Documentation, methodology, and design materials: **CC BY-NC-SA 4.0**. Future platform code: **BSL** (planned). Details and the layered scheme: [LICENSE.md](LICENSE.md). The prototype screens contain **mock data only** — nothing here is a real analysis of any jurisdiction, and nothing is legal advice.

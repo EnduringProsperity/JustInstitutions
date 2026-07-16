@@ -94,7 +94,7 @@ The distinction below is therefore between **capability** (all jurisdictions, al
 
 ## Context / Differentiation
 
-No existing platform combines the three capabilities this one requires (full landscape in [business/partners.md](business/partners.md)):
+No existing platform combines the three capabilities this one requires (full landscape in partners.md, private business repo):
 
 1. **Rules-to-outcomes linkage** — connecting specific statutes/regulations to measurable societal outcomes.
 2. **Full-hierarchy vulnerability analysis** across the complete federal → state → county → city corpus.
@@ -104,8 +104,8 @@ Legislative trackers (GovTrack, OpenStates, Quorum), legal-research tools (Westl
 
 ## Constraints & Assumptions
 
-- **Public-interest first**, not commercial-product first. Free for public/civic use; commercial users subsidize (see [business/revenue.md](business/revenue.md)).
-- **Cost-efficient by design** — pgvector over a dedicated vector DB, prompt caching, Batch API, serverless (see [business/cost.md](business/cost.md)).
+- **Public-interest first**, not commercial-product first. Free for public/civic use; commercial users subsidize (see revenue.md, private business repo).
+- **Cost-efficient by design** — pgvector over a dedicated vector DB, prompt caching, Batch API, serverless (see cost.md, private business repo).
 - Assumes continued availability of free government data APIs for both corpus and KPIs.
 
 ## Key Risks
