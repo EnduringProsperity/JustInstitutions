@@ -36,7 +36,7 @@ The project has been fanned out from a single master plan into [BMAD-method](htt
 | [docs/example-questions.md](docs/example-questions.md) | — (reference) | The question library the product is built to answer |
 | business exhibits | — | Cost, revenue, funding, partners, naming — [business exhibits (private repo)](https://github.com/EnduringProsperity/JustInstitutions-business), split out when this repo went public |
 
-**Design prototype (mock data):** the screens in `docs/design/screens/` are hosted at **https://mockdataprototype.enduringprosperity.org** — every score, finding, and budget figure is illustrative sample data, as the subdomain says. Start at the master canvas (the root URL redirects there).
+**Design prototype (mock data):** the screens in `docs/design/screens/` are hosted at **https://mockdataprototype.justinstitutions.org** — every score, finding, and budget figure is illustrative sample data, as the subdomain says. Start at the master canvas (the root URL redirects there).
 
 ---
 
