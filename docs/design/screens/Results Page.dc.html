@@ -18,34 +18,34 @@ a:hover{color:var(--link-hover)}
 <div data-screen-label="Test Report — California" style="min-height:100vh">
 
 <header style="display:flex;align-items:center;gap:28px;padding:0 32px;height:52px;background:var(--bg-1);border-bottom:1px solid var(--line-1)">
-  <div style="font:600 15px var(--font-sans);letter-spacing:-0.015em">Just<span style="color:var(--accent)">Institutions</span></div>
+  <a href="Landing Page.dc.html" style="font:600 15px var(--font-sans);letter-spacing:-0.015em;color:var(--ink-1);text-decoration:none">Just<span style="color:var(--accent)">Institutions</span></a>
   <nav style="display:flex;gap:4px;align-items:center;font:500 13px var(--font-sans);color:var(--ink-2)">
-    <a href="#" style="color:var(--ink-1);text-decoration:none;padding:6px 10px;background:var(--bg-3);border-radius:6px">Test</a>
+    <a href="Test Config.dc.html" style="color:var(--ink-1);text-decoration:none;padding:6px 10px;background:var(--bg-3);border-radius:6px">Test</a>
     <div style="position:relative">
       <button onClick="{{ toggleExplore }}" style="border:none;background:{{ exploreBg }};color:var(--ink-2);border-radius:6px;padding:6px 10px;font:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:5px">Explore <span style="font-size:9px;transform:translateY(1px)">▾</span></button>
       <sc-if value="{{ exploreOpen }}" hint-placeholder-val="{{ false }}">
         <div style="position:absolute;top:calc(100% + 6px);left:0;z-index:50;min-width:160px;background:var(--bg-1);border:1px solid var(--line-1);border-radius:8px;box-shadow:var(--shadow-pop);padding:5px;display:flex;flex-direction:column">
-          <a href="#" style="color:var(--ink-1);text-decoration:none;padding:7px 11px;border-radius:5px;font:500 13px var(--font-sans)" style-hover="background:var(--bg-3)">Outcomes</a>
-          <a href="#" style="color:var(--ink-1);text-decoration:none;padding:7px 11px;border-radius:5px;font:500 13px var(--font-sans)" style-hover="background:var(--bg-3)">Money</a>
-          <a href="#" style="color:var(--ink-1);text-decoration:none;padding:7px 11px;border-radius:5px;font:500 13px var(--font-sans)" style-hover="background:var(--bg-3)">Compare</a>
-          <a href="#" style="color:var(--ink-1);text-decoration:none;padding:7px 11px;border-radius:5px;font:500 13px var(--font-sans)" style-hover="background:var(--bg-3)">The Law</a>
+          <a href="KPI Explorer.dc.html" style="color:var(--ink-1);text-decoration:none;padding:7px 11px;border-radius:5px;font:500 13px var(--font-sans)" style-hover="background:var(--bg-3)">Outcomes</a>
+          <a href="Money Explorer.dc.html" style="color:var(--ink-1);text-decoration:none;padding:7px 11px;border-radius:5px;font:500 13px var(--font-sans)" style-hover="background:var(--bg-3)">Money</a>
+          <a href="Compare.dc.html" style="color:var(--ink-1);text-decoration:none;padding:7px 11px;border-radius:5px;font:500 13px var(--font-sans)" style-hover="background:var(--bg-3)">Compare</a>
+          <a href="Law Explorer.dc.html" style="color:var(--ink-1);text-decoration:none;padding:7px 11px;border-radius:5px;font:500 13px var(--font-sans)" style-hover="background:var(--bg-3)">The Law</a>
         </div>
       </sc-if>
     </div>
-    <a href="#" style="color:var(--ink-2);text-decoration:none;padding:6px 10px">Design</a>
+    <a href="Patch Proposal.dc.html" style="color:var(--ink-2);text-decoration:none;padding:6px 10px">Design</a>
   </nav>
   <div style="flex:1"></div>
   <div style="display:flex;gap:6px;align-items:center">
-    <button title="Search" style="border:none;background:transparent;border-radius:6px;padding:7px;cursor:pointer;display:inline-flex;color:var(--ink-2)" style-hover="background:var(--bg-3)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.8-3.8"></path></svg></button>
-    <button title="Help" style="border:none;background:transparent;border-radius:6px;padding:7px;cursor:pointer;display:inline-flex;color:var(--ink-2)" style-hover="background:var(--bg-3)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M9.2 9a2.9 2.9 0 0 1 5.6 1c0 1.8-2.8 2.2-2.8 3.7"></path><circle cx="12" cy="17.3" r="0.4" fill="currentColor"></circle></svg></button>
+    <button title="Search — not in prototype scope" style="border:none;background:transparent;border-radius:6px;padding:7px;cursor:pointer;display:inline-flex;color:var(--ink-2)" style-hover="background:var(--bg-3)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.8-3.8"></path></svg></button>
+    <button title="Help — not in prototype scope" style="border:none;background:transparent;border-radius:6px;padding:7px;cursor:pointer;display:inline-flex;color:var(--ink-2)" style-hover="background:var(--bg-3)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M9.2 9a2.9 2.9 0 0 1 5.6 1c0 1.8-2.8 2.2-2.8 3.7"></path><circle cx="12" cy="17.3" r="0.4" fill="currentColor"></circle></svg></button>
     <div style="position:relative">
       <button onClick="{{ toggleProfile }}" title="Profile" style="border:none;background:{{ profileBg }};border-radius:6px;padding:7px;cursor:pointer;display:inline-flex;color:var(--ink-2)" style-hover="background:var(--bg-3)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"></circle><path d="M4.5 20c1.6-3.2 4.3-4.8 7.5-4.8s5.9 1.6 7.5 4.8"></path></svg></button>
       <sc-if value="{{ profileOpen }}" hint-placeholder-val="{{ false }}">
         <div style="position:absolute;top:calc(100% + 6px);right:0;z-index:50;min-width:170px;background:var(--bg-1);border:1px solid var(--line-1);border-radius:8px;box-shadow:var(--shadow-pop);padding:5px;display:flex;flex-direction:column">
-          <a href="#" style="color:var(--ink-1);text-decoration:none;padding:7px 11px;border-radius:5px;font:500 13px var(--font-sans)" style-hover="background:var(--bg-3)">Notifications</a>
-          <a href="#" style="color:var(--ink-1);text-decoration:none;padding:7px 11px;border-radius:5px;font:500 13px var(--font-sans)" style-hover="background:var(--bg-3)">Profile</a>
-          <a href="#" style="color:var(--ink-1);text-decoration:none;padding:7px 11px;border-radius:5px;font:500 13px var(--font-sans)" style-hover="background:var(--bg-3)">Account</a>
-          <a href="#" style="color:var(--ink-1);text-decoration:none;padding:7px 11px;border-radius:5px;font:500 13px var(--font-sans)" style-hover="background:var(--bg-3)">Settings</a>
+          <a href="#" title="Not in prototype scope" style="color:var(--ink-1);text-decoration:none;padding:7px 11px;border-radius:5px;font:500 13px var(--font-sans)" style-hover="background:var(--bg-3)">Notifications</a>
+          <a href="#" title="Not in prototype scope" style="color:var(--ink-1);text-decoration:none;padding:7px 11px;border-radius:5px;font:500 13px var(--font-sans)" style-hover="background:var(--bg-3)">Profile</a>
+          <a href="#" title="Not in prototype scope" style="color:var(--ink-1);text-decoration:none;padding:7px 11px;border-radius:5px;font:500 13px var(--font-sans)" style-hover="background:var(--bg-3)">Account</a>
+          <a href="#" title="Not in prototype scope" style="color:var(--ink-1);text-decoration:none;padding:7px 11px;border-radius:5px;font:500 13px var(--font-sans)" style-hover="background:var(--bg-3)">Settings</a>
         </div>
       </sc-if>
     </div>
@@ -59,15 +59,15 @@ a:hover{color:var(--link-hover)}
       <div style="margin-top:6px;font:11px var(--font-mono);color:var(--ink-3)" title="run RUN-01847 · corpus v41 · law as of 2026-05-01 · completed 2026-07-13 16:41 · config: Universal baseline · Balanced · blocks A–L">RUN-01847 · completed 2026-07-13 · Universal baseline · Balanced · blocks A–L · corpus v41</div>
     </div>
     <div style="display:flex;gap:10px">
-      <button style="border:1px solid var(--line-1);background:var(--bg-1);border-radius:6px;padding:7px 14px;font:500 13px var(--font-sans);color:var(--ink-1);cursor:pointer;box-shadow:var(--shadow-1)">Export</button>
-      <button style="border:none;background:var(--accent);color:#fff;border-radius:6px;padding:7px 16px;font:500 13px var(--font-sans);cursor:pointer">Re-test</button>
+      <button title="Not in prototype scope" style="border:1px solid var(--line-1);background:var(--bg-1);border-radius:6px;padding:7px 14px;font:500 13px var(--font-sans);color:var(--ink-1);cursor:pointer;box-shadow:var(--shadow-1)">Export</button>
+      <a href="Test Config.dc.html" style="border:none;background:var(--accent);color:#fff;border-radius:6px;padding:7px 16px;font:500 13px var(--font-sans);cursor:pointer;text-decoration:none;display:inline-block">Re-test</a>
     </div>
   </div>
 
   <div style="display:flex;gap:2px;border-bottom:1px solid var(--line-1);margin-top:22px">
     <span style="font:600 13px var(--font-sans);color:var(--ink-1);border-bottom:2px solid var(--accent);padding:8px 12px;margin-bottom:-1px">Test Report</span>
-    <span style="font:500 13px var(--font-sans);color:var(--ink-2);padding:8px 12px">Vulnerability Explorer <span style="font:11px var(--font-mono);color:var(--ink-3)">23</span></span>
-    <span style="font:500 13px var(--font-sans);color:var(--ink-2);padding:8px 12px">Rollup <span style="font:11px var(--font-mono);color:var(--ink-3)">58 counties</span></span>
+    <a href="Vulnerability Explorer.dc.html" style="font:500 13px var(--font-sans);color:var(--ink-2);padding:8px 12px;text-decoration:none">Vulnerability Explorer <span style="font:11px var(--font-mono);color:var(--ink-3)">23</span></a>
+    <a href="Vulnerability Explorer.dc.html" title="Opens the explorer — switch to the Rollup tab" style="font:500 13px var(--font-sans);color:var(--ink-2);padding:8px 12px;text-decoration:none">Rollup <span style="font:11px var(--font-mono);color:var(--ink-3)">58 counties</span></a>
   </div>
 
   <div style="display:grid;grid-template-columns:380px 1fr;gap:24px;margin-top:24px;align-items:start">
@@ -93,7 +93,7 @@ a:hover{color:var(--link-hover)}
       <section style="background:var(--bg-1);border:1px solid var(--line-1);border-radius:10px;box-shadow:var(--shadow-1)">
         <div style="display:flex;justify-content:space-between;align-items:baseline;padding:12px 16px;border-bottom:1px solid var(--line-2)">
           <h3 style="margin:0;font:600 14px var(--font-sans)">Block scores</h3>
-          <a href="#" style="font:11px var(--font-sans)">all 12 →</a>
+          <a href="Block Detail.dc.html" style="font:11px var(--font-sans)">all 12 →</a>
         </div>
         <div style="padding:12px 16px;display:flex;flex-direction:column;gap:10px">
           <sc-for list="{{ scores }}" as="s" hint-placeholder-count="6">
@@ -112,11 +112,11 @@ a:hover{color:var(--link-hover)}
           <span style="font:10.5px var(--font-mono);color:var(--ink-3)">BLOCK × LAYER</span>
         </div>
         <div style="padding:14px 16px">
-          <div style="display:grid;grid-template-columns:70px repeat(12,1fr);gap:2px;align-items:center">
+          <a href="Block Detail.dc.html" title="Open Block A detail" style="display:grid;grid-template-columns:70px repeat(12,1fr);gap:2px;align-items:center;text-decoration:none;color:inherit">
             <sc-for list="{{ heatCells }}" as="c" hint-placeholder-count="24">
               <div style="height:{{ c.h }};background:{{ c.bg }};border-radius:2px;display:flex;align-items:center;justify-content:center;font:600 9.5px var(--font-mono);color:{{ c.fg }}" title="{{ c.tip }}">{{ c.t }}</div>
             </sc-for>
-          </div>
+          </a>
           <div style="display:flex;justify-content:space-between;margin-top:10px;font:10px var(--font-mono);color:var(--ink-3)"><span>■ sound</span><span>■ critical — darker needs attention first</span></div>
         </div>
       </section>
@@ -133,14 +133,14 @@ a:hover{color:var(--link-hover)}
           <span style="font:600 11px var(--font-mono);color:var(--fail);background:var(--fail-wash);border-radius:3px;padding:1px 7px">5 fail</span>
           <span style="font:600 11px var(--font-mono);color:var(--gap);background:var(--gap-wash);border-radius:3px;padding:1px 7px">6 gap</span>
           <span style="font:600 11px var(--font-mono);color:var(--partial);background:var(--partial-wash);border-radius:3px;padding:1px 7px">12 partial</span>
-          <a href="#" style="font:11.5px var(--font-sans)">filter</a>
+          <a href="#" title="Not in prototype scope" style="font:11.5px var(--font-sans)">filter</a>
         </div>
       </div>
 
       <sc-if value="{{ isPlain }}" hint-placeholder-val="{{ true }}">
         <div style="padding:14px 16px;display:flex;flex-direction:column;gap:10px">
           <sc-for list="{{ findings }}" as="f" hint-placeholder-count="4">
-            <a href="#" style="display:block;text-decoration:none;color:inherit;background:var(--bg-2);border:1px solid var(--line-2);border-radius:8px;padding:14px 16px" style-hover="background:var(--bg-3)">
+            <a href="Vulnerability Page.dc.html" style="display:block;text-decoration:none;color:inherit;background:var(--bg-2);border:1px solid var(--line-2);border-radius:8px;padding:14px 16px" style-hover="background:var(--bg-3)">
               <div style="font:16px/1.5 var(--font-sans);color:var(--ink-1);max-width:58ch">{{ f.plain }}</div>
               <div style="display:flex;justify-content:space-between;align-items:center;margin-top:9px">
                 <span style="font:10px var(--font-mono);color:var(--ink-3)">{{ f.id }} · {{ f.topic }}</span>
@@ -154,7 +154,7 @@ a:hover{color:var(--link-hover)}
       <sc-if value="{{ isExpert }}" hint-placeholder-val="{{ false }}">
         <div style="padding:14px 16px;display:flex;flex-direction:column;gap:7px">
           <sc-for list="{{ findings }}" as="f" hint-placeholder-count="4">
-            <a href="#" style="display:block;text-decoration:none;color:inherit;background:var(--bg-1);border:1px solid var(--line-2);border-radius:6px;padding:9px 13px" style-hover="background:var(--bg-3)">
+            <a href="Vulnerability Page.dc.html" style="display:block;text-decoration:none;color:inherit;background:var(--bg-1);border:1px solid var(--line-2);border-radius:6px;padding:9px 13px" style-hover="background:var(--bg-3)">
               <div style="display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;font:12.5px/1.55 var(--font-sans);color:var(--ink-1)">
                 <span style="font:600 12.5px var(--font-sans)">{{ f.test }} {{ f.testName }}</span>
                 <span style="font:600 10px var(--font-mono);color:{{ f.vc }};background:{{ f.vw }};border-radius:3px;padding:1px 6px">{{ f.verdict }}</span>
@@ -169,7 +169,7 @@ a:hover{color:var(--link-hover)}
       </sc-if>
 
       <div style="padding:11px 16px;border-top:1px solid var(--line-2);display:flex;justify-content:space-between;align-items:center">
-        <span style="font:12px var(--font-sans);color:var(--ink-2)">Showing top 4 of 23 · <a href="#">open Vulnerability Explorer →</a></span>
+        <span style="font:12px var(--font-sans);color:var(--ink-2)">Showing top 4 of 23 · <a href="Vulnerability Explorer.dc.html">open Vulnerability Explorer →</a></span>
         <span style="font:10px var(--font-mono);color:var(--ink-3)">every card carries its own provenance — hover any ⓘ stamp</span>
       </div>
     </section>

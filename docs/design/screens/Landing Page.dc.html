@@ -19,12 +19,12 @@ a:hover{color:var(--link-hover)}
 <div data-screen-label="Landing" style="min-height:100vh">
 
 <header style="display:flex;align-items:center;gap:28px;padding:0 32px;height:56px;background:var(--bg-0);border-bottom:1px solid var(--line-2)">
-  <div style="font:600 16px var(--font-sans);letter-spacing:-0.015em">Just<span style="color:var(--accent)">Institutions</span></div>
+  <a href="Landing Page.dc.html" style="font:600 16px var(--font-sans);letter-spacing:-0.015em;color:var(--ink-1);text-decoration:none">Just<span style="color:var(--accent)">Institutions</span></a>
   <nav style="display:flex;gap:4px;align-items:center;font:500 13px var(--font-sans);color:var(--ink-2)">
     <a href="Test Config.dc.html" style="color:var(--ink-2);text-decoration:none;padding:6px 10px">Test</a>
     <a href="KPI Explorer.dc.html" style="color:var(--ink-2);text-decoration:none;padding:6px 10px">Explore</a>
     <a href="Patch Proposal.dc.html" style="color:var(--ink-2);text-decoration:none;padding:6px 10px">Design</a>
-    <a href="#" style="color:var(--ink-2);text-decoration:none;padding:6px 10px">Methodology</a>
+    <a href="#" title="Not in prototype scope" style="color:var(--ink-2);text-decoration:none;padding:6px 10px">Methodology</a>
   </nav>
   <div style="flex:1"></div>
   <span style="font:12px var(--font-sans);color:var(--ink-3)">Read everything without an account</span>
@@ -46,7 +46,7 @@ a:hover{color:var(--link-hover)}
       </div>
       <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px">
         <sc-for list="{{ chips }}" as="c" hint-placeholder-count="3">
-          <a href="#" style="text-decoration:none;color:var(--ink-2);font:12.5px var(--font-sans);border:1px solid var(--line-1);background:var(--bg-1);border-radius:99px;padding:5px 13px" style-hover="background:var(--bg-3)">{{ c }}</a>
+          <a href="Law Explorer.dc.html" style="text-decoration:none;color:var(--ink-2);font:12.5px var(--font-sans);border:1px solid var(--line-1);background:var(--bg-1);border-radius:99px;padding:5px 13px" style-hover="background:var(--bg-3)">{{ c }}</a>
         </sc-for>
       </div>
     </div>
@@ -79,7 +79,7 @@ a:hover{color:var(--link-hover)}
     <p style="margin:8px 0 0;font:14px/1.6 var(--font-sans);color:var(--ink-2);max-width:60ch">Same data for everyone — plain language first, expert depth one toggle away. Pick the question that sounds like yours.</p>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px;margin-top:18px">
       <sc-for list="{{ personas }}" as="p" hint-placeholder-count="6">
-        <a href="#" style="text-decoration:none;color:inherit;background:var(--bg-1);border:1px solid var(--line-1);border-radius:10px;padding:18px 20px;box-shadow:var(--shadow-1);display:flex;flex-direction:column;gap:8px" style-hover="background:var(--bg-3)">
+        <a href="{{ p.href }}" style="text-decoration:none;color:inherit;background:var(--bg-1);border:1px solid var(--line-1);border-radius:10px;padding:18px 20px;box-shadow:var(--shadow-1);display:flex;flex-direction:column;gap:8px" style-hover="background:var(--bg-3)">
           <span style="font:600 10.5px var(--font-mono);letter-spacing:0.08em;color:var(--ink-3)">{{ p.tag }}</span>
           <span style="font:500 15.5px/1.45 var(--font-sans);color:var(--ink-1);text-wrap:pretty">"{{ p.q }}"</span>
           <span style="margin-top:auto;font:12.5px var(--font-sans);color:var(--accent)">{{ p.cta }} →</span>
@@ -96,14 +96,14 @@ a:hover{color:var(--link-hover)}
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:20px">
         <sc-for list="{{ loop }}" as="l" hint-placeholder-count="4">
-          <div style="background:var(--bg-0);border:1px solid var(--line-1);border-radius:10px;padding:18px 20px">
+          <a href="{{ l.href }}" style="text-decoration:none;color:inherit;display:block;background:var(--bg-0);border:1px solid var(--line-1);border-radius:10px;padding:18px 20px" style-hover="background:var(--bg-3)">
             <div style="display:flex;align-items:baseline;gap:10px">
               <span style="font:600 22px var(--font-mono);color:var(--accent);font-variant-numeric:tabular-nums">{{ l.n }}</span>
               <span style="font:600 15px var(--font-sans)">{{ l.title }}</span>
             </div>
             <p style="margin:9px 0 0;font:13px/1.6 var(--font-sans);color:var(--ink-2)">{{ l.text }}</p>
             <div style="margin-top:10px;font:10.5px var(--font-mono);color:var(--ink-3)">{{ l.stamp }}</div>
-          </div>
+          </a>
         </sc-for>
       </div>
     </div>
@@ -117,7 +117,7 @@ a:hover{color:var(--link-hover)}
       </div>
       <div style="flex:1 1 380px;display:flex;flex-direction:column;gap:8px">
         <sc-for list="{{ skepticQs }}" as="q" hint-placeholder-count="3">
-          <a href="#" style="text-decoration:none;color:var(--ink-1);font:13.5px/1.5 var(--font-sans);border:1px solid var(--line-1);background:var(--bg-1);border-radius:8px;padding:11px 15px;display:flex;justify-content:space-between;gap:12px;align-items:baseline" style-hover="background:var(--bg-3)">
+          <a href="#" title="Not in prototype scope" style="text-decoration:none;color:var(--ink-1);font:13.5px/1.5 var(--font-sans);border:1px solid var(--line-1);background:var(--bg-1);border-radius:8px;padding:11px 15px;display:flex;justify-content:space-between;gap:12px;align-items:baseline" style-hover="background:var(--bg-3)">
             <span>{{ q.q }}</span><span style="flex:none;font:10.5px var(--font-mono);color:var(--ink-3)">{{ q.route }}</span>
           </a>
         </sc-for>
@@ -127,7 +127,7 @@ a:hover{color:var(--link-hover)}
 
   <footer style="max-width:1180px;margin:72px auto 0;padding:24px 32px 40px;border-top:1px solid var(--line-2);display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:10px">
     <span style="font:600 13px var(--font-sans)">Just<span style="color:var(--accent)">Institutions</span></span>
-    <nav style="display:flex;gap:18px;font:12px var(--font-sans)"><a href="#">Methodology</a><a href="#">Data &amp; vintages</a><a href="#">API</a><a href="#">Critique channel</a></nav>
+    <nav style="display:flex;gap:18px;font:12px var(--font-sans)"><a href="#" title="Not in prototype scope">Methodology</a><a href="#" title="Not in prototype scope">Data &amp; vintages</a><a href="#" title="Not in prototype scope">API</a><a href="#" title="Not in prototype scope">Critique channel</a></nav>
     <span style="font:10px var(--font-mono);color:var(--ink-3)">CORPUS V41 · LAW AS OF 2026-05-01 · EVERY VIEW IS A STABLE URL</span>
   </footer>
 </main>
@@ -161,18 +161,18 @@ class Component extends DCLogic {
       p: mix[0] + "%", pa: mix[1] + "%", g: mix[2] + "%", f: mix[3] + "%",
     }));
     const personas = [
-      { tag: "I LIVE HERE", q: "What laws govern eviction in my county, in plain language?", cta: "Explore your jurisdiction" },
-      { tag: "STUDENT · TEACHER", q: "Show me a real example of two laws that contradict each other.", cta: "Open a live civics lesson" },
-      { tag: "JOURNALIST", q: "Which agencies have legal mandates but no budget to enforce them?", cta: "Hunt outliers" },
-      { tag: "RESEARCHER", q: "Export every privacy-law Gap finding across all 50 states.", cta: "Query the corpus" },
-      { tag: "ADVOCATE", q: "What's the minimum viable patch for our housing gap?", cta: "Build the evidence" },
-      { tag: "STAFFER · OFFICIAL", q: "What are my jurisdiction's highest-severity, lowest-difficulty fixes?", cta: "Find quick wins" },
+      { tag: "I LIVE HERE", q: "What laws govern eviction in my county, in plain language?", cta: "Explore your jurisdiction", href: "KPI Explorer.dc.html" },
+      { tag: "STUDENT · TEACHER", q: "Show me a real example of two laws that contradict each other.", cta: "Open a live civics lesson", href: "Law Explorer.dc.html" },
+      { tag: "JOURNALIST", q: "Which agencies have legal mandates but no budget to enforce them?", cta: "Hunt outliers", href: "Vulnerability Explorer.dc.html" },
+      { tag: "RESEARCHER", q: "Export every privacy-law Gap finding across all 50 states.", cta: "Query the corpus", href: "Vulnerability Explorer.dc.html" },
+      { tag: "ADVOCATE", q: "What's the minimum viable patch for our housing gap?", cta: "Build the evidence", href: "Patch Proposal.dc.html" },
+      { tag: "STAFFER · OFFICIAL", q: "What are my jurisdiction's highest-severity, lowest-difficulty fixes?", cta: "Find quick wins", href: "Vulnerability Explorer.dc.html" },
     ];
     const loop = [
-      { n: "1", title: "Test", text: "Pick a jurisdiction. We run its rules through 61 tests across 12 blocks — separation of powers to fiscal capacity.", stamp: "VERDICTS: pass · partial · gap · fail" },
-      { n: "2", title: "Explore", text: "See outcomes, follow the money, compare peers, and ask the law itself — every answer cited to source text.", stamp: "KPI · MONEY · COMPARE · LAW" },
-      { n: "3", title: "Design", text: "Turn any finding into a patch: feasibility-scored, precedent-backed draft language, marked AI-drafted.", stamp: "DIFFICULTY 1–5 · EXPERT REVIEW REQUIRED" },
-      { n: "4", title: "Re-test", text: "Rules change; scores follow. Watch a finding and know the day the law moves.", stamp: "EVERY RUN VERSIONED · EVERY VIEW A URL" },
+      { n: "1", title: "Test", text: "Pick a jurisdiction. We run its rules through 61 tests across 12 blocks — separation of powers to fiscal capacity.", stamp: "VERDICTS: pass · partial · gap · fail", href: "Test Config.dc.html" },
+      { n: "2", title: "Explore", text: "See outcomes, follow the money, compare peers, and ask the law itself — every answer cited to source text.", stamp: "KPI · MONEY · COMPARE · LAW", href: "KPI Explorer.dc.html" },
+      { n: "3", title: "Design", text: "Turn any finding into a patch: feasibility-scored, precedent-backed draft language, marked AI-drafted.", stamp: "DIFFICULTY 1–5 · EXPERT REVIEW REQUIRED", href: "Patch Proposal.dc.html" },
+      { n: "4", title: "Re-test", text: "Rules change; scores follow. Watch a finding and know the day the law moves.", stamp: "EVERY RUN VERSIONED · EVERY VIEW A URL", href: "Results Page.dc.html" },
     ];
     const skepticQs = [
       { q: "Isn't all of this just correlation dressed up as insight?", route: "→ CONFIDENCE MODEL C0–C3" },

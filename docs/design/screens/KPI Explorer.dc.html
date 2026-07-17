@@ -18,17 +18,17 @@ a:hover{color:var(--link-hover)}
 <div data-screen-label="KPI Explorer — California" style="min-height:100vh">
 
 <header style="display:flex;align-items:center;gap:28px;padding:0 32px;height:52px;background:var(--bg-1);border-bottom:1px solid var(--line-1)">
-  <div style="font:600 15px var(--font-sans);letter-spacing:-0.015em">Just<span style="color:var(--accent)">Institutions</span></div>
+  <a href="Landing Page.dc.html" style="font:600 15px var(--font-sans);letter-spacing:-0.015em;color:var(--ink-1);text-decoration:none">Just<span style="color:var(--accent)">Institutions</span></a>
   <nav style="display:flex;gap:4px;align-items:center;font:500 13px var(--font-sans);color:var(--ink-2)">
-    <a href="#" style="color:var(--ink-2);text-decoration:none;padding:6px 10px">Test</a>
-    <a href="#" style="color:var(--ink-1);text-decoration:none;padding:6px 10px;background:var(--bg-3);border-radius:6px">Explore</a>
-    <a href="#" style="color:var(--ink-2);text-decoration:none;padding:6px 10px">Design</a>
+    <a href="Test Config.dc.html" style="color:var(--ink-2);text-decoration:none;padding:6px 10px">Test</a>
+    <a href="KPI Explorer.dc.html" style="color:var(--ink-1);text-decoration:none;padding:6px 10px;background:var(--bg-3);border-radius:6px">Explore</a>
+    <a href="Patch Proposal.dc.html" style="color:var(--ink-2);text-decoration:none;padding:6px 10px">Design</a>
   </nav>
   <div style="display:flex;gap:2px;font:500 12px var(--font-sans);color:var(--ink-2);background:var(--bg-2);border:1px solid var(--line-2);border-radius:99px;padding:2px">
     <span style="padding:3px 11px;background:var(--bg-1);border-radius:99px;color:var(--ink-1);box-shadow:var(--shadow-1)">Outcomes</span>
-    <a href="#" style="padding:3px 11px;color:var(--ink-2);text-decoration:none">Money</a>
-    <a href="#" style="padding:3px 11px;color:var(--ink-2);text-decoration:none">Compare</a>
-    <a href="#" style="padding:3px 11px;color:var(--ink-2);text-decoration:none">The Law</a>
+    <a href="Money Explorer.dc.html" style="padding:3px 11px;color:var(--ink-2);text-decoration:none">Money</a>
+    <a href="Compare.dc.html" style="padding:3px 11px;color:var(--ink-2);text-decoration:none">Compare</a>
+    <a href="Law Explorer.dc.html" style="padding:3px 11px;color:var(--ink-2);text-decoration:none">The Law</a>
   </div>
   <div style="flex:1"></div>
   <span style="font:11px var(--font-mono);color:var(--ink-3)">214 indicators · vintages 2023–2025</span>
@@ -85,7 +85,7 @@ a:hover{color:var(--link-hover)}
             </div>
           </sc-if>
           <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:8px;border-top:1px solid var(--line-2)">
-            <a href="{{ d.href }}" style="font:11px var(--font-sans)">all {{ d.n }} →</a>
+            <a href="{{ d.href }}" title="{{ d.hrefTitle }}" style="font:11px var(--font-sans)">all {{ d.n }} →</a>
             <span style="font:10px var(--font-mono);color:var(--ink-3);cursor:help" title="{{ d.ladder }}">{{ d.stamp }} ⓘ</span>
           </div>
         </section>
@@ -167,7 +167,7 @@ a:hover{color:var(--link-hover)}
                     </div>
                   </sc-for>
                 </div>
-                <div style="margin-top:8px;font:11px/1.6 var(--font-mono);color:var(--ink-3)">score = mean of component percentiles ({{ p.mean }}) × rule-coverage factor {{ p.cov }} = <b style="color:var(--ink-1)">{{ p.score }}</b> · percentile = rank in the 50-state distribution, direction-adjusted · <a href="#">full method →</a></div>
+                <div style="margin-top:8px;font:11px/1.6 var(--font-mono);color:var(--ink-3)">score = mean of component percentiles ({{ p.mean }}) × rule-coverage factor {{ p.cov }} = <b style="color:var(--ink-1)">{{ p.score }}</b> · percentile = rank in the 50-state distribution, direction-adjusted · <a href="#" title="Not in prototype scope">full method →</a></div>
               </div>
             </sc-if>
           </div>
@@ -199,7 +199,7 @@ a:hover{color:var(--link-hover)}
       </div>
       <div style="padding:11px 20px;display:flex;justify-content:space-between;align-items:center">
         <span style="font:12px var(--font-sans);color:var(--ink-2)">{{ capNote }}</span>
-        <a href="#" style="font:11.5px var(--font-sans)">rules affecting this capital →</a>
+        <a href="#" title="Not in prototype scope" style="font:11.5px var(--font-sans)">rules affecting this capital →</a>
       </div>
     </div>
   </sc-if>
@@ -253,7 +253,7 @@ class Component extends DCLogic {
     ].map((d) => ({
       ...d, dc: d.good ? "var(--pass)" : "var(--fail)", dw: d.good ? "var(--pass-wash)" : "var(--fail-wash)",
       stamp: d.src + " · " + d.vin, ladder: lad(d.src, d.vin),
-      href: d.name === "Health & Wellbeing" ? "Category Detail.dc.html" : "#",
+      href: d.name === "Health & Wellbeing" ? "Category Detail.dc.html" : "#", hrefTitle: d.name === "Health & Wellbeing" ? "Open Health & Wellbeing" : "Not in prototype scope",
       rows: d.rows.map((r) => ({ ...r, ...tag(r.t) })),
     }));
     const ST = { on: ["on track", "var(--pass)", "var(--pass-wash)"], risk: ["at risk", "var(--partial)", "var(--partial-wash)"], fail: ["failing", "var(--fail)", "var(--fail-wash)"] };
